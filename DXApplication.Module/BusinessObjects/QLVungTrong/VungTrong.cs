@@ -2,11 +2,14 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.ThuocPhanBon;
+using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +19,17 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.QLVungTrong
 {
     [DefaultClassOptions]
-    //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
-    //[Persistent("DatabaseTableName")]
-    // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
+    [DefaultProperty(nameof(LoaiCayTrong))]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
+    [XafDisplayName("Vùng Trồng")]
+    [ImageName("planting")]
+    [NavigationItem(Menu.VungTrong)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    [ListViewAutoFilterRow(true)]
+    [CustomDetailView(Tabbed =true)]
     public class VungTrong : BaseObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        // Use CodeRush to create XPO classes and properties with a few keystrokes.
-        // https://docs.devexpress.com/CodeRushForRoslyn/118557
+    {
         public VungTrong(Session session)
             : base(session)
         {
@@ -32,7 +37,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
 
         string hinhThucCanhTac;
@@ -47,78 +51,96 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string soCoSoCap;
         string diaChi;
         string maSo;
-
+        [XafDisplayName("Mã số vùng trồng")]
+        [RuleRequiredField("Bắt buộc phải có VungTrong.MaSo", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string MaSo
         {
             get => maSo;
             set => SetPropertyValue(nameof(MaSo), ref maSo, value);
         }
-
+        [XafDisplayName("Địa chỉ")]
+        [RuleRequiredField("Bắt buộc phải có VungTrong.DiaChi", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string DiaChi
         {
             get => diaChi;
             set => SetPropertyValue(nameof(DiaChi), ref diaChi, value);
         }
-
+        [RuleRequiredField("Bắt buộc phải có VungTrong.SoCoSoCap", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [XafDisplayName("Số cơ sở cấp")]
         public string SoCoSoCap
         {
             get => soCoSoCap;
             set => SetPropertyValue(nameof(SoCoSoCap), ref soCoSoCap, value);
         }
-
+        [XafDisplayName("Năm cấp")]
         public int NamCap
         {
             get => namCap;
             set => SetPropertyValue(nameof(NamCap), ref namCap, value);
         }
-
+        [XafDisplayName("Tiêu chuẩn")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string TieuChuan
         {
             get => tieuChuan;
             set => SetPropertyValue(nameof(TieuChuan), ref tieuChuan, value);
         }
-
+        [XafDisplayName("Quy mô")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string QuyMo
         {
             get => quyMo;
             set => SetPropertyValue(nameof(QuyMo), ref quyMo, value);
         }
-
+        [XafDisplayName("Diện tích cơ sở")]
         public double DienTichCoSo
         {
             get => dienTichCoSo;
             set => SetPropertyValue(nameof(DienTichCoSo), ref dienTichCoSo, value);
         }
-
+        [XafDisplayName("Diện tích canh tác")]
         public double DienTichCanhTac
         {
             get => dienTichCanhTac;
             set => SetPropertyValue(nameof(DienTichCanhTac), ref dienTichCanhTac, value);
         }
-
+        [XafDisplayName("Loại đất")]
         public string LoaiDat
         {
             get => loaiDat;
             set => SetPropertyValue(nameof(LoaiDat), ref loaiDat, value);
         }
-
+        [XafDisplayName("Tình trạng hoạt động")]
+        [CaptionsForBoolValues("Đang hoạt động", "Ngừng hoạt động")]
         public bool HoatDong
         {
             get => hoatDong;
             set => SetPropertyValue(nameof(HoatDong), ref hoatDong, value);
         }
-
+        [XafDisplayName("Sản lượng dự kiến")]
         public string SanLuongDuKien
         {
             get => sanLuongDuKien;
             set => SetPropertyValue(nameof(SanLuongDuKien), ref sanLuongDuKien, value);
         }
-        
+        [XafDisplayName("Hình thức canh tác")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string HinhThucCanhTac
         {
             get => hinhThucCanhTac;
             set => SetPropertyValue(nameof(HinhThucCanhTac), ref hinhThucCanhTac, value);
         }
+        [XafDisplayName("Nhật ký canh tác")]
+        [Association("VungTrong-NhatKyCanhTacs"), DevExpress.Xpo.Aggregated]
+        public XPCollection<NhatKyCanhTac> NhatKyCanhTacs
+        {
+            get
+            {
+                return GetCollection<NhatKyCanhTac>(nameof(NhatKyCanhTacs));
+            }
+        }
+        [XafDisplayName("Thuốc BVTV")]
         [Association("VungTrong-ThuocBVTVs")]
         public XPCollection<ThuocBVTV> ThuocBVTVs
         {
@@ -127,6 +149,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<ThuocBVTV>(nameof(ThuocBVTVs));
             }
         }
+        [XafDisplayName("Phân bón")]
         [Association("VungTrong-PhanBons")]
         public XPCollection<PhanBon> PhanBons
         {
@@ -135,6 +158,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<PhanBon>(nameof(PhanBons));
             }
         }
+        [XafDisplayName("Sinh vật gây hại")]
         [Association("VungTrong-SinhVatGayHais")]
         public XPCollection<SinhVatGayHai> SinhVatGayHais
         {
@@ -143,7 +167,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<SinhVatGayHai>(nameof(SinhVatGayHais));
             }
         }
-        [Association("VungTrong-TaiLieus")]
+        [XafDisplayName("Tài liệu đi kèm")]
+        [Association("VungTrong-TaiLieus"), DevExpress.Xpo.Aggregated]
         public XPCollection<TaiLieu> TaiLieus
         {
             get
@@ -151,7 +176,9 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
+    
         private LoaiCayTrong loaiCayTrong;
+        [XafDisplayName("Loại cây trồng")]
         public LoaiCayTrong LoaiCayTrong
         {
             get { return loaiCayTrong; }

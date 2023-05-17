@@ -2,11 +2,13 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
+using DXApplication.Module.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +18,16 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
 {
     [DefaultClassOptions]
-    //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
-    //[Persistent("DatabaseTableName")]
-    // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
+    [DefaultProperty(nameof(TenThuoc))]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
+    [XafDisplayName("Thuốc BVTV")]
+    [ImageName("medicine")]
+    [NavigationItem(Menu.PhanBon)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    [ListViewAutoFilterRow(true)]
     public class ThuocBVTV : BaseObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        // Use CodeRush to create XPO classes and properties with a few keystrokes.
-        // https://docs.devexpress.com/CodeRushForRoslyn/118557
+    { 
         public ThuocBVTV(Session session)
             : base(session)
         {
@@ -32,39 +35,52 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+           
         }
 
+        string huongDan;
         VungTrong vungTrong;
         DanhMucThuoc danhMucThuoc;
         string ghiChu;
         string loaiThuoc;
         string tenThuoc;
-
+        [XafDisplayName("Tên thuốc")]
+        [RuleRequiredField("Bắt buộc phải có ThuocBVTV.TenThuoc", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenThuoc
         {
             get => tenThuoc;
             set => SetPropertyValue(nameof(TenThuoc), ref tenThuoc, value);
         }
-
+        [XafDisplayName("Loại thuốc")]
+        [RuleRequiredField("Bắt buộc phải có ThuocBVTV.LoaiThuoc", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string LoaiThuoc
         {
             get => loaiThuoc;
             set => SetPropertyValue(nameof(LoaiThuoc), ref loaiThuoc, value);
         }
-
+        [XafDisplayName("Hướng dẫn sử dụng")]
+        [RuleRequiredField("Bắt buộc phải có ThuocBVTV.HuongDan", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
+        public string HuongDan
+        {
+            get => huongDan;
+            set => SetPropertyValue(nameof(HuongDan), ref huongDan, value);
+        }
+        [XafDisplayName("Ghi chú")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string GhiChu
         {
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
-
+        [XafDisplayName("Danh mục thuốc")]
         [Association("DanhMucThuoc-ThuocBVTVs")]
         public DanhMucThuoc DanhMucThuoc
         {
             get => danhMucThuoc;
             set => SetPropertyValue(nameof(DanhMucThuoc), ref danhMucThuoc, value);
         }
+        [XafDisplayName("Tài liệu")]
         [Association("ThuocBVTV-TaiLieus"), DevExpress.Xpo.Aggregated]
         public XPCollection<TaiLieu> TaiLieus
         {
@@ -73,12 +89,23 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
-        
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
         [Association("VungTrong-ThuocBVTVs")]
         public VungTrong VungTrong
         {
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
+        }
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [Association("ThuocBVTV-NhatKyBonPhanThuocs")]
+        public XPCollection<NhatKyBonPhanThuoc> NhatKyBonPhanThuocs
+        {
+            get
+            {
+                return GetCollection<NhatKyBonPhanThuoc>(nameof(NhatKyBonPhanThuocs));
+            }
         }
     }
 }

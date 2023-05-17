@@ -19,9 +19,19 @@
     <Compile Remove="Extension\_Draft.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Images\fertilizer.png" />
+    <None Remove="Images\manual.png" />
+    <None Remove="Images\medicine.png" />
+    <None Remove="Images\planting.png" />
+    <None Remove="Images\tree.png" />
     <None Remove="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\fertilizer.png" />
+    <EmbeddedResource Include="Images\manual.png" />
+    <EmbeddedResource Include="Images\medicine.png" />
+    <EmbeddedResource Include="Images\planting.png" />
+    <EmbeddedResource Include="Images\tree.png" />
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
@@ -57,5 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="UnusableNodes.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
   </ItemGroup>
 </Project>

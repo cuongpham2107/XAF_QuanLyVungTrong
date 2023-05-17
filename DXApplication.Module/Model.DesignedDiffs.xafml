@@ -3,15 +3,43 @@
   <BOModel>
     <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Base User" />
   </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Default" ImageName="Detailed">
+        <Items>
+          <Item Id="TaiLieu_ListView" Visible="False" />
+        </Items>
+      </Item>
+      <Item Id="Hỏi đáp" ImageName="Actions_Question">
+        <Items>
+          <Item Id="HoiThoai_ListView" Visible="False" />
+        </Items>
+      </Item>
+      <Item Id="Hướng dẫn sử dụng" ImageName="manual" />
+      <Item Id="Phân Bón/Thuốc" ImageName="medicine">
+        <Items>
+          <Item Id="NhatKyBonPhanThuoc_ListView" Visible="False" />
+        </Items>
+      </Item>
+      <Item Id="Reports" ImageName="BO_Report" />
+      <Item Id="State Machine" Visible="False" />
+      <Item Id="Vùng Trồng" ImageName="planting">
+        <Items>
+          <Item Id="NhatKyCanhTac_ListView" Visible="False" />
+          <Item Id="QuyTrinhSanXuat_ListView" Visible="False" />
+          <Item Id="SinhVatGayHai_ListView" Visible="False" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
   <SchemaModules>
-    <SchemaModule Name="CloneObjectModule" Version="22.2.3.0" IsNewNode="True" />
-    <SchemaModule Name="SystemModule" Version="22.2.3.0" IsNewNode="True" />
+    <SchemaModule Name="CloneObjectModule" Version="22.2.5.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="22.2.5.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
     <ListView Id="ApplicationUser_ListView" Caption="Users" />
-    <ListView Id="Personnel_ListView" NewItemRowPosition="Bottom" />
   </Views>
 </Application>

@@ -2,10 +2,12 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DXApplication.Module.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +17,16 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.HDSD
 {
     [DefaultClassOptions]
-    //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
-    //[Persistent("DatabaseTableName")]
-    // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
+    [DefaultProperty(nameof(TenTaiLieu))]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
+    [XafDisplayName("Hướng dẫn sử dụng")]
+    [ImageName("manual")]
+    [NavigationItem(Menu.HuongDanSuDung)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    [ListViewAutoFilterRow(true)]
     public class HuongDanSuDung : BaseObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        // Use CodeRush to create XPO classes and properties with a few keystrokes.
-        // https://docs.devexpress.com/CodeRushForRoslyn/118557
+    { 
         public HuongDanSuDung(Session session)
             : base(session)
         {
@@ -31,18 +34,20 @@ namespace DXApplication.Module.BusinessObjects.HDSD
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
         FileData fileTaiLieu;
         string tenTaiLieu;
-
+        [XafDisplayName("Tên Tài liệu")]
+        [RuleRequiredField("Bắt buộc phải có HuongDanSuDung.TenTaiLieu", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenTaiLieu
         {
             get => tenTaiLieu;
             set => SetPropertyValue(nameof(TenTaiLieu), ref tenTaiLieu, value);
         }
-
+        [XafDisplayName("File Tài liệu")]
+        [RuleRequiredField("Bắt buộc phải có HuongDanSuDung.FileTaiLieu", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public FileData FileTaiLieu
         {
             get => fileTaiLieu;

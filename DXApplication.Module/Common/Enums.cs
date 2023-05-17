@@ -9,4 +9,15 @@ public class Enums
         [XafDisplayName("TrungBinh(5-10%)")] TrungBinh,
         [XafDisplayName("Cao(10-15%)")] Cao,
     }
+    public enum HoatDong
+    {
+        [XafDisplayName("Bón phân")] BonPhan,
+        [XafDisplayName("Sử dụng Thuốc BVTV")] Thuoc,
+        [XafDisplayName("Hoạt động khác")] Khac,
+    }
+    public enum LoaiSuDung
+    {
+        [XafDisplayName("Bón phân")] BonPhan,
+        [XafDisplayName("Sử dụng Thuốc BVTV")] Thuoc,
+    }
 }

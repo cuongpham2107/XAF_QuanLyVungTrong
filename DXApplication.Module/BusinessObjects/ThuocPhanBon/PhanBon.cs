@@ -2,11 +2,13 @@
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
+using DXApplication.Module.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +18,16 @@ using System.Text;
 namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
 {
     [DefaultClassOptions]
-    //[ImageName("BO_Contact")]
-    //[DefaultProperty("DisplayMemberNameForLookupEditorsOfThisType")]
-    //[DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.None)]
-    //[Persistent("DatabaseTableName")]
-    // Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
+    [DefaultProperty(nameof(TenPhanBon))]
+    [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
+    [XafDisplayName("Phân bón")]
+    [ImageName("fertilizer")]
+    [NavigationItem(Menu.PhanBon)]
+    [ListViewFindPanel(true)]
+    [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
+    [ListViewAutoFilterRow(true)]
     public class PhanBon : BaseObject
-    { // Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
-        // Use CodeRush to create XPO classes and properties with a few keystrokes.
-        // https://docs.devexpress.com/CodeRushForRoslyn/118557
+    { 
         public PhanBon(Session session)
             : base(session)
         {
@@ -32,38 +35,45 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
+            
         }
 
+        DanhMucPhanBon danhMucPhanBon;
         VungTrong vungTrong;
         string ghiChu;
         string kiThuatBon;
         string loaiPhanBon;
         string tenPhanBon;
-
+        [XafDisplayName("Tên phân bón")]
+        [RuleRequiredField("Bắt buộc phải có PhanBon.TenPhanBon", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenPhanBon
         {
             get => tenPhanBon;
             set => SetPropertyValue(nameof(TenPhanBon), ref tenPhanBon, value);
         }
-
+        [XafDisplayName("Loại phân bón")]
+        [RuleRequiredField("Bắt buộc phải có PhanBon.LoaiPhanBon", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string LoaiPhanBon
         {
             get => loaiPhanBon;
             set => SetPropertyValue(nameof(LoaiPhanBon), ref loaiPhanBon, value);
         }
-
+        [XafDisplayName("Kĩ thuật bón phân")]
+        [RuleRequiredField("Bắt buộc phải có PhanBon.KiThuatBon", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string KiThuatBon
         {
             get => kiThuatBon;
             set => SetPropertyValue(nameof(KiThuatBon), ref kiThuatBon, value);
         }
-
+        [XafDisplayName("Ghi chú")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string GhiChu
         {
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
+        [XafDisplayName("Tài liệu")]
         [Association("PhanBon-TaiLieus"), DevExpress.Xpo.Aggregated]
         public XPCollection<TaiLieu> TaiLieus
         {
@@ -72,12 +82,30 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
-        
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
         [Association("VungTrong-PhanBons")]
         public VungTrong VungTrong
         {
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
+        }
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        [Association("PhanBon-NhatKyBonPhanThuocs")]
+        public XPCollection<NhatKyBonPhanThuoc> NhatKyBonPhanThuocs
+        {
+            get
+            {
+                return GetCollection<NhatKyBonPhanThuoc>(nameof(NhatKyBonPhanThuocs));
+            }
+        }
+        [XafDisplayName("Danh mục phân bón")]
+        [Association("DanhMucPhanBon-PhanBons")]
+        public DanhMucPhanBon DanhMucPhanBon
+        {
+            get => danhMucPhanBon;
+            set => SetPropertyValue(nameof(DanhMucPhanBon), ref danhMucPhanBon, value);
         }
     }
 }
