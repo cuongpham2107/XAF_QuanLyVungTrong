@@ -58,6 +58,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             get => nguoiTao;
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
         }
+
         public byte[] Avatar
         {
             get => avatar;
@@ -70,7 +71,8 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             get => ngayTao;
             set => SetPropertyValue(nameof(NgayTao), ref ngayTao, value);
         }
-
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
         [Association("Ticket-HoiThoais")]
         public Ticket Ticket
         {

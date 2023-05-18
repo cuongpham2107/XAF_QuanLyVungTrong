@@ -30,10 +30,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
 
-    [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "NhatKyBonPhanThuoc",
+    [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "NhatKyBonPhans,NhatKySuDungThuocs",
     Criteria = "HoatD=2", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "NhatKySuDungThuocs,HoatDong",
+    Criteria = "HoatD=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "NhatKyBonPhans,HoatDong",
+    Criteria = "HoatD=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
-    Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
     public class NhatKyCanhTac : BaseObject
     { 
         public NhatKyCanhTac(Session session)
@@ -47,7 +51,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
 
         VungTrong vungTrong;
-        NhatKyBonPhanThuoc nhatKyBonPhanThuoc;
         HoatDong hoatD;
         bool phatHienSauBenh;
         string ghiChu;
@@ -67,7 +70,19 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string HoatDong
         {
-            get => hoatDong;
+            get
+            {
+                if (!IsSaving && !IsLoading && HoatD != Blazor.Common.Enums.HoatDong.Khac)
+                {
+                    hoatDong = HoatD.ToString();
+                }
+                if (!IsSaving && !IsLoading && HoatD == Blazor.Common.Enums.HoatDong.Khac)
+                {
+                    hoatDong = null;
+                }
+                return hoatDong;
+            }
+
             set => SetPropertyValue(nameof(HoatDong), ref hoatDong, value);
         }
         [XafDisplayName("Hoạt động")]
@@ -123,12 +138,23 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<SinhVatGayHai>(nameof(SinhVatGayHais));
             }
         }
-        [XafDisplayName("Bón phân/Thuốc")]
-        [Association("NhatKyBonPhanThuoc-NhatKyCanhTacs")]
-        public NhatKyBonPhanThuoc NhatKyBonPhanThuoc
+        [XafDisplayName("Bón phân")]
+        [Association("NhatKyCanhTac-NhatKyBonPhans"), DevExpress.Xpo.Aggregated]
+        public XPCollection<NhatKyBonPhan> NhatKyBonPhans
         {
-            get => nhatKyBonPhanThuoc;
-            set => SetPropertyValue(nameof(NhatKyBonPhanThuoc), ref nhatKyBonPhanThuoc, value);
+            get
+            {
+                return GetCollection<NhatKyBonPhan>(nameof(NhatKyBonPhans));
+            }
+        }
+        [XafDisplayName("Thuốc BVTV")]
+        [Association("NhatKyCanhTac-NhatKySuDungThuocs"), DevExpress.Xpo.Aggregated]
+        public XPCollection<NhatKySuDungThuoc> NhatKySuDungThuocs
+        {
+            get
+            {
+                return GetCollection<NhatKySuDungThuoc>(nameof(NhatKySuDungThuocs));
+            }
         }
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]

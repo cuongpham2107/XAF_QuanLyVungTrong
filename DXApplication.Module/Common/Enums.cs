@@ -17,7 +17,7 @@ public class Enums
     }
     public enum LoaiSuDung
     {
-        [XafDisplayName("Bón phân")] BonPhan,
-        [XafDisplayName("Sử dụng Thuốc BVTV")] Thuoc,
+        [XafDisplayName("Bón phân")] Phân,
+        [XafDisplayName("Sử dụng Thuốc BVTV")] Thuốc,
     }
 }

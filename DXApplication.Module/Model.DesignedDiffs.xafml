@@ -5,31 +5,27 @@
   </BOModel>
   <NavigationItems>
     <Items>
+      <Item Id="Vùng Trồng" ImageName="planting" Index="0">
+        <Items>
+          <Item Id="NhatKyCanhTac_ListView" Visible="False" />
+          <Item Id="QuyTrinhSanXuat_ListView" Visible="True" ImageName="Sankey" />
+          <Item Id="SinhVatGayHai_ListView" Visible="False" />
+        </Items>
+      </Item>
+      <Item Id="Phân Bón/Thuốc" ImageName="medicine" Index="1" />
+      <Item Id="Hỏi đáp" ImageName="Actions_Question" Index="2">
+        <Items>
+          <Item Id="HoiThoai_ListView" Visible="False" />
+        </Items>
+      </Item>
       <Item Id="Default" ImageName="Detailed">
         <Items>
           <Item Id="TaiLieu_ListView" Visible="False" />
         </Items>
       </Item>
-      <Item Id="Hỏi đáp" ImageName="Actions_Question">
-        <Items>
-          <Item Id="HoiThoai_ListView" Visible="False" />
-        </Items>
-      </Item>
       <Item Id="Hướng dẫn sử dụng" ImageName="manual" />
-      <Item Id="Phân Bón/Thuốc" ImageName="medicine">
-        <Items>
-          <Item Id="NhatKyBonPhanThuoc_ListView" Visible="False" />
-        </Items>
-      </Item>
       <Item Id="Reports" ImageName="BO_Report" />
       <Item Id="State Machine" Visible="False" />
-      <Item Id="Vùng Trồng" ImageName="planting">
-        <Items>
-          <Item Id="NhatKyCanhTac_ListView" Visible="False" />
-          <Item Id="QuyTrinhSanXuat_ListView" Visible="False" />
-          <Item Id="SinhVatGayHai_ListView" Visible="False" />
-        </Items>
-      </Item>
     </Items>
   </NavigationItems>
   <Options>

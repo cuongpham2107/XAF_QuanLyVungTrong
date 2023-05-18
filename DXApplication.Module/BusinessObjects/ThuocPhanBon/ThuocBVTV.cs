@@ -97,15 +97,17 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("ThuocBVTV-NhatKyBonPhanThuocs")]
-        public XPCollection<NhatKyBonPhanThuoc> NhatKyBonPhanThuocs
+        [Browsable(false)]
+        [Association("ThuocBVTV-NhatKySuDungThuocs")]
+        public XPCollection<NhatKySuDungThuoc> NhatKySuDungThuocs
         {
-            get
-            {
-                return GetCollection<NhatKyBonPhanThuoc>(nameof(NhatKyBonPhanThuocs));
-            }
+            get { return GetCollection<NhatKySuDungThuoc>(nameof(NhatKySuDungThuocs)); }
+        }
+        [XafDisplayName("Nhật ký canh tác")]
+        [ManyToManyAlias(nameof(NhatKySuDungThuocs), nameof(NhatKySuDungThuoc.NhatKyCanhTac))]
+        public IList<NhatKyCanhTac> NhatKyCanhTacs
+        {
+            get { return GetList<NhatKyCanhTac>(nameof(NhatKyCanhTacs)); }
         }
     }
 }

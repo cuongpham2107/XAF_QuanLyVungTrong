@@ -90,16 +90,19 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("PhanBon-NhatKyBonPhanThuocs")]
-        public XPCollection<NhatKyBonPhanThuoc> NhatKyBonPhanThuocs
+        [Browsable(false)]
+        [Association("PhanBon-NhatKyBonPhans")]
+        public XPCollection<NhatKyBonPhan> NhatKyBonPhans
         {
-            get
-            {
-                return GetCollection<NhatKyBonPhanThuoc>(nameof(NhatKyBonPhanThuocs));
-            }
+            get { return GetCollection<NhatKyBonPhan>(nameof(NhatKyBonPhans)); }
         }
+        [XafDisplayName("Nhật ký canh tác")]
+        [ManyToManyAlias(nameof(NhatKyBonPhans), nameof(NhatKyBonPhan.NhatKyCanhTac))]
+        public IList<NhatKyCanhTac> NhatKyCanhTacs
+        {
+            get { return GetList<NhatKyCanhTac>(nameof(NhatKyCanhTacs)); }
+        }
+
         [XafDisplayName("Danh mục phân bón")]
         [Association("DanhMucPhanBon-PhanBons")]
         public DanhMucPhanBon DanhMucPhanBon

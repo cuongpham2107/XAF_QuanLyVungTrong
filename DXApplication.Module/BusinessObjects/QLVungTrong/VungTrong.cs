@@ -39,6 +39,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             base.AfterConstruction();
         }
 
+        LoaiCayTrong loaiCayTrong;
         string hinhThucCanhTac;
         string sanLuongDuKien;
         bool hoatDong;
@@ -176,24 +177,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
-    
-        private LoaiCayTrong loaiCayTrong;
-        [XafDisplayName("Loại cây trồng")]
+
+        [RuleRequiredField("Bắt buộc phải có VungTrong.LoaiCayTrong", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [XafDisplayName("Loại cây trồng")] 
+        [Association("LoaiCayTrong-VungTrongs")]
         public LoaiCayTrong LoaiCayTrong
         {
-            get { return loaiCayTrong; }
-            set
-            {
-                if (loaiCayTrong == value) return;
-                LoaiCayTrong prevLoaiCayTrong = loaiCayTrong;
-                loaiCayTrong = value;
-                if (IsLoading) return;
-                if (prevLoaiCayTrong != null && prevLoaiCayTrong.VungTrong == this)
-                    prevLoaiCayTrong.VungTrong = null;
-                if (loaiCayTrong != null)
-                    loaiCayTrong.VungTrong = this;
-                OnChanged(nameof(LoaiCayTrong));
-            }
+            get => loaiCayTrong;
+            set => SetPropertyValue(nameof(LoaiCayTrong), ref loaiCayTrong, value);
         }
     }
 }

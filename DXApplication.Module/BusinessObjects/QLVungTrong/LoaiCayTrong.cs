@@ -8,6 +8,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
+    [CustomNestedListView(nameof(VungTrongs),AllowLink =false,AllowUnlink =false,AllowDelete =false)]
+    [CustomDetailView(Tabbed = true)]
     public class LoaiCayTrong : BaseObject
     { 
         public LoaiCayTrong(Session session)
@@ -145,26 +148,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
-      
-       
-        private VungTrong vungTrong;
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
+                 
         [XafDisplayName("Vùng Trồng")]
-        public VungTrong VungTrong
+        [Association("LoaiCayTrong-VungTrongs")]
+        public XPCollection<VungTrong> VungTrongs
         {
-            get { return vungTrong; }
-            set
+            get
             {
-                if (vungTrong == value) return;
-                VungTrong prevVungTrong = vungTrong;
-                vungTrong = value;
-                if (IsLoading) return;
-                if (prevVungTrong != null && prevVungTrong.LoaiCayTrong == this)
-                    prevVungTrong.LoaiCayTrong = null;
-                if (vungTrong != null)
-                    vungTrong.LoaiCayTrong = this;
-                OnChanged(nameof(VungTrong));
+                return GetCollection<VungTrong>(nameof(VungTrongs));
             }
         }
 
