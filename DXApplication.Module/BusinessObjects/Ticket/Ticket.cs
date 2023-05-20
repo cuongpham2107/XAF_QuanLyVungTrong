@@ -37,7 +37,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         }
 
         string ghiChu;
-        FileData file;
+        MediaDataObject file;
         string noiDung;
         string tieuDe;
         [XafDisplayName("Tiêu đề")]
@@ -56,8 +56,9 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
         [XafDisplayName("Hình ảnh/Video đính kèm")]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
         [RuleRequiredField("Bắt buộc phải có Ticket.File", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public FileData File
+        public MediaDataObject File
         {
             get => file;
             set => SetPropertyValue(nameof(File), ref file, value);

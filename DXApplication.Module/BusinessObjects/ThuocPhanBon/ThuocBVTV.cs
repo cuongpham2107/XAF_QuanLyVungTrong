@@ -38,6 +38,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
            
         }
 
+        MediaDataObject hinhAnh;
         string huongDan;
         VungTrong vungTrong;
         DanhMucThuoc danhMucThuoc;
@@ -80,6 +81,13 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => danhMucThuoc;
             set => SetPropertyValue(nameof(DanhMucThuoc), ref danhMucThuoc, value);
         }
+        [XafDisplayName("Ảnh minh họa")]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 80)]
+        public MediaDataObject HinhAnh
+        {
+            get => hinhAnh;
+            set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
+        }
         [XafDisplayName("Tài liệu")]
         [Association("ThuocBVTV-TaiLieus"), DevExpress.Xpo.Aggregated]
         public XPCollection<TaiLieu> TaiLieus
@@ -103,11 +111,14 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         {
             get { return GetCollection<NhatKySuDungThuoc>(nameof(NhatKySuDungThuocs)); }
         }
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
         [XafDisplayName("Nhật ký canh tác")]
         [ManyToManyAlias(nameof(NhatKySuDungThuocs), nameof(NhatKySuDungThuoc.NhatKyCanhTac))]
         public IList<NhatKyCanhTac> NhatKyCanhTacs
         {
             get { return GetList<NhatKyCanhTac>(nameof(NhatKyCanhTacs)); }
         }
+
     }
 }

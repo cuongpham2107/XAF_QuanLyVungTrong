@@ -55,6 +55,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
         [XafDisplayName("Thuốc BVTV")]
+        [VisibleInDetailView(false)]
         [Association("DanhMucThuoc-ThuocBVTVs")]
         public XPCollection<ThuocBVTV> ThuocBVTVs
         {

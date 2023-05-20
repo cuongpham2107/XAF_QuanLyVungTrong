@@ -51,7 +51,7 @@ public sealed class DXApplicationModule : ModuleBase {
             foreach (var member in type.Members) {
                 if (!member.IsList) {
                     if (!member.IsAttributeDefined<DetailViewLayoutAttribute>(false))
-                        member.AddAttribute(new DetailViewLayoutAttribute("Detail", 0));
+                        member.AddAttribute(new DetailViewLayoutAttribute("Chi tiết", 0));
                 }
 
             }

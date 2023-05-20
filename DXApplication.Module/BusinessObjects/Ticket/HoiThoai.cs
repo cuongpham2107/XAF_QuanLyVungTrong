@@ -39,7 +39,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         }
 
         Ticket ticket;
-        byte[] avatar;
+        MediaDataObject avatar;
         DateTime ngayTao;
         string nguoiTao;
         string noiDung;
@@ -58,13 +58,15 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             get => nguoiTao;
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
         }
-
-        public byte[] Avatar
+        [XafDisplayName("Ảnh đại diện")]
+        [ImageEditor(ListViewImageEditorCustomHeight = 60, DetailViewImageEditorFixedHeight = 60)]
+        public MediaDataObject Avatar
         {
             get => avatar;
             set => SetPropertyValue(nameof(Avatar), ref avatar, value);
         }
         [XafDisplayName("Ngày tạo")]
+        [ModelDefault("DisplayFormat", "MM/dd/yy H:mm:ss")]
         [ModelDefault("AllowEdit", "false")]
         public DateTime NgayTao
         {

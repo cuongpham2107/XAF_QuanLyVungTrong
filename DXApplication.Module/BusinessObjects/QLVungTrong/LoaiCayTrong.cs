@@ -84,7 +84,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(Loai), ref loai, value);
         }
         [XafDisplayName("Tên khác")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string TenKhac
         {
             get => tenKhac;
@@ -97,7 +96,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => dacDiemSinhThai;
             set => SetPropertyValue(nameof(DacDiemSinhThai), ref dacDiemSinhThai, value);
         }
-        [XafDisplayName("Đặc điểm sinh vật học")]
+        [XafDisplayName("Đặc điểm sinh vật")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string DacDiemSinhVatHoc
         {

@@ -54,7 +54,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => lieuLuong;
             set => SetPropertyValue(nameof(LieuLuong), ref lieuLuong, value);
         }
-        
+        [XafDisplayName("Thuốc BVTV")]
         [Association("ThuocBVTV-NhatKySuDungThuocs")]
         public ThuocBVTV ThuocBVTV
         {

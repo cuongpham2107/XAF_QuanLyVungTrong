@@ -34,7 +34,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            
+            namBanHanh = DateTime.Now.Year;
         }
 
         LoaiCayTrong loaiCayTrong;
@@ -48,7 +48,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string kiThuatTrong;
         string mucTieu;
         int namBanHanh;
-        [XafDisplayName("Năm Ban hành")]
+        [XafDisplayName("Năm ban hành")]
+        [ModelDefault("DisplayFormat", "D")]
         public int NamBanHanh
         {
             get => namBanHanh;

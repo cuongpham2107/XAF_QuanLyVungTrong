@@ -38,6 +38,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             base.AfterConstruction();
         }
 
+        MediaDataObject hinhAnh;
         NhatKyCanhTac nhatKyCanhTac;
         VungTrong vungTrong;
         string ghiChu;
@@ -85,6 +86,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
+        }
+        [XafDisplayName("Ảnh minh họa")]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 80)]
+        public MediaDataObject HinhAnh
+        {
+            get => hinhAnh;
+            set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
         }
         [XafDisplayName("Tài liệu")]
         [Association("SinhVatGayHai-TaiLieus"), DevExpress.Xpo.Aggregated]
