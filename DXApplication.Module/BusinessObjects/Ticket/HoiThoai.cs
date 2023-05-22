@@ -131,7 +131,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         {
             get => ticket;
             set => SetPropertyValue(nameof(Ticket), ref ticket, value);
-        }
-      
+        }    
     }
 }
