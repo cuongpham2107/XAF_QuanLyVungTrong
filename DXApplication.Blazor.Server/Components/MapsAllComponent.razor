@@ -1,0 +1,54 @@
+﻿<style>
+    .main-toolbar {
+        display: none;
+    }
+</style>
+@using DXApplication.Module.BusinessObjects.QLVungTrong;
+@using Microsoft.AspNetCore.Components.Web
+@inject IJSRuntime JSRuntime
+@inject DevExpress.ExpressApp.Blazor.Services.IXafApplicationProvider ApplicationProvider
+
+
+<div id="map" style="height:900px;width:100%;"></div>
+
+@code {
+    private DevExpress.ExpressApp.IObjectSpace objectSpace;
+    private IEnumerable<Item> GetData()
+    {
+        return objectSpace.GetObjects<VungTrong>().Select(
+            item => new Item { 
+                TD = item.TenVungTrong, 
+                DiaChi = item.DiaChi,
+                NamCap = item.NamCap,
+                DienTichCanhTac = item.DienTichCanhTac,
+                SanLuongDuKien = item.SanLuongDuKien,
+                HinhThucCanhTac = item.HinhThucCanhTac,
+                TinhTrang = item.HoatDong,
+                TieuChuan = item.TieuChuan,
+                ToaDo = item.ToaDo 
+            }
+        );
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var app = ApplicationProvider.GetApplication();
+            objectSpace = app.CreateObjectSpace(typeof(VungTrong));
+            await JSRuntime.InvokeVoidAsync("init", GetData(), DotNetObjectReference.Create(this));
+        }
+    }
+
+    public class Item
+    {
+        public string TD { get; set; }
+        public string DiaChi { get; set; }
+        public int NamCap { get; set; }
+        public double DienTichCanhTac { get; set; }
+        public string SanLuongDuKien { get; set; }
+        public string HinhThucCanhTac { get; set; }
+        public bool TinhTrang{ get;set; }
+        public string TieuChuan { get; set; }
+        public string ToaDo { get; set; }
+    }
+}

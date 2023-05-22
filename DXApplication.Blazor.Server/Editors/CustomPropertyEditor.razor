@@ -1,0 +1,31 @@
+﻿@using DXApplication.Module.BusinessObjects;
+@using Microsoft.AspNetCore.Components.Web
+@inject IJSRuntime JSRuntime
+
+<input type="hidden" value=@ComponentModel.Value
+       @onchange=@(e => ComponentModel.SetValueFromUI((string)e.Value))
+       readonly=@ComponentModel.ReadOnly
+       @attributes=@ComponentModel.Attributes id="value_latlong" />
+<div id="map" style="height:500px;width:100%;"></div>
+@code {
+    [Parameter]
+    public MapsModel ComponentModel { get; set; }
+    public static RenderFragment Create(MapsModel componentModel) =>
+        @<CustomPropertyEditor ComponentModel=@componentModel />;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            //await JSRuntime.InvokeVoidAsync("initialize", ComponentModel.Value ?? null);
+
+            await JSRuntime.InvokeVoidAsync("initialize", DotNetObjectReference.Create(this));
+        }
+    }
+    [JSInvokable]
+    public void GetLatLong(string LatLong)
+    {
+        ComponentModel.Value = LatLong;
+        ComponentModel.SetValueFromUI(LatLong);
+    }
+}
