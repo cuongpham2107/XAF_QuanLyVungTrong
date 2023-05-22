@@ -38,9 +38,9 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
            
         }
 
+        NhatKyCanhTac nhatKyCanhTac;
         MediaDataObject hinhAnh;
         string huongDan;
-        VungTrong vungTrong;
         DanhMucThuoc danhMucThuoc;
         string ghiChu;
         string loaiThuoc;
@@ -99,25 +99,12 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         }
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
-        [Association("VungTrong-ThuocBVTVs")]
-        public VungTrong VungTrong
-        {
-            get => vungTrong;
-            set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
-        }
-        [Browsable(false)]
-        [Association("ThuocBVTV-NhatKySuDungThuocs")]
-        public XPCollection<NhatKySuDungThuoc> NhatKySuDungThuocs
-        {
-            get { return GetCollection<NhatKySuDungThuoc>(nameof(NhatKySuDungThuocs)); }
-        }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
         [XafDisplayName("Nhật ký canh tác")]
-        [ManyToManyAlias(nameof(NhatKySuDungThuocs), nameof(NhatKySuDungThuoc.NhatKyCanhTac))]
-        public IList<NhatKyCanhTac> NhatKyCanhTacs
+        [Association("NhatKyCanhTac-ThuocBVTVs")]
+        public NhatKyCanhTac NhatKyCanhTac
         {
-            get { return GetList<NhatKyCanhTac>(nameof(NhatKyCanhTacs)); }
+            get => nhatKyCanhTac;
+            set => SetPropertyValue(nameof(NhatKyCanhTac), ref nhatKyCanhTac, value);
         }
 
     }

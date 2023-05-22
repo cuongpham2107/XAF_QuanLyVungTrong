@@ -39,18 +39,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             base.AfterConstruction();           
         }
 
+        string nguonGoc;
         string ghiChu;
         string quyTrinhSanXuat;
         string giaTriSuDung;
-        string phamViApDung;
-        string phanBo;
-        string dacDiemSinhVatHoc;
         string dacDiemSinhThai;
         string tenKhac;
-        string loai;
-        string boCay;
-        string hoCay;
-        string tenKhoaHoc;
         string tenCay;
         [XafDisplayName("Tên Cây Trồng")]
         [RuleRequiredField("Bắt buộc phải có LoaiCayTrong.TenCay", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
@@ -59,29 +53,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => tenCay;
             set => SetPropertyValue(nameof(TenCay), ref tenCay, value);
         }
-        [XafDisplayName("Tên Khoa học")]
-        public string TenKhoaHoc
+        [XafDisplayName("Nguồn gốc")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
+        public string NguonGoc
         {
-            get => tenKhoaHoc;
-            set => SetPropertyValue(nameof(TenKhoaHoc), ref tenKhoaHoc, value);
-        }
-        [XafDisplayName("Họ cây")]
-        public string HoCay
-        {
-            get => hoCay;
-            set => SetPropertyValue(nameof(HoCay), ref hoCay, value);
-        }
-        [XafDisplayName("Bộ cây")]
-        public string BoCay
-        {
-            get => boCay;
-            set => SetPropertyValue(nameof(BoCay), ref boCay, value);
-        }
-        [XafDisplayName("Loài cây")]
-        public string Loai
-        {
-            get => loai;
-            set => SetPropertyValue(nameof(Loai), ref loai, value);
+            get => nguonGoc;
+            set => SetPropertyValue(nameof(NguonGoc), ref nguonGoc, value);
         }
         [XafDisplayName("Tên khác")]
         public string TenKhac
@@ -89,33 +66,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => tenKhac;
             set => SetPropertyValue(nameof(TenKhac), ref tenKhac, value);
         }
-        [XafDisplayName("Đặc điểm sinh thái")]
+        [XafDisplayName("Đặc điểm")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string DacDiemSinhThai
         {
             get => dacDiemSinhThai;
             set => SetPropertyValue(nameof(DacDiemSinhThai), ref dacDiemSinhThai, value);
-        }
-        [XafDisplayName("Đặc điểm sinh vật")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string DacDiemSinhVatHoc
-        {
-            get => dacDiemSinhVatHoc;
-            set => SetPropertyValue(nameof(DacDiemSinhVatHoc), ref dacDiemSinhVatHoc, value);
-        }
-        [XafDisplayName("Phân bố")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string PhanBo
-        {
-            get => phanBo;
-            set => SetPropertyValue(nameof(PhanBo), ref phanBo, value);
-        }
-        [XafDisplayName("Phạm vi áp dụng")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string PhamViApDung
-        {
-            get => phamViApDung;
-            set => SetPropertyValue(nameof(PhamViApDung), ref phamViApDung, value);
         }
         [XafDisplayName("Giá trị sử dụng")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]

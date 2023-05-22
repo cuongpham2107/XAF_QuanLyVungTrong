@@ -37,7 +37,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             ngayTao = DateTime.Now;
             nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
-
+        MediaDataObject file;
         Ticket ticket;
         MediaDataObject avatar;
         DateTime ngayTao;
@@ -50,8 +50,15 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             get => noiDung;
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
-
+        [XafDisplayName("Tải ảnh lên")]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
+        public MediaDataObject File
+        {
+            get => file;
+            set => SetPropertyValue(nameof(File), ref file, value);
+        }
         [XafDisplayName("Người tạo")]
+        [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
         public string NguoiTao
         {
@@ -59,6 +66,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
         }
         [XafDisplayName("Ảnh đại diện")]
+        [VisibleInDetailView(false)]
         [ImageEditor(ListViewImageEditorCustomHeight = 60, DetailViewImageEditorFixedHeight = 60)]
         public MediaDataObject Avatar
         {
@@ -66,6 +74,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(Avatar), ref avatar, value);
         }
         [XafDisplayName("Ngày tạo")]
+        [VisibleInDetailView(false)]
         [ModelDefault("DisplayFormat", "MM/dd/yy H:mm:ss")]
         [ModelDefault("AllowEdit", "false")]
         public DateTime NgayTao

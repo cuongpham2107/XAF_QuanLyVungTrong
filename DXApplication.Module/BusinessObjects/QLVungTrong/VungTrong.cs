@@ -51,15 +51,15 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             namCap = DateTime.Now.Year;
         }
 
+        string ghiChu;
+        string thongTinThoNhuong;
         LoaiCayTrong loaiCayTrong;
         string hinhThucCanhTac;
         string sanLuongDuKien;
         bool hoatDong;
-        string loaiDat;
         double dienTichCanhTac;
         string tieuChuan;
         int namCap;
-        CapCoSo soCoSoCap;
         string diaChi;
         string maSo;
         [VisibleInListView(false)]
@@ -91,12 +91,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => diaChi;
             set => SetPropertyValue(nameof(DiaChi), ref diaChi, value);
         }
-        [XafDisplayName("Cơ sở cấp")]
-        public CapCoSo SoCoSoCap
-        {
-            get => soCoSoCap;
-            set => SetPropertyValue(nameof(SoCoSoCap), ref soCoSoCap, value);
-        }
         [XafDisplayName("Năm cấp")]
         [ModelDefault("DisplayFormat", "D")]
         public int NamCap
@@ -110,18 +104,19 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => tieuChuan;
             set => SetPropertyValue(nameof(TieuChuan), ref tieuChuan, value);
         }
-        [XafDisplayName("Diện tích vùng trồng")]
+        [XafDisplayName("Diện tích")]
         [ModelDefault("DisplayFormat", "{0} ha")]
         public double DienTichCanhTac
         {
             get => dienTichCanhTac;
             set => SetPropertyValue(nameof(DienTichCanhTac), ref dienTichCanhTac, value);
         }
-        [XafDisplayName("Loại đất")]
-        public string LoaiDat
+        [XafDisplayName("Thông tin thổ nhưỡng")]
+        [Size(1024)]
+        public string ThongTinThoNhuong
         {
-            get => loaiDat;
-            set => SetPropertyValue(nameof(LoaiDat), ref loaiDat, value);
+            get => thongTinThoNhuong;
+            set => SetPropertyValue(nameof(ThongTinThoNhuong), ref thongTinThoNhuong, value);
         }
         [XafDisplayName("Tình trạng")]
         [CaptionsForBoolValues("Đang hoạt động", "Ngừng hoạt động")]
@@ -130,6 +125,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => hoatDong;
             set => SetPropertyValue(nameof(HoatDong), ref hoatDong, value);
         }
+        [XafDisplayName("Ghi chú")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
+        public string GhiChu
+        {
+            get => ghiChu;
+            set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
+        }
         [XafDisplayName("Sản lượng dự kiến")]
         public string SanLuongDuKien
         {
@@ -137,6 +139,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(SanLuongDuKien), ref sanLuongDuKien, value);
         }
         [XafDisplayName("Hình thức canh tác")]
+        [Size(1024)]
         public string HinhThucCanhTac
         {
             get => hinhThucCanhTac;
@@ -149,33 +152,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get
             {
                 return GetCollection<NhatKyCanhTac>(nameof(NhatKyCanhTacs));
-            }
-        }
-        [XafDisplayName("Thuốc BVTV")]
-        [Association("VungTrong-ThuocBVTVs")]
-        public XPCollection<ThuocBVTV> ThuocBVTVs
-        {
-            get
-            {
-                return GetCollection<ThuocBVTV>(nameof(ThuocBVTVs));
-            }
-        }
-        [XafDisplayName("Phân bón")]
-        [Association("VungTrong-PhanBons")]
-        public XPCollection<PhanBon> PhanBons
-        {
-            get
-            {
-                return GetCollection<PhanBon>(nameof(PhanBons));
-            }
-        }
-        [XafDisplayName("Sinh vật gây hại")]
-        [Association("VungTrong-SinhVatGayHais")]
-        public XPCollection<SinhVatGayHai> SinhVatGayHais
-        {
-            get
-            {
-                return GetCollection<SinhVatGayHai>(nameof(SinhVatGayHais));
             }
         }
         [XafDisplayName("Tài liệu đi kèm")]

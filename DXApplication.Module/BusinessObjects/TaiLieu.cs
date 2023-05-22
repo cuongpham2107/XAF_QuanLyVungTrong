@@ -82,6 +82,7 @@ namespace DXApplication.Module.BusinessObjects
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
         [XafDisplayName("Ngày tạo")]
+        [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
         public DateTime NgayTao
         {
@@ -89,6 +90,7 @@ namespace DXApplication.Module.BusinessObjects
             set => SetPropertyValue(nameof(NgayTao), ref ngayTao, value);
         }
         [XafDisplayName("Người tạo")]
+        [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
         public string NguoiTao
         {
@@ -96,6 +98,7 @@ namespace DXApplication.Module.BusinessObjects
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
         }
         [XafDisplayName("Ngày sửa")]
+        [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
         public DateTime NgaySua
         {
@@ -103,6 +106,7 @@ namespace DXApplication.Module.BusinessObjects
             set => SetPropertyValue(nameof(NgaySua), ref ngaySua, value);
         }
         [XafDisplayName("Người sửa")]
+        [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
         public string NguoiSua
         {

@@ -34,89 +34,15 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            namBanHanh = DateTime.Now.Year;
         }
 
+        string ghiChu;
         LoaiCayTrong loaiCayTrong;
-        string baoQuan;
-        string thuHai;
-        string suDungThuoc;
-        string bonPhan;
-        string sauBenh;
-        string thoiVu;
-        string kiThuatChamSoc;
-        string kiThuatTrong;
-        string mucTieu;
-        int namBanHanh;
-        [XafDisplayName("Năm ban hành")]
-        [ModelDefault("DisplayFormat", "D")]
-        public int NamBanHanh
+        [XafDisplayName("Ghi chú")]
+        public string GhiChu
         {
-            get => namBanHanh;
-            set => SetPropertyValue(nameof(NamBanHanh), ref namBanHanh, value);
-        }
-        [XafDisplayName("Mục tiêu")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string MucTieu
-        {
-            get => mucTieu;
-            set => SetPropertyValue(nameof(MucTieu), ref mucTieu, value);
-        }
-        [XafDisplayName("Kĩ thuật trồng")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string KiThuatTrong
-        {
-            get => kiThuatTrong;
-            set => SetPropertyValue(nameof(KiThuatTrong), ref kiThuatTrong, value);
-        }
-        [XafDisplayName("Kĩ thuật chăm sóc")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string KiThuatChamSoc
-        {
-            get => kiThuatChamSoc;
-            set => SetPropertyValue(nameof(KiThuatChamSoc), ref kiThuatChamSoc, value);
-        }
-        [XafDisplayName("Thời vụ")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string ThoiVu
-        {
-            get => thoiVu;
-            set => SetPropertyValue(nameof(ThoiVu), ref thoiVu, value);
-        }
-        [XafDisplayName("Sâu bệnh")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string SauBenh
-        {
-            get => sauBenh;
-            set => SetPropertyValue(nameof(SauBenh), ref sauBenh, value);
-        }
-        [XafDisplayName("Phân bón")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string BonPhan
-        {
-            get => bonPhan;
-            set => SetPropertyValue(nameof(BonPhan), ref bonPhan, value);
-        }
-        [XafDisplayName("Thuốc BVTV")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string SuDungThuoc
-        {
-            get => suDungThuoc;
-            set => SetPropertyValue(nameof(SuDungThuoc), ref suDungThuoc, value);
-        }
-        [XafDisplayName("Thu hái")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string ThuHai
-        {
-            get => thuHai;
-            set => SetPropertyValue(nameof(ThuHai), ref thuHai, value);
-        }
-        [XafDisplayName("Bảo quản")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string BaoQuan
-        {
-            get => baoQuan;
-            set => SetPropertyValue(nameof(BaoQuan), ref baoQuan, value);
+            get => ghiChu;
+            set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
         [XafDisplayName("Tài liệu")]
         [Association("QuyTrinhSanXuat-TaiLieus"), DevExpress.Xpo.Aggregated]

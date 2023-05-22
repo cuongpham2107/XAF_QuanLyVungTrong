@@ -1,5 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
@@ -7,7 +8,9 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.XtraPrinting.Native;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +28,14 @@ namespace DXApplication.Module.BusinessObjects.Ticket
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class Ticket : BaseObject
+
+    [Appearance("mo", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
+    Criteria = "TrangThai=true", Context = "Any", BackColor = "204,255,204", Priority = 1)]
+    [Appearance("mo1", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
+    Criteria = "TrangThai=false", Context = "Any", BackColor = "Red", FontColor = "White", Priority = 1)]
+    [Appearance("mo11", AppearanceItemType = "ViewItem", TargetItems = "*",
+    Criteria = "TrangThai=false", Context = "Any", Enabled = false, Priority = 2)]
+    public class Ticket : BaseObject, IListViewPopup
     { 
         public Ticket(Session session)
             : base(session)
@@ -36,6 +46,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             base.AfterConstruction();
         }
 
+        bool trangThai;
         string ghiChu;
         MediaDataObject file;
         string noiDung;
@@ -57,11 +68,17 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         }
         [XafDisplayName("Hình ảnh/Video đính kèm")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
-        [RuleRequiredField("Bắt buộc phải có Ticket.File", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public MediaDataObject File
         {
             get => file;
             set => SetPropertyValue(nameof(File), ref file, value);
+        }
+        [CaptionsForBoolValues("Đang mở", "Đã đóng")]
+        [XafDisplayName("Trạng thái")]
+        public bool TrangThai
+        {
+            get => trangThai;
+            set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
         }
         [XafDisplayName("Ghi chú")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]

@@ -40,7 +40,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
 
         MediaDataObject hinhAnh;
         NhatKyCanhTac nhatKyCanhTac;
-        VungTrong vungTrong;
         string ghiChu;
         string bienPhapPhongTru;
         string moTa;
@@ -102,15 +101,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             {
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
-        }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [XafDisplayName("Vùng trồng")]
-        [Association("VungTrong-SinhVatGayHais")]
-        public VungTrong VungTrong
-        {
-            get => vungTrong;
-            set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
         }
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]

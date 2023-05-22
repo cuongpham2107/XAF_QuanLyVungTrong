@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="VungTrong_PhanBons_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DanhMucPhanBon" Index="-1" />
+      </Columns>
+    </ListView>
+    <ListView Id="VungTrong_ThuocBVTVs_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DanhMucThuoc" Index="-1" />
+        <ColumnInfo Id="HinhAnh" Index="4" />
+      </Columns>
+    </ListView>
+    <DetailView Id="VungTrong_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Main">
+            <LayoutGroup Id="Chi tiết">
+              <LayoutGroup Id="Chi tiết_col1">
+                <LayoutItem Id="QuyMo" Removed="True" />
+                <LayoutItem Id="DienTichCoSo" ViewItem="DienTichCoSo" />
+              </LayoutGroup>
+              <LayoutGroup Id="Chi tiết_col2">
+                <LayoutItem Id="DienTichCanhTac" Removed="True" />
+                <LayoutItem Id="QuyMo" ViewItem="QuyMo" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="VungTrong_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="QuyMo" Index="-1" />
+        <ColumnInfo Id="SoCoSoCap" Index="2" />
+        <ColumnInfo Id="DienTichCoSo" Index="4" Caption="DT cơ sở" />
+        <ColumnInfo Id="LoaiDat" Index="6" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoaiCayTrong_VungTrongs_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="QuyMo" Index="-1" />
+        <ColumnInfo Id="SoCoSoCap" Index="2" />
+        <ColumnInfo Id="DienTichCoSo" Index="4" />
+        <ColumnInfo Id="LoaiDat" Index="6" />
+      </Columns>
+    </ListView>
+    <DetailView Id="LoaiCayTrong_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Main">
+            <LayoutGroup Id="Chi tiết">
+              <LayoutGroup Id="Chi tiết_col1">
+                <LayoutItem Id="PhamViApDung" ViewItem="PhamViApDung" />
+                <LayoutItem Id="PhanBo" ViewItem="PhanBo" />
+              </LayoutGroup>
+              <LayoutGroup Id="Chi tiết_col2">
+                <LayoutItem Id="PhamViApDung" Removed="True" />
+                <LayoutItem Id="PhanBo" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="LoaiCayTrong_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DacDiemSinhVatHoc" Index="-1" />
+        <ColumnInfo Id="TenKhoaHoc" Index="-1" />
+        <ColumnInfo Id="HoCay" Index="1" />
+        <ColumnInfo Id="BoCay" Index="2" />
+        <ColumnInfo Id="Loai" Index="3" />
+        <ColumnInfo Id="PhanBo" Index="4" />
+        <ColumnInfo Id="PhamViApDung" Index="5" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoaiCayTrong_QuyTrinhSanXuats_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="BaoQuan" Index="-1" />
+        <ColumnInfo Id="BonPhan" Index="-1" />
+        <ColumnInfo Id="KiThuatChamSoc" Index="-1" />
+        <ColumnInfo Id="KiThuatTrong" Index="-1" />
+        <ColumnInfo Id="MucTieu" Index="-1" />
+        <ColumnInfo Id="SauBenh" Index="-1" />
+        <ColumnInfo Id="SuDungThuoc" Index="-1" />
+        <ColumnInfo Id="ThoiVu" Index="-1" />
+        <ColumnInfo Id="ThuHai" Index="-1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="QuyTrinhSanXuat_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="LoaiCayTrong" ViewItem="LoaiCayTrong" ShowCaption="" Index="1" />
+              <LayoutItem Id="MucTieu" Index="2" />
+              <LayoutItem Id="ThoiVu" Index="3" />
+              <LayoutItem Id="BonPhan" ViewItem="BonPhan" ShowCaption="" Index="4" />
+              <LayoutItem Id="SuDungThuoc" ViewItem="SuDungThuoc" ShowCaption="" Index="4" />
+              <LayoutItem Id="KiThuatChamSoc" Removed="True" />
+              <LayoutItem Id="KiThuatTrong" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="KiThuatTrong" ViewItem="KiThuatTrong" ShowCaption="" Index="2" />
+              <LayoutItem Id="KiThuatChamSoc" ViewItem="KiThuatChamSoc" ShowCaption="" Index="3" />
+              <LayoutItem Id="BonPhan" Removed="True" />
+              <LayoutItem Id="LoaiCayTrong" Removed="True" />
+              <LayoutItem Id="SuDungThuoc" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="QuyTrinhSanXuat_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="BaoQuan" Index="-1" />
+        <ColumnInfo Id="BonPhan" Index="-1" />
+        <ColumnInfo Id="KiThuatChamSoc" Index="-1" />
+        <ColumnInfo Id="KiThuatTrong" Index="-1" />
+        <ColumnInfo Id="MucTieu" Index="-1" />
+        <ColumnInfo Id="SauBenh" Index="-1" />
+        <ColumnInfo Id="SuDungThuoc" Index="-1" />
+        <ColumnInfo Id="ThoiVu" Index="-1" />
+        <ColumnInfo Id="ThuHai" Index="-1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Ticket_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutItem Id="NoiDung" Index="1" />
+            <LayoutItem Id="File" Index="2" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Default">
+        <Items Id="Items">
+          <Item Id="NhatKyBonPhan_ListView" Visible="False" />
+          <Item Id="NhatKySuDungThuoc_ListView" Visible="False" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

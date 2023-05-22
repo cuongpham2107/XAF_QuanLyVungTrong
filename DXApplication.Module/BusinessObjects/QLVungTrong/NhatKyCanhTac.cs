@@ -11,6 +11,7 @@ using DevExpress.Xpo;
 using DevExpress.XtraPrinting.Native;
 using DXApplication.Module.BusinessObjects.ThuocPhanBon;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +25,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [DefaultProperty(nameof(NhatKy))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Nhật ký canh tác")]
-    [ImageName("book-stack")]
+    [ImageName("writing")]
     [NavigationItem(Menu.VungTrong)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-
+    [CustomRootListView(AllowNew =false)]
+    [CustomDetailView(AllowNew =false)]
     [RuleCriteria("ThoiGian <= ThoiGianKT",
     CustomMessageTemplate = "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!")]
 
@@ -41,9 +43,9 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     Criteria = "TrangThai=0", Context = "Any", BackColor = "204,204,255", Priority = 3)]
     [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
     Criteria = "HoatD!=5", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "NhatKyBonPhans",
+    [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
     Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "NhatKySuDungThuocs",
+    [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
     Criteria = "HoatD!=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
     Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
@@ -173,25 +175,25 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             }
         }
         [XafDisplayName("Bón phân")]
-        [Association("NhatKyCanhTac-NhatKyBonPhans"), DevExpress.Xpo.Aggregated]
-        public XPCollection<NhatKyBonPhan> NhatKyBonPhans
+        [Association("NhatKyCanhTac-PhanBons"), DevExpress.Xpo.Aggregated]
+        public XPCollection<PhanBon> PhanBons
         {
             get
             {
-                return GetCollection<NhatKyBonPhan>(nameof(NhatKyBonPhans));
+                return GetCollection<PhanBon>(nameof(PhanBons));
             }
         }
         [XafDisplayName("Thuốc BVTV")]
-        [Association("NhatKyCanhTac-NhatKySuDungThuocs"), DevExpress.Xpo.Aggregated]
-        public XPCollection<NhatKySuDungThuoc> NhatKySuDungThuocs
+        [Association("NhatKyCanhTac-ThuocBVTVs"), DevExpress.Xpo.Aggregated]
+        public XPCollection<ThuocBVTV> ThuocBVTVs
         {
             get
             {
-                return GetCollection<NhatKySuDungThuoc>(nameof(NhatKySuDungThuocs));
+                return GetCollection<ThuocBVTV>(nameof(ThuocBVTVs));
             }
         }
+        [XafDisplayName("Vùng Trồng")]
         [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
         [Association("VungTrong-NhatKyCanhTacs")]
         public VungTrong VungTrong
         {
