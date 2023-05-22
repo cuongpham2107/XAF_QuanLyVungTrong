@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="LoaiCayTrong_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Main">
+            <LayoutGroup Id="Chi tiết">
+              <LayoutGroup Id="Chi tiết_col1">
+                <LayoutItem Id="PhamViApDung" ViewItem="PhamViApDung" />
+                <LayoutItem Id="PhanBo" ViewItem="PhanBo" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="VungTrong_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Main">
+            <LayoutGroup Id="Chi tiết">
+              <LayoutGroup Id="Chi tiết_col2">
+                <LayoutItem Id="HoatDong" Index="6" />
+                <LayoutItem Id="QuyMo" ViewItem="QuyMo" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

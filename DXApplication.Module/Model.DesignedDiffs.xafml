@@ -14,6 +14,7 @@
           <Item Id="SinhVatGayHai_ListView" Visible="False" />
         </Items>
       </Item>
+      <Item Id="@497772d4-2476-4693-8fd7-b7d84ca5344b" ViewId="Maps" Index="1" IsNewNode="True" />
       <Item Id="Phân Bón/Thuốc" ImageName="medicine" Index="1">
         <Items>
           <Item Id="DanhMucPhanBon_ListView" Visible="False" />
@@ -79,6 +80,11 @@
         <ColumnInfo Id="HoatDong" Index="7" />
       </Columns>
     </ListView>
+    <DashboardView Id="Maps" Caption="Bản đồ" ImageName="Business_World" IsNewNode="True">
+      <Items IsNewNode="True">
+        <ControlDetailItem Id="@6245cc27-df0d-44c6-a3af-8904f19d289d" ControlTypeName="DXApplication.Blazor.Server.Components.MapsAllComponentAdapter" IsNewNode="True" />
+      </Items>
+    </DashboardView>
     <DetailView Id="NhatKyCanhTac_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
@@ -175,26 +181,37 @@
     </ListView>
     <DetailView Id="VungTrong_DetailView">
       <Layout>
-        <TabbedGroup Id="Tabs">
-          <LayoutGroup Id="Main">
-            <LayoutGroup Id="Chi tiết">
-              <LayoutGroup Id="Chi tiết_col1">
-                <LayoutItem Id="LoaiCayTrong" ViewItem="LoaiCayTrong" ShowCaption="" Index="1" IsNewNode="True" />
-                <LayoutItem Id="DiaChi" Index="2" />
-                <LayoutItem Id="DienTichCanhTac" ShowCaption="" Index="8" ViewItem="DienTichCanhTac" IsNewNode="True" />
-                <LayoutItem Id="ThongTinThoNhuong" Index="8" />
+        <TabbedGroup Id="Tabs" Index="0" RelativeSize="100">
+          <LayoutGroup Id="Main" RelativeSize="100">
+            <LayoutGroup Id="Chi tiết" RelativeSize="72.01166180758017">
+              <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.92947813822285">
+                <LayoutItem Id="MaSo" RelativeSize="14.953271028037383" />
+                <LayoutItem Id="LoaiCayTrong" ViewItem="LoaiCayTrong" ShowCaption="" Index="1" RelativeSize="11.214953271028037" IsNewNode="True" />
+                <LayoutItem Id="DiaChi" Index="2" RelativeSize="11.214953271028037" />
+                <LayoutItem Id="NamCap" Index="3" RelativeSize="11.214953271028037" />
+                <LayoutItem Id="HoatDong" Index="4" RelativeSize="11.214953271028037" />
+                <LayoutItem Id="DienTichCanhTac" ShowCaption="" Index="5" RelativeSize="11.214953271028037" ViewItem="DienTichCanhTac" IsNewNode="True" />
+                <LayoutItem Id="ThongTinThoNhuong" Index="6" RelativeSize="28.97196261682243" />
                 <LayoutItem Id="TieuChuan" Removed="True" />
               </LayoutGroup>
-              <LayoutGroup Id="Chi tiết_col2">
-                <LayoutItem Id="HinhThucCanhTac" Index="2" />
-                <LayoutItem Id="QuyMo" ViewItem="QuyMo" ShowCaption="" Index="3" IsNewNode="True" />
-                <LayoutItem Id="TieuChuan" ViewItem="TieuChuan" ShowCaption="" Index="4" IsNewNode="True" />
-                <LayoutItem Id="SanLuongDuKien" Index="5" />
-                <LayoutItem Id="GhiChu" Index="6" />
-                <LayoutItem Id="HoatDong" Index="6" />
+              <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.07052186177715">
+                <LayoutItem Id="HinhThucCanhTac" Index="0" RelativeSize="28.97196261682243" />
+                <LayoutItem Id="QuyMo" ViewItem="QuyMo" ShowCaption="" Index="1" RelativeSize="8.878504672897197" IsNewNode="True" />
+                <LayoutItem Id="TieuChuan" ViewItem="TieuChuan" ShowCaption="" Index="2" RelativeSize="11.214953271028037" IsNewNode="True" />
+                <LayoutItem Id="LatLong" Index="3" RelativeSize="21.686746987951807" Removed="True" />
+                <LayoutItem Id="SanLuongDuKien" Index="3" RelativeSize="11.214953271028037" />
+                <LayoutItem Id="GhiChu" Index="4" RelativeSize="39.7196261682243" />
                 <LayoutItem Id="LoaiCayTrong" Removed="True" />
+                <LayoutItem Id="ToaDo" Removed="True" />
               </LayoutGroup>
             </LayoutGroup>
+            <LayoutItem Id="LatLong" ViewItem="LatLong" Index="1" RelativeSize="27.988338192419825" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="NhatKyCanhTacs" RelativeSize="100">
+            <LayoutItem Id="NhatKyCanhTacs" RelativeSize="100" />
+          </LayoutGroup>
+          <LayoutGroup Id="TaiLieus" RelativeSize="100">
+            <LayoutItem Id="TaiLieus" RelativeSize="100" />
           </LayoutGroup>
         </TabbedGroup>
       </Layout>
@@ -202,12 +219,15 @@
     <ListView Id="VungTrong_ListView">
       <Columns>
         <ColumnInfo Id="DiaChi" Index="-1" />
+        <ColumnInfo Id="LatLong" Index="-1" />
         <ColumnInfo Id="TieuChuan" Index="-1" />
+        <ColumnInfo Id="ToaDo" Index="-1" />
         <ColumnInfo Id="NamCap" Index="3" />
+        <ColumnInfo Id="HoatDong" Index="4" />
         <ColumnInfo Id="DienTichCanhTac" Index="5" Caption="Diện tích" />
-        <ColumnInfo Id="HoatDong" Index="7" />
-        <ColumnInfo Id="SanLuongDuKien" Index="8" />
-        <ColumnInfo Id="HinhThucCanhTac" Index="9" />
+        <ColumnInfo Id="SanLuongDuKien" Index="5" />
+        <ColumnInfo Id="HinhThucCanhTac" Index="6" />
+        <ColumnInfo Id="LoaiCayTrong" Index="8" />
       </Columns>
     </ListView>
     <ListView Id="VungTrong_NhatKyCanhTacs_ListView">

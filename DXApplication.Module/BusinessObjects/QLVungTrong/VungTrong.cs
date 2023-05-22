@@ -145,6 +145,41 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => hinhThucCanhTac;
             set => SetPropertyValue(nameof(HinhThucCanhTac), ref hinhThucCanhTac, value);
         }
+        //Start Maps 
+        private string toaDo;
+        [XafDisplayName("Toạ độ")]
+        [VisibleInDetailView(true)]
+        [VisibleInListView(true)]
+        [Size(SizeAttribute.Unlimited)]
+        public string ToaDo
+        {
+            get
+            {
+                if (!IsLoading && !IsSaving)
+                {
+                    if (LatLong != null)
+                    {
+                        return LatLong;
+                    }
+                }
+                return null;
+            }
+            set { SetPropertyValue(nameof(ToaDo), ref toaDo, value); }
+        }
+
+
+        string latLong;
+        [XafDisplayName("Vị trí")]
+        [VisibleInListView(true)]
+        [ModelDefault("PropertyEditorType", "DXApplication.Blazor.Server.Editors.CustomStringPropertyEditor")]
+        [Size(SizeAttribute.Unlimited)]
+        public string LatLong
+        {
+            get => latLong;
+            set => SetPropertyValue(nameof(LatLong), ref latLong, value);
+        }
+        //End Maps 
+
         [XafDisplayName("Nhật ký canh tác")]
         [Association("VungTrong-NhatKyCanhTacs"), DevExpress.Xpo.Aggregated]
         public XPCollection<NhatKyCanhTac> NhatKyCanhTacs
