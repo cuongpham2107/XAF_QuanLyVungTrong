@@ -27,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     public class HoiThoai : BaseObject
-    { 
+    {
         public HoiThoai(Session session)
             : base(session)
         {
@@ -69,17 +69,25 @@ namespace DXApplication.Module.BusinessObjects.Ticket
                     }
                     else
                     {
-                        if (x.Days > 365)
+                        if (x.Days > 30 && x.Days < 365)
                         {
-                            var a = $"{x.Days / 365} năm trước";
+                            var a = $"{x.Days / 30} tháng trước";
                             return a;
                         }
                         else
                         {
-                            var a = $"{x.Days} ngày trước";
-                            return a;
+                            if (x.Days < 30)
+                            {
+                                var a = $"{x.Days} ngày trước";
+                                return a;
+                            }
+                            else
+                            {
+                                var a = $"{x.Days / 365} năm trước";
+                                return a;
+                            }
                         }
-                    }               
+                    }
                 }
                 return null;
             }
@@ -131,6 +139,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         {
             get => ticket;
             set => SetPropertyValue(nameof(Ticket), ref ticket, value);
-        }    
+        }
     }
 }

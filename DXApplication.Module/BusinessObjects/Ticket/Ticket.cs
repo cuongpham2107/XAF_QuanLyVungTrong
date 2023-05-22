@@ -44,6 +44,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         public override void AfterConstruction()
         {
             base.AfterConstruction();
+            trangThai = true;
         }
 
         bool trangThai;
@@ -51,46 +52,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         MediaDataObject file;
         string noiDung;
         string tieuDe;
-        [XafDisplayName("Thời gian")]
-        [VisibleInDetailView(false)]
-        public string ThoiGian
-        {
-            get
-            {
-                if (!IsSaving && !IsLoading)
-                {
-                    TimeSpan x = DateTime.Now - ngayTao;
-                    if (x.Days < 1)
-                    {
-                        if (x.Hours < 1)
-                        {
-                            var a = $"{x.Minutes} phút trước";
-                            return a;
-                        }
-                        else
-                        {
-                            var a = $"{x.Hours} giờ trước";
-                            return a;
-                        }
-
-                    }
-                    else
-                    {
-                        if (x.Days > 365)
-                        {
-                            var a = $"{x.Days / 365} năm trước";
-                            return a;
-                        }
-                        else
-                        {
-                            var a = $"{x.Days} ngày trước";
-                            return a;
-                        }
-                    }
-                }
-                return null;
-            }
-        }
         [XafDisplayName("Tiêu đề")]
         [RuleRequiredField("Bắt buộc phải có Ticket.TieuDe", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TieuDe
