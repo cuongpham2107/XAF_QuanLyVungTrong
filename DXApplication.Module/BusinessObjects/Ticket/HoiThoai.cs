@@ -7,6 +7,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DXApplication.Module.BusinessObjects.QLVungTrong;
 using DXApplication.Module.Common;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,46 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         DateTime ngayTao;
         string nguoiTao;
         string noiDung;
+        [XafDisplayName("Thời gian")]
+        [VisibleInDetailView(false)]
+        public string ThoiGian
+        {
+            get
+            {
+                if (!IsSaving && !IsLoading)
+                {
+                    TimeSpan x = DateTime.Now - ngayTao;
+                    if (x.Days < 1)
+                    {
+                        if (x.Hours < 1)
+                        {
+                            var a = $"{x.Minutes} phút trước";
+                            return a;
+                        }
+                        else
+                        {
+                            var a = $"{x.Hours} giờ trước";
+                            return a;
+                        }
+
+                    }
+                    else
+                    {
+                        if (x.Days > 365)
+                        {
+                            var a = $"{x.Days / 365} năm trước";
+                            return a;
+                        }
+                        else
+                        {
+                            var a = $"{x.Days} ngày trước";
+                            return a;
+                        }
+                    }               
+                }
+                return null;
+            }
+        }
         [XafDisplayName("Nội dung")]
         [RuleRequiredField("Bắt buộc phải có HoiThoai.NoiDung", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string NoiDung
@@ -74,6 +115,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(Avatar), ref avatar, value);
         }
         [XafDisplayName("Ngày tạo")]
+        [VisibleInListView(false)]
         [VisibleInDetailView(false)]
         [ModelDefault("DisplayFormat", "MM/dd/yy H:mm:ss")]
         [ModelDefault("AllowEdit", "false")]
@@ -90,5 +132,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             get => ticket;
             set => SetPropertyValue(nameof(Ticket), ref ticket, value);
         }
+      
     }
 }

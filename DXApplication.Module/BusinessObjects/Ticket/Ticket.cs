@@ -96,5 +96,17 @@ namespace DXApplication.Module.BusinessObjects.Ticket
                 return GetCollection<HoiThoai>(nameof(HoiThoais));
             }
         }
+        [Action(ToolTip = "Điều chỉnh trạng thái Ticket", Caption = "Đóng/Mở Ticket", ConfirmationMessage = "Xác nhận đóng/mở Ticket?")]
+        public void StatusChanged()
+        {
+            if (TrangThai == false)
+            {
+                TrangThai = true;
+            }
+            else
+            {
+                TrangThai = false;
+            }
+        }
     }
 }
