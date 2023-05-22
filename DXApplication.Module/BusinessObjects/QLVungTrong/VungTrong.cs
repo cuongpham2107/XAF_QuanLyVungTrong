@@ -32,9 +32,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ListViewAutoFilterRow(true)]
     [CustomDetailView(Tabbed =true)]
 
-    [RuleCriteria("7 <= DienTichCanhTac&&DienTichCanhTac<=12",
-    CustomMessageTemplate = "Diện tích canh tác phải lớn hơn 7ha và nhỏ hơn 12ha")]
-
     [Appearance("b", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
     Criteria = "HoatDong=true", Context = "Any", BackColor = "204,255,204", Priority = 1)]
     [Appearance("b1", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",

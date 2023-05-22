@@ -22,7 +22,7 @@ using static DXApplication.Blazor.Common.Enums;
 namespace DXApplication.Module.BusinessObjects.QLVungTrong
 {
     [DefaultClassOptions]
-    [DefaultProperty(nameof(NhatKy))]
+    [DefaultProperty(nameof(GiaiDoanCanhTac))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Nhật ký canh tác")]
     [ImageName("writing")]
@@ -35,6 +35,10 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [RuleCriteria("ThoiGian <= ThoiGianKT",
     CustomMessageTemplate = "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!")]
 
+    [CustomNestedListView(nameof(PhanBons),AllowDelete =false,AllowLink =true,AllowUnlink =true)]
+    [CustomNestedListView(nameof(ThuocBVTVs), AllowDelete = false, AllowLink = true, AllowUnlink = true)]
+    [CustomNestedListView(nameof(SinhVatGayHais), AllowDelete = false, AllowLink = true, AllowUnlink = true)]
+
     [Appearance("ASF", AppearanceItemType = "ViewItem", TargetItems = "PhatHienSauBenh",
     Criteria = "PhatHienSauBenh=true", Context = "Any", FontColor = "Red", Priority = 3)]
     [Appearance("a5", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
@@ -42,15 +46,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [Appearance("a6", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
     Criteria = "TrangThai=0", Context = "Any", BackColor = "204,204,255", Priority = 3)]
     [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    Criteria = "HoatD!=5", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    Criteria = "HoatD!=7", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
     Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
     Criteria = "HoatD!=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
     Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
-    [Appearance("c", AppearanceItemType = "ViewItem", TargetItems = "*",
-    Criteria = "TrangThai=1", Context = "Any", Enabled =false, Priority = 3)]
     public class NhatKyCanhTac : BaseObject
     { 
         public NhatKyCanhTac(Session session)
@@ -72,25 +74,9 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string moTa;
         DateTime thoiGian;
         string hoatDong;
-        string giaiDoanCanhTac;
-        [VisibleInListView(false)]
-        [VisibleInDetailView(false)]
-        [XafDisplayName("Tiêu đề")]
-        public string NhatKy
-        {
-            get
-            {
-                if (!IsSaving && !IsLoading)
-                {
-                    string a = $"{GiaiDoanCanhTac} - {ThoiGian.Date.ToString("d")}";
-                    return a;
-                }
-                return null;
-            }
-        }
+        GiaiDoanCanhTac giaiDoanCanhTac;
         [XafDisplayName("Giai đoạn canh tác")]
-        [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.GiaiDoanCanhTac", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public string GiaiDoanCanhTac
+        public GiaiDoanCanhTac GiaiDoanCanhTac
         {
             get => giaiDoanCanhTac;
             set => SetPropertyValue(nameof(GiaiDoanCanhTac), ref giaiDoanCanhTac, value);
@@ -122,7 +108,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Mô tả")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.MoTa", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string MoTa
         {
             get => moTa;
@@ -166,7 +151,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             }
         }
         [XafDisplayName("Sinh vật gây hại")]
-        [Association("NhatKyCanhTac-SinhVatGayHais"), DevExpress.Xpo.Aggregated]
+        [Association("NhatKyCanhTac-SinhVatGayHais")]
         public XPCollection<SinhVatGayHai> SinhVatGayHais
         {
             get
@@ -175,7 +160,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             }
         }
         [XafDisplayName("Bón phân")]
-        [Association("NhatKyCanhTac-PhanBons"), DevExpress.Xpo.Aggregated]
+        [Association("NhatKyCanhTac-PhanBons")]
         public XPCollection<PhanBon> PhanBons
         {
             get
@@ -184,7 +169,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             }
         }
         [XafDisplayName("Thuốc BVTV")]
-        [Association("NhatKyCanhTac-ThuocBVTVs"), DevExpress.Xpo.Aggregated]
+        [Association("NhatKyCanhTac-ThuocBVTVs")]
         public XPCollection<ThuocBVTV> ThuocBVTVs
         {
             get
@@ -199,6 +184,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
+        }
+        [Action(ToolTip = "Hoàn thành", Caption = "Hoàn thành", ConfirmationMessage = "Xác nhận hoàn thành?")]
+        public void StatusChanged()
+        {
+            TrangThai = TrangThai.DaHoanThanh;
         }
     }
 }

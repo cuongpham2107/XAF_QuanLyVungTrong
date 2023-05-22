@@ -61,7 +61,6 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             set => SetPropertyValue(nameof(LoaiPhanBon), ref loaiPhanBon, value);
         }
         [XafDisplayName("Kĩ thuật bón phân")]
-        [RuleRequiredField("Bắt buộc phải có PhanBon.KiThuatBon", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string KiThuatBon
         {

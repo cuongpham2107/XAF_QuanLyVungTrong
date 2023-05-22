@@ -13,15 +13,12 @@ public class Enums
     {
         [XafDisplayName("Bón phân")] BonPhan,
         [XafDisplayName("Sử dụng Thuốc BVTV")] Thuoc,
-        [XafDisplayName("Chuẩn bị đất")] Dat,
+        [XafDisplayName("Làm đất")] Dat,
         [XafDisplayName("Gieo hạt")] GieoHat,
-        [XafDisplayName("Chăm sóc")] ChamSoc,
+        [XafDisplayName("Trồng cây")] TrongCay,
+        [XafDisplayName("Tưới nước")] TuoiNuoc,
+        [XafDisplayName("Làm cỏ")] LamCo,
         [XafDisplayName("Hoạt động khác")] Khac,
-    }
-    public enum LoaiSuDung
-    {
-        [XafDisplayName("Bón phân")] Phân,
-        [XafDisplayName("Sử dụng Thuốc BVTV")] Thuốc,
     }
     public enum TrangThai
     {
@@ -34,5 +31,13 @@ public class Enums
         [XafDisplayName("Cấp Thành Phố")] TP,
         [XafDisplayName("Cấp Tỉnh")] Tinh,
         [XafDisplayName("Cấp Huyện")] Huyen,
+    }
+    public enum GiaiDoanCanhTac
+    {
+        [XafDisplayName("Chuẩn bị đất trồng")] Dat,
+        [XafDisplayName("Gieo trồng")] Thuoc,
+        [XafDisplayName("Chăm sóc")] ChamSoc,
+        [XafDisplayName("Thu hoạch")] ThuHoach,
+        [XafDisplayName("Bảo quản")] BaoQuan,
     }
 }
