@@ -18,6 +18,9 @@ public class Enums
         [XafDisplayName("Trồng cây")] TrongCay,
         [XafDisplayName("Tưới nước")] TuoiNuoc,
         [XafDisplayName("Làm cỏ")] LamCo,
+        [XafDisplayName("Cắt tỉa")] CatTia,
+        [XafDisplayName("Thu hoạch")] ThuHoach,
+        [XafDisplayName("Bảo quản")] BaoQuan,
         [XafDisplayName("Hoạt động khác")] Khac,
     }
     public enum TrangThai

@@ -122,3 +122,37 @@ app {
 .dxbl-grid-table td {
     white-space: nowrap;
 }
+/* Nut chat messenger */
+#myBtn2 {
+    position: fixed;
+    bottom: 18px;
+    right: 35px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #00cc00;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    opacity: 0.9;
+}
+
+    #myBtn2:hover {
+        background-color: #555;
+    }
+
+.dxbl-tabs > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > ul > li, .dxbl-tabs > ul > li {
+    width: 50%;
+}
+
+    .dxbl-tabs > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > ul > li > .dxbl-tabs-item:not(.dxbl-tabs-tmpl), .dxbl-tabs > ul > li > .dxbl-tabs-item:not(.dxbl-tabs-tmpl) {
+        justify-content: center;
+    }
+
+.dxbl-tabs.dxbl-tabs-scrollable > .dxbl-scroll-viewer > .dxbl-scroll-viewer-content > ul {
+    display: flex;
+    justify-content: space-evenly;
+}

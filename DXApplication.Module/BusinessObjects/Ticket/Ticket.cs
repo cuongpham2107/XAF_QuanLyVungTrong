@@ -54,13 +54,13 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         string tieuDe;
         [XafDisplayName("Tiêu đề")]
         [RuleRequiredField("Bắt buộc phải có Ticket.TieuDe", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        [Size(1024)]
         public string TieuDe
         {
             get => tieuDe;
             set => SetPropertyValue(nameof(TieuDe), ref tieuDe, value);
         }
         [XafDisplayName("Nội dung câu hỏi")]
-        [RuleRequiredField("Bắt buộc phải có Ticket.NoiDung", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string NoiDung
         {

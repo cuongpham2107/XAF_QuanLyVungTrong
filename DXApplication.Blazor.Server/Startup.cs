@@ -10,6 +10,7 @@ using DXApplication.Blazor.Server.Services;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.ExpressApp.Core;
 using DevExpress.Blazor.Configuration;
+using DXApplication.Blazor.Server.Hubs;
 
 namespace DXApplication.Blazor.Server;
 
@@ -37,8 +38,11 @@ public class Startup {
                 .AddConditionalAppearance()
                 .AddDashboards(options => {
                     options.DashboardDataType = typeof(DevExpress.Persistent.BaseImpl.DashboardData);
+                })               
+                .AddFileAttachments(options =>
+                {
+                    //options.DefaultMaxFileSize = 4000000;
                 })
-                .AddFileAttachments()
                 .AddOffice()
                 .AddReports(options => {
                     options.EnableInplaceReports = true;
@@ -116,6 +120,7 @@ public class Startup {
         app.UseEndpoints(endpoints => {
             endpoints.MapXafEndpoints();
             endpoints.MapBlazorHub();
+            endpoints.MapHub<ChatHub>("/chathub");
             endpoints.MapFallbackToPage("/_Host");
             endpoints.MapControllers();
         });

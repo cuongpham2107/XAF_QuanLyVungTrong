@@ -1,5 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
@@ -7,6 +8,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.XtraPrinting.Native;
 using DXApplication.Module.BusinessObjects;
 using DXApplication.Module.Common;
 using System;
@@ -27,6 +29,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
+
+    [Appearance("a7", AppearanceItemType = "ViewItem", TargetItems = "MucDoPhoBien",
+    Criteria = "MucDoPhoBien=0", Context = "Any", BackColor = "204,255,204", Priority = 3)]
+    [Appearance("a5", AppearanceItemType = "ViewItem", TargetItems = "MucDoPhoBien",
+    Criteria = "MucDoPhoBien=1", Context = "Any", BackColor = "Yellow", Priority = 3)]
+    [Appearance("a6", AppearanceItemType = "ViewItem", TargetItems = "MucDoPhoBien",
+    Criteria = "MucDoPhoBien=2", Context = "Any", BackColor = "Red",FontColor ="White", Priority = 3)]
     public class SinhVatGayHai : BaseObject
     { 
         public SinhVatGayHai(Session session)

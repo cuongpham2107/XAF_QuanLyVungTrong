@@ -46,7 +46,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [Appearance("a6", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
     Criteria = "TrangThai=0", Context = "Any", BackColor = "204,204,255", Priority = 3)]
     [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    Criteria = "HoatD!=7", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    Criteria = "HoatD!=10", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
     Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
     [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
@@ -81,7 +81,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => giaiDoanCanhTac;
             set => SetPropertyValue(nameof(GiaiDoanCanhTac), ref giaiDoanCanhTac, value);
         }
-        [XafDisplayName("Hoạt động khác")]
+        [XafDisplayName("Chi tiết hoạt động")]
         public string HoatDong
         {
             get => hoatDong;

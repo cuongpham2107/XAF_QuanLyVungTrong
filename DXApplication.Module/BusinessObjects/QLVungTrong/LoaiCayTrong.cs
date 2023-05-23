@@ -27,7 +27,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     [CustomNestedListView(nameof(VungTrongs),AllowLink =false,AllowUnlink =false,AllowDelete =false)]
-    [CustomDetailView(Tabbed = true)]
     public class LoaiCayTrong : BaseObject
     { 
         public LoaiCayTrong(Session session)
@@ -41,7 +40,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
 
         string nguonGoc;
         string ghiChu;
-        string quyTrinhSanXuat;
         string giaTriSuDung;
         string dacDiemSinhThai;
         string tenKhac;
@@ -79,13 +77,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get => giaTriSuDung;
             set => SetPropertyValue(nameof(GiaTriSuDung), ref giaTriSuDung, value);
-        }
-        [XafDisplayName("Quy trình sản xuất")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string QuyTrinhSanXuat
-        {
-            get => quyTrinhSanXuat;
-            set => SetPropertyValue(nameof(QuyTrinhSanXuat), ref quyTrinhSanXuat, value);
         }
         [XafDisplayName("Ghi chú")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]

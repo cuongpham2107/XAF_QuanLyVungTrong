@@ -53,7 +53,6 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             set => SetPropertyValue(nameof(TenThuoc), ref tenThuoc, value);
         }
         [XafDisplayName("Loại thuốc")]
-        [RuleRequiredField("Bắt buộc phải có ThuocBVTV.LoaiThuoc", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string LoaiThuoc
         {
             get => loaiThuoc;

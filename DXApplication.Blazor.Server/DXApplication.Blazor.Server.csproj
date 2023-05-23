@@ -35,6 +35,7 @@
     <PackageReference Include="DevExpress.ExpressApp.ReportsV2.Blazor" Version="22.2.5" />
     <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="22.2.5" />
     <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.5" />
     <PackageReference Include="MySql.Data" Version="8.0.31" />
   </ItemGroup>
   <ItemGroup>

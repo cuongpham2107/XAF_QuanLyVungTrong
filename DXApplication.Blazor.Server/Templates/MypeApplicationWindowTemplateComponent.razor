@@ -1,10 +1,24 @@
-﻿@using DevExpress.ExpressApp
+﻿@using DXApplication.Module.BusinessObjects;
+@using DXApplication.Module.BusinessObjects.QLVungTrong;
+@using DevExpress.Data.Linq.Helpers;
+@using DevExpress.ExpressApp
 @using DevExpress.ExpressApp.Blazor
 @using DevExpress.ExpressApp.Blazor.Components
+@using DevExpress.ExpressApp.Blazor.Services;
 @using DevExpress.ExpressApp.Blazor.Templates
+@using DevExpress.ExpressApp.Security.Strategy;
+@using DevExpress.Xpo;
 @using Microsoft.JSInterop
+@using Microsoft.AspNetCore.SignalR.Client
+@using Models
+@using DevExpress.ExpressApp.Security
+
+@inject DevExpress.ExpressApp.Blazor.Services.IXafApplicationProvider ApplicationProvider
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
 
 @inherits FrameTemplateComponentBase<MypeApplicationWindowTemplate>
+
 
 <div id="main-window-template-component" class="app h-100 d-flex flex-column">
     <ComponentModelObserver ComponentModel="@FrameTemplate.NavigateBackActionControl.ButtonModel">
@@ -18,6 +32,9 @@
             <div class="header-right-side w-100 overflow-hidden d-flex align-items-center ps-4">
                 @FrameTemplate.NavigateBackActionControl.GetComponentContent()
                 <ViewCaptionComponent WindowCaption="@FrameTemplate" />
+                <div class="nested-toolbar pb-3 w-100 overflow-hidden pr-2 pt-3">
+                    @FrameTemplate.AccountComponent.GetComponentContent()
+                </div>
                 @FrameTemplate.AccountComponent.GetComponentContent()
                 <SettingsComponent />
             </div>
@@ -35,7 +52,8 @@
         <div class="sidebar-sm-shadow" onclick="xaf.toggleSideBar()"></div>
         <div class="main xaf-flex-auto overflow-hidden d-flex flex-column">
             <SizeModeContainer>
-                @if(FrameTemplate.IsActionsToolbarVisible && @FrameTemplate.Toolbar.ContainsVisibleActionControl()) {
+                @if (FrameTemplate.IsActionsToolbarVisible && @FrameTemplate.Toolbar.ContainsVisibleActionControl())
+                {
                     <div class="main-toolbar py-3 px-2 px-sm-3">@FrameTemplate.Toolbar.GetComponentContent()</div>
                 }
                 <div class="main-content xaf-flex-auto overflow-auto pb-3 px-2 px-sm-3">
@@ -44,14 +62,190 @@
             </SizeModeContainer>
         </div>
     </div>
+
 </div>
+<button id="myBtn2" style="background:#1b52cd" @onclick="ShowPopup"><img style="width: 35px;" src="images/chat.png" /></button>
+<style>
+    .nav-pills .nav-link:hover {
+        background-color: #4582ec;
+        color: white;
+    }
+</style>
+<DxPopup HeaderText="Chat"
+         @bind-Visible="@PopupVisible">
+    <BodyTemplate Context="Popup">
+        <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex" CssClass="flex justify-between">
+            <DxTab Text="Danh sách tài khoản" TabIconCssClass="tabs-icon-user tabs-icon"></DxTab>
+            <DxTab Text="Tin nhắn" TabIconCssClass="tabs-icon-support tabs-icon"></DxTab>
+        </DxTabs>
+        @switch (ActiveTabIndex)
+        {
+            case 0:
+                <div class="container overflow-auto shadow-sm p-3 mb-5 bg-white rounded" style="height:500px;">
+
+                    <ul class="nav nav-pills">
+                        @foreach (var item in ListUser)
+                        {
+                            @if(item.UserName != ToUsername)
+                            {
+                                <li class="nav-item w-100 m-0">
+                                    <a class="nav-link p-2 ps-3 text-nowrap fw-normal border-0 rounded-0 list-group-item-action litera " @onclick="(() => OnTabIndex(item.UserName))">
+                                        @item.UserName
+                                    </a>
+                                </li>
+                            }
+                           
+                        }
+
+                    </ul>
+                </div>
+
+
+                break;
+            case 1:
+                <div class="container overflow-auto shadow-sm p-3 mb-5 bg-white rounded" style="height:500px;">
+                    @if (!userMessages.Any())
+                    {
+                        <p>No message yet, start chatting!</p>
+                    }
+                    @foreach (var item in userMessages)
+                    {
+
+                        <div class="d-flex flex-row @(item.CurrentUser ? "justify-content-end":"justify-content-start mb-4")">
+                            @if (!item.CurrentUser)
+                            {
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
+                                     alt="avatar 1" style="width: 45px; height: 100%;">
+                            }
+
+                            <div>
+                                <p class="small p-2 me-3 mb-1 rounded-3 @(item.CurrentUser ? "text-white bg-primary" : "")">
+                                    @item.Message
+                                </p>
+                                <p class="small me-3 mb-3 rounded-3 text-muted  @(item.CurrentUser ? "d-flex justify-content-end" : "")"> 
+                                    @(item.CurrentUser ?
+                                        $"{@item.DateSent.ToString("HH:mm | MMM dd | ")}{@item.ToUsername}"
+                                    :
+                                        $"{@item.ToUsername}{@item.DateSent.ToString(" | HH:mm | MMM dd")}"
+                                   
+                        ) </p>
+                            </div>
+
+                            @if (item.CurrentUser)
+                            {
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
+                                     alt="avatar 1" style="width: 45px; height: 100%;">
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <textarea class="form-control" @bind="messageInput" placeholder="Soạn tin nhắn..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" @onclick="SendMessage" style="margin-top: 10px;float: right;" disabled="@(!IsConnected)">
+                                Gửi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                break;
+        }
+    </BodyTemplate>
+
+</DxPopup>
 
 @code {
+
+    
     public static RenderFragment Create(MypeApplicationWindowTemplate applicationWindowTemplate) => @<MypeApplicationWindowTemplateComponent FrameTemplate="@applicationWindowTemplate" />;
     private string DetailViewHeaderClass => FrameTemplate.View is DetailView ? "xaf-detail-view-header" : default;
     private string NavigateBackActionHeaderClass => FrameTemplate.NavigateBackActionControl.Visible ? "xaf-show-navigate-back-action" : default;
-    protected override async Task InvokeAfterViewChangedJS() {
+    protected override async Task InvokeAfterViewChangedJS()
+    {
         await JSRuntime.InvokeVoidAsync("xaf.closeSideBarIfMobile");
         await base.InvokeAfterViewChangedJS();
     }
+
+    bool PopupVisible { get; set; } = false;
+    private void ShowPopup(MouseEventArgs args)
+    {
+        PopupVisible = true;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private HubConnection hubConnection;
+    private DevExpress.ExpressApp.IObjectSpace objectSpace;
+    private List<UserMessage> userMessages { get; } = new();
+    private string ToUsername { get; set; } = SecuritySystem.CurrentUser.ToString();
+    private string FromUsername { get; set; } = string.Empty;
+
+    private string messageInput;
+    private bool isUserReadonly = false;
+    public IList<ApplicationUser> ListUser;
+    public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+    int ActiveTabIndex { get; set; } = 0;
+    private void OnTabIndex(string username)
+    {
+        ActiveTabIndex = 1;
+        FromUsername = username;
+
+
+    }
+    private async Task ConnectToChatHub()
+    {
+        var app = ApplicationProvider.GetApplication();
+        objectSpace = app.CreateObjectSpace(typeof(VungTrong));
+
+        ListUser = objectSpace.GetObjects<ApplicationUser>().ToList();
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+            .Build();
+        hubConnection.On<string, string, string>("ReceiveMessage", (toUser, fromUser, message) =>
+       {
+           if (fromUser == FromUsername || (toUser == FromUsername && fromUser == ToUsername))
+           {
+               userMessages.Add(new UserMessage
+                   {
+                       ToUsername = toUser,
+                       FromUsername = fromUser,
+                       Message = message,
+                       CurrentUser = toUser == ToUsername,
+                       DateSent = DateTime.Now,
+                   });
+
+               JSRuntime.InvokeVoidAsync("console.log", userMessages);
+               this.InvokeAsync(() => this.StateHasChanged());
+           }
+       });
+        await hubConnection.StartAsync();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        await ConnectToChatHub();
+    }
+    public async Task SendMessage()
+    {
+
+        if (!string.IsNullOrEmpty(ToUsername) && !string.IsNullOrEmpty(messageInput))
+        {
+            await hubConnection.SendAsync("SendMessage", ToUsername, FromUsername, messageInput);
+            isUserReadonly = true;
+            messageInput = string.Empty;
+        }
+
+    }
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+
 }

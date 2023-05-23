@@ -25,6 +25,7 @@ namespace DXApplication.Module.BusinessObjects
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
+    //[FileAttachment(nameof(FileTaiLieu))]
     public class TaiLieu : BaseObject
     {
         public TaiLieu(Session session)
@@ -54,7 +55,6 @@ namespace DXApplication.Module.BusinessObjects
         FileData fileTaiLieu;
         string tenTaiLieu;
         [XafDisplayName("Tên tài liệu")]
-        [RuleRequiredField("Bắt buộc phải có TaiLieu.TenTaiLieu", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenTaiLieu
         {
             get => tenTaiLieu;
@@ -168,8 +168,7 @@ namespace DXApplication.Module.BusinessObjects
         {
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
-        }
-        
+        }        
         protected override void OnSaving()
         {
             ngaySua = DateTime.Now;

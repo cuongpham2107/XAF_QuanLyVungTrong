@@ -45,25 +45,9 @@
   </SchemaModules>
   <Views>
     <ListView Id="ApplicationUser_ListView" Caption="Users" />
-    <DetailView Id="LoaiCayTrong_DetailView">
-      <Layout>
-        <TabbedGroup Id="Tabs">
-          <LayoutGroup Id="Main">
-            <LayoutGroup Id="Chi tiết">
-              <LayoutGroup Id="Chi tiết_col1">
-                <LayoutItem Id="DacDiemSinhThai" ViewItem="DacDiemSinhThai" ShowCaption="" Index="5" IsNewNode="True" Removed="True" />
-                <LayoutItem Id="PhanBo" ViewItem="PhanBo" ShowCaption="" Index="6" IsNewNode="True" />
-                <LayoutItem Id="PhamViApDung" ViewItem="PhamViApDung" ShowCaption="" Index="7" IsNewNode="True" />
-              </LayoutGroup>
-            </LayoutGroup>
-          </LayoutGroup>
-        </TabbedGroup>
-      </Layout>
-    </DetailView>
     <ListView Id="LoaiCayTrong_ListView">
       <Columns>
         <ColumnInfo Id="DacDiemSinhThai" Index="-1" />
-        <ColumnInfo Id="QuyTrinhSanXuat" Index="-1" />
         <ColumnInfo Id="TenKhac" Index="-1" />
         <ColumnInfo Id="GiaTriSuDung" Index="6" />
         <ColumnInfo Id="GhiChu" Index="7" />
@@ -92,14 +76,30 @@
             <LayoutGroup Id="Chi tiết_col1">
               <LayoutItem Id="HoatDong" Index="2" />
               <LayoutItem Id="ThoiGian" Index="3" />
+              <LayoutItem Id="PhatHienSauBenh" ViewItem="PhatHienSauBenh" ShowCaption="" Index="8" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Chi tiết_col2">
               <LayoutItem Id="TrangThai" Index="5" />
+              <LayoutItem Id="PhatHienSauBenh" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="NhatKyCanhTac_ListView" IsGroupPanelVisible="True">
+      <Columns>
+        <ColumnInfo Id="GiaiDoanCanhTac" SortIndex="-1" GroupIndex="2" Width="162" />
+        <ColumnInfo Id="HoatDong" Width="137" />
+        <ColumnInfo Id="HoatD" Width="96" />
+        <ColumnInfo Id="ThoiGianKT" Index="3" Width="142" />
+        <ColumnInfo Id="MoTa" Index="4" Width="63" />
+        <ColumnInfo Id="PhatHienSauBenh" Width="148" Index="5" />
+        <ColumnInfo Id="GhiChu" Width="73" Index="6" />
+        <ColumnInfo Id="ThoiGian" SortOrder="Ascending" GroupIndex="1" Index="7" Width="156" />
+        <ColumnInfo Id="TrangThai" Width="90" />
+        <ColumnInfo Id="VungTrong" SortOrder="Ascending" GroupIndex="0" Width="115" />
+      </Columns>
+    </ListView>
     <DetailView Id="PhanBon_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
@@ -167,6 +167,10 @@
       <Layout>
         <LayoutGroup Id="Main">
           <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="TieuDe" Index="0" />
+              <LayoutItem Id="File" Index="3" />
+            </LayoutGroup>
             <LayoutGroup Id="Chi tiết_col2">
               <LayoutItem Id="TrangThai" Index="1" />
             </LayoutGroup>
@@ -176,8 +180,15 @@
     </DetailView>
     <ListView Id="Ticket_HoiThoais_ListView">
       <Columns>
-        <ColumnInfo Id="Avatar" Index="0" />
+        <ColumnInfo Id="Avatar" Index="0" Width="40" />
+        <ColumnInfo Id="NguoiTao" Index="1" Width="55" />
+        <ColumnInfo Id="ThoiGian" Index="2" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="NoiDung" Index="3" Width="86" />
+        <ColumnInfo Id="File" Index="4" Caption="Ảnh tải lên" />
       </Columns>
+    </ListView>
+    <ListView Id="Ticket_ListView">
+      <SplitLayout ViewsOrder="ListViewDetailView" />
     </ListView>
     <DetailView Id="VungTrong_DetailView">
       <Layout>
@@ -230,9 +241,17 @@
         <ColumnInfo Id="LoaiCayTrong" Index="8" />
       </Columns>
     </ListView>
-    <ListView Id="VungTrong_NhatKyCanhTacs_ListView">
+    <ListView Id="VungTrong_NhatKyCanhTacs_ListView" IsGroupPanelVisible="True">
       <Columns>
-        <ColumnInfo Id="PhatHienSauBenh" Caption="Sâu bệnh" />
+        <ColumnInfo Id="HoatDong" Index="-1" Width="130" />
+        <ColumnInfo Id="GiaiDoanCanhTac" SortIndex="-1" GroupIndex="1" Width="162" />
+        <ColumnInfo Id="HoatD" SortOrder="None" GroupIndex="-1" Index="1" Width="96" />
+        <ColumnInfo Id="ThoiGianKT" Index="2" Width="142" />
+        <ColumnInfo Id="MoTa" Index="3" Width="63" />
+        <ColumnInfo Id="PhatHienSauBenh" Caption="Sâu bệnh" Width="85" Index="4" />
+        <ColumnInfo Id="GhiChu" Width="73" Index="5" />
+        <ColumnInfo Id="TrangThai" Width="90" Index="6" />
+        <ColumnInfo Id="ThoiGian" SortOrder="Ascending" GroupIndex="0" Index="7" Width="156" />
       </Columns>
     </ListView>
   </Views>

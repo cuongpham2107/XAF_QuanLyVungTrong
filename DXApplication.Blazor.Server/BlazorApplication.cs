@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp.ApplicationBuilder;
 using DevExpress.ExpressApp.Blazor;
 using DevExpress.ExpressApp.Blazor.Templates;
+using DevExpress.ExpressApp.FileAttachments.Blazor;
 using DevExpress.ExpressApp.Security;
 using DevExpress.ExpressApp.Security.ClientServer;
 using DevExpress.ExpressApp.SystemModule;
@@ -16,7 +17,7 @@ public class DXApplicationBlazorApplication : BlazorApplication {
         ApplicationName = "DXApplication";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
         DatabaseVersionMismatch += DXApplicationBlazorApplication_DatabaseVersionMismatch;
-
+        //Modules.Add(new FileAttachmentsBlazorModule());
         // TODO: đặt kích thước popup windows bằng 60% bề rộng màn hình
         CustomizeTemplate += (s, e) => {
             if (e.Template is IPopupWindowTemplateSize size) {
