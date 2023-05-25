@@ -13,5 +13,6 @@ namespace DXApplication.Module.Common
         public const string VungTrong = "Vùng Trồng";
         public const string PhanBon = "Phân Bón/Thuốc";
         public const string HoiDap = "Hỏi đáp";
+        public const string QuanLy = "Quản lý Website";
     }
 }

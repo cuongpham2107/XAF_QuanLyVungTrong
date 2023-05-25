@@ -1,4 +1,5 @@
-﻿using DevExpress.Data.Filtering;
+﻿
+using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
@@ -12,6 +13,7 @@ using DXApplication.Module.BusinessObjects.ThuocPhanBon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -25,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    //[FileAttachment(nameof(FileTaiLieu))]
+    [FileAttachment(nameof(File))]
     public class TaiLieu : BaseObject
     {
         public TaiLieu(Session session)
@@ -39,6 +41,8 @@ namespace DXApplication.Module.BusinessObjects
             nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
 
+        Image image;
+        FileData file;
         VungTrong vungTrong;
         NhatKyCanhTac nhatKyCanhTac;
         SinhVatGayHai sinhVatGayHai;
@@ -52,7 +56,6 @@ namespace DXApplication.Module.BusinessObjects
         DateTime ngayTao;
         string ghiChu;
         string moTa;
-        FileData fileTaiLieu;
         string tenTaiLieu;
         [XafDisplayName("Tên tài liệu")]
         public string TenTaiLieu
@@ -60,12 +63,20 @@ namespace DXApplication.Module.BusinessObjects
             get => tenTaiLieu;
             set => SetPropertyValue(nameof(TenTaiLieu), ref tenTaiLieu, value);
         }
+        [DevExpress.Xpo.Aggregated, ExpandObjectMembers(ExpandObjectMembers.Never), ImmediatePostData]
         [XafDisplayName("File tài liệu")]
         [RuleRequiredField("Bắt buộc phải có TaiLieu.FileTaiLieu", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public FileData FileTaiLieu
+
+        public FileData File
         {
-            get => fileTaiLieu;
-            set => SetPropertyValue(nameof(FileTaiLieu), ref fileTaiLieu, value);
+            get => file;
+            set => SetPropertyValue(nameof(File), ref file, value);
+        }
+        [XafDisplayName("Hình ảnh")]
+        public Image Image
+        {
+            get => image;
+            set => SetPropertyValue(nameof(Image), ref image, value);
         }
         [XafDisplayName("Mô tả")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]

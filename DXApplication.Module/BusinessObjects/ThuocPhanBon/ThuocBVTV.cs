@@ -59,7 +59,6 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             set => SetPropertyValue(nameof(LoaiThuoc), ref loaiThuoc, value);
         }
         [XafDisplayName("Hướng dẫn sử dụng")]
-        [RuleRequiredField("Bắt buộc phải có ThuocBVTV.HuongDan", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string HuongDan
         {

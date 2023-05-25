@@ -8,14 +8,14 @@
 @using DevExpress.ExpressApp.Blazor.Templates
 @using DevExpress.ExpressApp.Security.Strategy;
 @using DevExpress.Xpo;
-@using Microsoft.JSInterop
-@using Microsoft.AspNetCore.SignalR.Client
+@*@using Microsoft.JSInterop*@
+@*@using Microsoft.AspNetCore.SignalR.Client
 @using Models
 @using DevExpress.ExpressApp.Security
 
-@inject DevExpress.ExpressApp.Blazor.Services.IXafApplicationProvider ApplicationProvider
+@inject DevExpress.ExpressApp.Blazor.Services.IXafApplicationProvider ApplicationProvider*@
 @inject NavigationManager NavigationManager
-@implements IAsyncDisposable
+@*@implements IAsyncDisposable*@
 
 @inherits FrameTemplateComponentBase<MypeApplicationWindowTemplate>
 
@@ -64,8 +64,8 @@
     </div>
 
 </div>
-<button id="myBtn2" style="background:#1b52cd" @onclick="ShowPopup"><img style="width: 35px;" src="images/chat.png" /></button>
-<style>
+@*<button id="myBtn2" style="background:#1b52cd" @onclick="ShowPopup"><img style="width: 35px;" src="images/chat.png" /></button>*@
+@*<style>
     .nav-pills .nav-link:hover {
         background-color: #4582ec;
         color: white;
@@ -158,7 +158,7 @@
     </BodyTemplate>
 
 </DxPopup>
-
+*@
 @code {
 
     
@@ -171,81 +171,82 @@
         await base.InvokeAfterViewChangedJS();
     }
 
-    bool PopupVisible { get; set; } = false;
-    private void ShowPopup(MouseEventArgs args)
-    {
-        PopupVisible = true;
-        InvokeAsync(StateHasChanged);
-    }
+    //bool PopupVisible { get; set; } = false;
+    //private void ShowPopup(MouseEventArgs args)
+    //{
+    //    PopupVisible = true;
+    //    InvokeAsync(StateHasChanged);
+    //}
 
-    private HubConnection hubConnection;
-    private DevExpress.ExpressApp.IObjectSpace objectSpace;
-    private List<UserMessage> userMessages { get; } = new();
-    private string ToUsername { get; set; } = SecuritySystem.CurrentUser.ToString();
-    private string FromUsername { get; set; } = string.Empty;
+    //private HubConnection hubConnection;
+    //private DevExpress.ExpressApp.IObjectSpace objectSpace;
+    //private List<UserMessage> userMessages { get; } = new();
+    //private string ToUsername { get; set; } = SecuritySystem.CurrentUser.ToString();
+    //private string FromUsername { get; set; } = string.Empty;
 
-    private string messageInput;
-    private bool isUserReadonly = false;
-    public IList<ApplicationUser> ListUser;
-    public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
-    int ActiveTabIndex { get; set; } = 0;
-    private void OnTabIndex(string username)
-    {
-        ActiveTabIndex = 1;
-        FromUsername = username;
+    //private string messageInput;
+    //private bool isUserReadonly = false;
+    //public IList<ApplicationUser> ListUser;
+    //public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+    //int ActiveTabIndex { get; set; } = 0;
+    //private void OnTabIndex(string username)
+    //{
+    //    ActiveTabIndex = 1;
+    //    FromUsername = username;
 
 
-    }
-    private async Task ConnectToChatHub()
-    {
-        var app = ApplicationProvider.GetApplication();
-        objectSpace = app.CreateObjectSpace(typeof(VungTrong));
+    //}
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await ConnectToChatHub();
+    //}
+    //private async Task ConnectToChatHub()
+    //{
+    //    var app = ApplicationProvider.GetApplication();
+    //    objectSpace = app.CreateObjectSpace(typeof(VungTrong));
 
-        ListUser = objectSpace.GetObjects<ApplicationUser>().ToList();
+    //    ListUser = objectSpace.GetObjects<ApplicationUser>().ToList();
 
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
-            .Build();
-        hubConnection.On<string, string, string>("ReceiveMessage", (toUser, fromUser, message) =>
-       {
-           if (fromUser == FromUsername || (toUser == FromUsername && fromUser == ToUsername))
-           {
-               userMessages.Add(new UserMessage
-                   {
-                       ToUsername = toUser,
-                       FromUsername = fromUser,
-                       Message = message,
-                       CurrentUser = toUser == ToUsername,
-                       DateSent = DateTime.Now,
-                   });
+    //    hubConnection = new HubConnectionBuilder()
+    //        .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    //        .Build();
+    //    hubConnection.On<string, string, string>("ReceiveMessage", (toUser, fromUser, message) =>
+    //   {
+    //       if (fromUser == FromUsername || (toUser == FromUsername && fromUser == ToUsername))
+    //       {
+    //           userMessages.Add(new UserMessage
+    //               {
+    //                   ToUsername = toUser,
+    //                   FromUsername = fromUser,
+    //                   Message = message,
+    //                   CurrentUser = toUser == ToUsername,
+    //                   DateSent = DateTime.Now,
+    //               });
 
-               JSRuntime.InvokeVoidAsync("console.log", userMessages);
-               this.InvokeAsync(() => this.StateHasChanged());
-           }
-       });
-        await hubConnection.StartAsync();
-    }
-    protected override async Task OnInitializedAsync()
-    {
-        await ConnectToChatHub();
-    }
-    public async Task SendMessage()
-    {
+    //           JSRuntime.InvokeVoidAsync("console.log", userMessages);
+    //           this.InvokeAsync(() => this.StateHasChanged());
+    //       }
+    //   });
+    //    await hubConnection.StartAsync();
+    //}
+    
+    //public async Task SendMessage()
+    //{
 
-        if (!string.IsNullOrEmpty(ToUsername) && !string.IsNullOrEmpty(messageInput))
-        {
-            await hubConnection.SendAsync("SendMessage", ToUsername, FromUsername, messageInput);
-            isUserReadonly = true;
-            messageInput = string.Empty;
-        }
+    //    if (!string.IsNullOrEmpty(ToUsername) && !string.IsNullOrEmpty(messageInput))
+    //    {
+    //        await hubConnection.SendAsync("SendMessage", ToUsername, FromUsername, messageInput);
+    //        isUserReadonly = true;
+    //        messageInput = string.Empty;
+    //    }
 
-    }
-    public async ValueTask DisposeAsync()
-    {
-        if (hubConnection is not null)
-        {
-            await hubConnection.DisposeAsync();
-        }
-    }
+    //}
+    //public async ValueTask DisposeAsync()
+    //{
+    //    if (hubConnection is not null)
+    //    {
+    //        await hubConnection.DisposeAsync();
+    //    }
+    //}
 
 }

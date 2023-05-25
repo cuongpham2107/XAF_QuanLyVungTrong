@@ -32,6 +32,15 @@
         </Items>
       </Item>
       <Item Id="Hướng dẫn sử dụng" ImageName="manual" />
+      <Item Id="Quản lý Website" ImageName="FunctionsWeb">
+        <Items>
+          <Item Id="QuanLyCayTrong_ListView" Index="0" />
+          <Item Id="KiThuatCanhTac_ListView" Index="1" />
+          <Item Id="QuanLySanPham_ListView" Index="2" />
+          <Item Id="QuanLyTinTuc_ListView" Index="3" />
+          <Item Id="CaiDatCauHinh_ListView" Index="4" ImageName="ViewSettings" />
+        </Items>
+      </Item>
       <Item Id="Reports" ImageName="BO_Report" />
       <Item Id="State Machine" Visible="False" />
     </Items>
@@ -187,8 +196,8 @@
         <ColumnInfo Id="File" Index="4" Caption="Ảnh tải lên" />
       </Columns>
     </ListView>
-    <ListView Id="Ticket_ListView">
-      <SplitLayout ViewsOrder="ListViewDetailView" />
+    <ListView Id="Ticket_ListView" MasterDetailMode="ListViewAndDetailView">
+      <SplitLayout ViewsOrder="ListViewDetailView" Direction="Horizontal" />
     </ListView>
     <DetailView Id="VungTrong_DetailView">
       <Layout>

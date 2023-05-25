@@ -13,6 +13,7 @@ public sealed class DXApplicationModule : ModuleBase {
     public DXApplicationModule() {
         AdditionalExportedTypes.Add(typeof(ModelDifference));
         AdditionalExportedTypes.Add(typeof(ModelDifferenceAspect));
+        
         // 
         // DXApplicationModule
         // 

@@ -19,18 +19,26 @@
     <Compile Remove="Extension\_Draft.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Images\apple.png" />
+    <None Remove="Images\chinampa.png" />
     <None Remove="Images\fertilizer.png" />
     <None Remove="Images\manual.png" />
     <None Remove="Images\medicine.png" />
+    <None Remove="Images\newspaper.png" />
+    <None Remove="Images\plant-a-tree.png" />
     <None Remove="Images\planting.png" />
     <None Remove="Images\tree.png" />
     <None Remove="Images\writing.png" />
     <None Remove="Model.DesignedDiffs.xafml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\apple.png" />
+    <EmbeddedResource Include="Images\chinampa.png" />
     <EmbeddedResource Include="Images\fertilizer.png" />
     <EmbeddedResource Include="Images\manual.png" />
     <EmbeddedResource Include="Images\medicine.png" />
+    <EmbeddedResource Include="Images\newspaper.png" />
+    <EmbeddedResource Include="Images\plant-a-tree.png" />
     <EmbeddedResource Include="Images\planting.png" />
     <EmbeddedResource Include="Images\tree.png" />
     <EmbeddedResource Include="Images\writing.png" />

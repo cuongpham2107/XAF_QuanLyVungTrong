@@ -10,7 +10,7 @@ using DXApplication.Blazor.Server.Services;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.ExpressApp.Core;
 using DevExpress.Blazor.Configuration;
-using DXApplication.Blazor.Server.Hubs;
+//using DXApplication.Blazor.Server.Hubs;
 
 namespace DXApplication.Blazor.Server;
 
@@ -41,7 +41,7 @@ public class Startup {
                 })               
                 .AddFileAttachments(options =>
                 {
-                    //options.DefaultMaxFileSize = 4000000;
+                    //options.DefaultMaxFileSize = 50000000;
                 })
                 .AddOffice()
                 .AddReports(options => {
@@ -120,7 +120,7 @@ public class Startup {
         app.UseEndpoints(endpoints => {
             endpoints.MapXafEndpoints();
             endpoints.MapBlazorHub();
-            endpoints.MapHub<ChatHub>("/chathub");
+            //endpoints.MapHub<ChatHub>("/chathub");
             endpoints.MapFallbackToPage("/_Host");
             endpoints.MapControllers();
         });
