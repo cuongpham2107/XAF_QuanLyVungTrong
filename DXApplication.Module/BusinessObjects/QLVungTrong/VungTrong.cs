@@ -1,4 +1,4 @@
-﻿using DevExpress.Data.Filtering;
+﻿
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
@@ -31,11 +31,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     [CustomDetailView(Tabbed =true)]
-
-    [Appearance("b", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    Criteria = "HoatDong=true", Context = "Any", BackColor = "204,255,204", Priority = 1)]
-    [Appearance("b1", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    Criteria = "HoatDong=false", Context = "Any", BackColor = "Red",FontColor ="White", Priority = 1)]
+    [CustomNestedListView(nameof(Dat_CoSos), AllowLink = false, AllowUnlink = false)]
+    [CustomNestedListView(nameof(NhatKyCanhTacs), AllowUnlink = false, AllowLink = false)]
+    [Appearance("DienTichCanhTac", AppearanceItemType = "ViewItem", TargetItems = "DienTichCanhTac",
+     Context = "ListView", BackColor = "204,255,204", FontStyle = System.Drawing.FontStyle.Bold, Priority = 1)]
+   
     public class VungTrong : BaseObject
     {
         public VungTrong(Session session)
@@ -54,7 +54,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string hinhThucCanhTac;
         string sanLuongDuKien;
         bool hoatDong;
-        double dienTichCanhTac;
+        int dienTichCanhTac;
         string tieuChuan;
         int namCap;
         string diaChi;
@@ -102,14 +102,22 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(TieuChuan), ref tieuChuan, value);
         }
         [XafDisplayName("Diện tích")]
-        [ModelDefault("DisplayFormat", "{0} ha")]
-        public double DienTichCanhTac
+        public int DienTichCanhTac
         {
-            get => dienTichCanhTac;
+            get
+            {
+                if(!IsLoading && !IsSaving)
+                {
+                    if(Dat_CoSos.Count > 0)
+                    {
+                        return Dat_CoSos.Sum(x => x.DienTich);
+                    }
+                }
+                return 0;
+            }
             set => SetPropertyValue(nameof(DienTichCanhTac), ref dienTichCanhTac, value);
         }
         [XafDisplayName("Thông tin thổ nhưỡng")]
-        [Size(1024)]
         public string ThongTinThoNhuong
         {
             get => thongTinThoNhuong;
@@ -136,7 +144,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(SanLuongDuKien), ref sanLuongDuKien, value);
         }
         [XafDisplayName("Hình thức canh tác")]
-        [Size(1024)]
         public string HinhThucCanhTac
         {
             get => hinhThucCanhTac;
@@ -176,9 +183,17 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(LatLong), ref latLong, value);
         }
         //End Maps 
-
+        [XafDisplayName("Đất cơ sở")]
+        [Association("VungTrong-Dat_CoSos")]
+        public XPCollection<Dat_CoSo> Dat_CoSos
+        {
+            get
+            {
+                return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
+            }
+        }
         [XafDisplayName("Nhật ký canh tác")]
-        [Association("VungTrong-NhatKyCanhTacs"), DevExpress.Xpo.Aggregated]
+        [Association("VungTrong-NhatKyCanhTacs")]
         public XPCollection<NhatKyCanhTac> NhatKyCanhTacs
         {
             get

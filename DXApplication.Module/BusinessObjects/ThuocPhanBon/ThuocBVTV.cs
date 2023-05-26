@@ -1,19 +1,13 @@
-﻿using DevExpress.Data.Filtering;
-using DevExpress.ExpressApp;
+﻿using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
-using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using DXApplication.Module.BusinessObjects.QLVungTrong;
 using DXApplication.Module.Common;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using static DXApplication.Blazor.Common.Enums;
 
 namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
 {
@@ -22,7 +16,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Thuốc BVTV")]
     [ImageName("medicine")]
-    [NavigationItem(Menu.PhanBon)]
+    [NavigationItem(Menu.Danhmuc)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
@@ -38,12 +32,13 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
            
         }
 
-        NhatKyCanhTac nhatKyCanhTac;
+        string nhaCungCap;
+        string lieuLuongSuDung;
+        string nongDoPhaLoang;
         MediaDataObject hinhAnh;
-        string huongDan;
-        DanhMucThuoc danhMucThuoc;
+        int gia;
+        DonGia donGia;
         string ghiChu;
-        string loaiThuoc;
         string tenThuoc;
         [XafDisplayName("Tên thuốc")]
         [RuleRequiredField("Bắt buộc phải có ThuocBVTV.TenThuoc", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
@@ -52,18 +47,43 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => tenThuoc;
             set => SetPropertyValue(nameof(TenThuoc), ref tenThuoc, value);
         }
-        [XafDisplayName("Loại thuốc")]
-        public string LoaiThuoc
+
+        [XafDisplayName("Giá")]
+        public int Gia
         {
-            get => loaiThuoc;
-            set => SetPropertyValue(nameof(LoaiThuoc), ref loaiThuoc, value);
+            get => gia;
+            set => SetPropertyValue(nameof(Gia), ref gia, value);
         }
-        [XafDisplayName("Hướng dẫn sử dụng")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string HuongDan
+        [XafDisplayName("Đơn giá")]
+        public DonGia DonGia
         {
-            get => huongDan;
-            set => SetPropertyValue(nameof(HuongDan), ref huongDan, value);
+            get => donGia;
+            set => SetPropertyValue(nameof(DonGia), ref donGia, value);
+        }
+        [XafDisplayName("Nồng độ pha loãng")]
+        public string NongDoPhaLoang
+        {
+            get
+            {
+                if (!IsLoading && !IsSaving)
+                {
+                    return $"{NongDoPhaLoang}/lít";
+                }
+                return null;
+            }
+            set => SetPropertyValue(nameof(NongDoPhaLoang), ref nongDoPhaLoang, value);
+        }
+        [XafDisplayName("Liều lượng sử dụng")]
+        public string LieuLuongSuDung
+        {
+            get => lieuLuongSuDung;
+            set => SetPropertyValue(nameof(LieuLuongSuDung), ref lieuLuongSuDung, value);
+        }
+        [XafDisplayName("Nhà cung cấp")]
+        public string NhaCungCap
+        {
+            get => nhaCungCap;
+            set => SetPropertyValue(nameof(NhaCungCap), ref nhaCungCap, value);
         }
         [XafDisplayName("Ghi chú")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
@@ -72,38 +92,15 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
-        [XafDisplayName("Danh mục thuốc")]
-        [Association("DanhMucThuoc-ThuocBVTVs")]
-        public DanhMucThuoc DanhMucThuoc
-        {
-            get => danhMucThuoc;
-            set => SetPropertyValue(nameof(DanhMucThuoc), ref danhMucThuoc, value);
-        }
+       
         [XafDisplayName("Ảnh minh họa")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 80)]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 300)]
         public MediaDataObject HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
         }
-        [XafDisplayName("Tài liệu")]
-        [Association("ThuocBVTV-TaiLieus"), DevExpress.Xpo.Aggregated]
-        public XPCollection<TaiLieu> TaiLieus
-        {
-            get
-            {
-                return GetCollection<TaiLieu>(nameof(TaiLieus));
-            }
-        }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [XafDisplayName("Nhật ký canh tác")]
-        [Association("NhatKyCanhTac-ThuocBVTVs")]
-        public NhatKyCanhTac NhatKyCanhTac
-        {
-            get => nhatKyCanhTac;
-            set => SetPropertyValue(nameof(NhatKyCanhTac), ref nhatKyCanhTac, value);
-        }
+       
 
     }
 }

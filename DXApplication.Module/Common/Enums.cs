@@ -43,4 +43,53 @@ public class Enums
         [XafDisplayName("Thu hoạch")] ThuHoach,
         [XafDisplayName("Bảo quản")] BaoQuan,
     }
+    public enum DonGia
+    {
+        [XafDisplayName("Cái")] Cai,
+        [XafDisplayName("m")] m,
+        [XafDisplayName("cm")] cm,
+        [XafDisplayName("kg")] kg,
+        [XafDisplayName("g")] g,
+        [XafDisplayName("mg")] mg,
+        [XafDisplayName("L")] L,
+        [XafDisplayName("ml")] ml,
+        [XafDisplayName("Con")] con,
+        [XafDisplayName("Bao (Bì)")] baoBi,
+        [XafDisplayName("Viên")] Vien,
+        [XafDisplayName("Liều")] Lièu,
+        [XafDisplayName("Hạt")] Hat,
+        [XafDisplayName("Cay")] Cay,
+
+    }
+    public enum CongViec_TT
+    {
+        [XafDisplayName("Công việc")] CongViec,
+        [XafDisplayName("Tình trạng")] TinhTrang,
+       
+
+    }
+    public enum DonViDat
+    {
+        [XafDisplayName("m2")] m2,
+        [XafDisplayName("Hecta")] Hecta,
+        [XafDisplayName("Sào Bắc")] saoBac,
+        [XafDisplayName("Sào Trung")] saoTrung,
+        [XafDisplayName("Sào Nam")] saoNam,
+        [XafDisplayName("Mẫu Bắc")] mauBac,
+        [XafDisplayName("Mẫu Trung")] mauTrung,
+        [XafDisplayName("Mẫu Nam")] mauNam,
+
+    }
+    public enum DonViSanLuong
+    {
+        [XafDisplayName("Kg")] kg,
+        [XafDisplayName("Yến")] yen,
+        [XafDisplayName("Tạ")] ta,
+        [XafDisplayName("Tấn")] tan,
+    }
+    public enum PhanLoaiDat
+    {
+        [XafDisplayName("Sở hữu")] soHuu,
+        [XafDisplayName("Cho thuê")] choThue,
+    }
 }

@@ -87,6 +87,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
             get => logo;
             set => SetPropertyValue(nameof(Logo), ref logo, value);
         }
+        
 
     }
 }

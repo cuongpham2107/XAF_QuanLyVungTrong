@@ -22,7 +22,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Loại Cây trồng")]
     [ImageName("tree")]
-    [NavigationItem(Menu.VungTrong)]
+    [NavigationItem(Menu.Danhmuc)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
@@ -52,27 +52,18 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(TenCay), ref tenCay, value);
         }
         [XafDisplayName("Nguồn gốc")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string NguonGoc
         {
             get => nguonGoc;
             set => SetPropertyValue(nameof(NguonGoc), ref nguonGoc, value);
         }
-        [XafDisplayName("Tên khác")]
-        public string TenKhac
-        {
-            get => tenKhac;
-            set => SetPropertyValue(nameof(TenKhac), ref tenKhac, value);
-        }
         [XafDisplayName("Đặc điểm")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string DacDiemSinhThai
         {
             get => dacDiemSinhThai;
             set => SetPropertyValue(nameof(DacDiemSinhThai), ref dacDiemSinhThai, value);
         }
         [XafDisplayName("Giá trị sử dụng")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string GiaTriSuDung
         {
             get => giaTriSuDung;
@@ -84,15 +75,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
-        }
-        [XafDisplayName("Tài liệu đính kèm")]
-        [Association("LoaiCayTrong-TaiLieus"), DevExpress.Xpo.Aggregated]
-        public XPCollection<TaiLieu> TaiLieus
-        {
-            get
-            {
-                return GetCollection<TaiLieu>(nameof(TaiLieus));
-            }
         }
                  
         [XafDisplayName("Vùng Trồng")]

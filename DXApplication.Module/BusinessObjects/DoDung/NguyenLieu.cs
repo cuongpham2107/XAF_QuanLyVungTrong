@@ -1,29 +1,35 @@
-﻿
+﻿using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
+using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
 using static DXApplication.Blazor.Common.Enums;
 
-namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
+namespace DXApplication.Module.BusinessObjects.DoDung
 {
     [DefaultClassOptions]
-    [DefaultProperty(nameof(TenPhanBon))]
+    [DefaultProperty(nameof(TenNguyenLieu))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
-    [XafDisplayName("Phân bón")]
-    [ImageName("fertilizer")]
+    [XafDisplayName("Nguyên vật liệu")]
+    [ImageName("raw-materials")]
     [NavigationItem(Menu.Danhmuc)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class PhanBon : BaseObject
-    {
-        public PhanBon(Session session)
+
+    public class NguyenLieu : BaseObject
+    { 
+        public NguyenLieu(Session session)
             : base(session)
         {
         }
@@ -32,21 +38,16 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             base.AfterConstruction();
 
         }
-
-        string lieuLuongSuDung;
-        string nhaCungCap;
-        string thanhPhan;
-        DonGia donGia;
-        int gia;
         MediaDataObject hinhAnh;
         string ghiChu;
-        string tenPhanBon;
-        [XafDisplayName("Tên phân bón")]
-        [RuleRequiredField("Bắt buộc phải có PhanBon.TenPhanBon", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public string TenPhanBon
+        DonGia donGia;
+        int gia;
+        string tenNguyenLieu;
+        [XafDisplayName("Tên nguyên vật liệu")]
+        public string TenNguyenLieu
         {
-            get => tenPhanBon;
-            set => SetPropertyValue(nameof(TenPhanBon), ref tenPhanBon, value);
+            get => tenNguyenLieu;
+            set => SetPropertyValue(nameof(TenNguyenLieu), ref tenNguyenLieu, value);
         }
         [XafDisplayName("Giá")]
         public int Gia
@@ -60,24 +61,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             get => donGia;
             set => SetPropertyValue(nameof(DonGia), ref donGia, value);
         }
-        [XafDisplayName("Thành phần")]
-        public string ThanhPhan
-        {
-            get => thanhPhan;
-            set => SetPropertyValue(nameof(ThanhPhan), ref thanhPhan, value);
-        }
-        [XafDisplayName("Liều lượng sử dụng")]
-        public string LieuLuongSuDung
-        {
-            get => lieuLuongSuDung;
-            set => SetPropertyValue(nameof(LieuLuongSuDung), ref lieuLuongSuDung, value);
-        }
-        [XafDisplayName("Nhà cung cấp")]
-        public string NhaCungCap
-        {
-            get => nhaCungCap;
-            set => SetPropertyValue(nameof(NhaCungCap), ref nhaCungCap, value);
-        }
+
         [XafDisplayName("Ghi chú")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string GhiChu
@@ -86,13 +70,13 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
         [XafDisplayName("Ảnh minh họa")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 300)]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 200)]
         public MediaDataObject HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
         }
-
-
     }
+
+
 }

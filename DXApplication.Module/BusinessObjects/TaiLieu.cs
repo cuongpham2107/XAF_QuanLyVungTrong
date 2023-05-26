@@ -1,5 +1,4 @@
 ﻿
-using DevExpress.Data.Filtering;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
@@ -9,13 +8,8 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
-using DXApplication.Module.BusinessObjects.ThuocPhanBon;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace DXApplication.Module.BusinessObjects
 {
@@ -44,12 +38,8 @@ namespace DXApplication.Module.BusinessObjects
         Image image;
         FileData file;
         VungTrong vungTrong;
-        NhatKyCanhTac nhatKyCanhTac;
         SinhVatGayHai sinhVatGayHai;
-        PhanBon phanBon;
-        ThuocBVTV thuocBVTV;
         QuyTrinhSanXuat quyTrinhSanXuat;
-        LoaiCayTrong loaiCayTrong;
         string nguoiSua;
         DateTime ngaySua;
         string nguoiTao;
@@ -124,14 +114,7 @@ namespace DXApplication.Module.BusinessObjects
             get => nguoiSua;
             set => SetPropertyValue(nameof(NguoiSua), ref nguoiSua, value);
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("LoaiCayTrong-TaiLieus")]
-        public LoaiCayTrong LoaiCayTrong
-        {
-            get => loaiCayTrong;
-            set => SetPropertyValue(nameof(LoaiCayTrong), ref loaiCayTrong, value);
-        }
+        
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
         [Association("QuyTrinhSanXuat-TaiLieus")]
@@ -140,22 +123,8 @@ namespace DXApplication.Module.BusinessObjects
             get => quyTrinhSanXuat;
             set => SetPropertyValue(nameof(QuyTrinhSanXuat), ref quyTrinhSanXuat, value);
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("ThuocBVTV-TaiLieus")]
-        public ThuocBVTV ThuocBVTV
-        {
-            get => thuocBVTV;
-            set => SetPropertyValue(nameof(ThuocBVTV), ref thuocBVTV, value);
-        }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("PhanBon-TaiLieus")]
-        public PhanBon PhanBon
-        {
-            get => phanBon;
-            set => SetPropertyValue(nameof(PhanBon), ref phanBon, value);
-        }
+       
+       
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
         [Association("SinhVatGayHai-TaiLieus")]
@@ -164,14 +133,7 @@ namespace DXApplication.Module.BusinessObjects
             get => sinhVatGayHai;
             set => SetPropertyValue(nameof(SinhVatGayHai), ref sinhVatGayHai, value);
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("NhatKyCanhTac-TaiLieus")]
-        public NhatKyCanhTac NhatKyCanhTac
-        {
-            get => nhatKyCanhTac;
-            set => SetPropertyValue(nameof(NhatKyCanhTac), ref nhatKyCanhTac, value);
-        }
+      
         [VisibleInDetailView(false)]
         [VisibleInListView(false)]
         [Association("VungTrong-TaiLieus")]

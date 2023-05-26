@@ -10,9 +10,9 @@
     <Items>
       <DashboardNavigationItem Id="My Dashboard" Caption="Trang chủ" DashboardTitle="My Dashboard" Index="0" IsNewNode="True" />
       <Item Id="Vùng Trồng" Index="2" />
-      <Item Id="Phân Bón/Thuốc" Index="3" />
       <Item Id="Hỏi đáp" Index="4" />
-      <Item Id="Reports" Index="5" />
+      <Item Id="Danh mục" Index="5" />
+      <Item Id="Reports" Index="6" />
       <Item Id="Default">
         <Items>
           <Item Id="Settings" ImageName="ScatterChartLabelOptions" ViewId="ModelDifference_ListView" Caption="Settings" IsNewNode="True" />
@@ -24,5 +24,31 @@
     <SchemaModule Name="CloneObjectModule" Version="22.2.5.0" IsNewNode="True" />
     <SchemaModule Name="SystemModule" Version="22.2.5.0" IsNewNode="True" />
   </SchemaModules>
-  <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor" />
+  <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
+    <ListView Id="NhatKyCanhTac_ListView" IsFooterVisible="True">
+      <Columns>
+        <ColumnInfo Id="DatCoSo" Index="1" />
+        <ColumnInfo Id="VungTrong" SortOrder="Descending" Index="2" />
+      </Columns>
+    </ListView>
+    <ListView Id="VungTrong_ListView" IsGroupPanelVisible="True" IsFooterVisible="True" FreezeColumnIndices="True">
+      <Columns>
+        <ColumnInfo Id="DiaChi" Index="-1" />
+        <ColumnInfo Id="LatLong" Index="-1" />
+        <ColumnInfo Id="Oid" Index="-1" />
+        <ColumnInfo Id="TenVungTrong" Index="-1" />
+        <ColumnInfo Id="TieuChuan" Index="-1" />
+        <ColumnInfo Id="ToaDo" Index="-1" />
+        <ColumnInfo Id="MaSo" Index="0" Width="114" />
+        <ColumnInfo Id="NamCap" Index="3" Width="68" />
+        <ColumnInfo Id="HoatDong" Index="4" Width="74" />
+        <ColumnInfo Id="DienTichCanhTac" Index="5" Width="67" />
+        <ColumnInfo Id="SanLuongDuKien" Index="5" Width="115" />
+        <ColumnInfo Id="ThongTinThoNhuong" Index="5" Width="137" />
+        <ColumnInfo Id="HinhThucCanhTac" Index="6" Width="121" />
+        <ColumnInfo Id="GhiChu" Index="7" Width="61" />
+        <ColumnInfo Id="LoaiCayTrong" SortOrder="Descending" GroupIndex="0" Index="8" Width="108" />
+      </Columns>
+    </ListView>
+  </Views>
 </Application>

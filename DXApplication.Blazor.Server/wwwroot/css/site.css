@@ -80,7 +80,12 @@ app {
     background-repeat: no-repeat;
     animation: m 3s infinite;
 }
-
+label.dxbl-fl-cpt.dxbl-text {
+    font-weight: 600;
+}
+.dxbl-tabs-item span.xaf-item-main.dxbl-text {
+    font-weight: 600;
+}
 @keyframes m {
     0% {
         background-position: calc(0*100%/3) 100%, calc(1*100%/3) 100%, calc(2*100%/3) 100%, calc(3*100%/3) 100%

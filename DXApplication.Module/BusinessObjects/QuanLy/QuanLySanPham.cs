@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using DevExpress.ExpressApp.SystemModule;
 using DXApplication.Module.Common;
+using System.Net;
 
 namespace DXApplication.Module.BusinessObjects.QuanLy
 {
@@ -38,6 +39,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
           
         }
 
+        string url;
         string tieuChuan;
         string noiSanXuat;
         string donViTinh;
@@ -62,7 +64,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         {
             get
             {
-                
+
                 return slug;
             }
 
@@ -83,12 +85,38 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
             get => noiDung;
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
-        [XafDisplayName("Hình ảnh")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
-        public MediaDataObject HinhAnh
+        [Size(-1)]
+        public string Url
         {
-            get => hinhAnh;
-            set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
+            get => url;
+            set => SetPropertyValue(nameof(Url), ref url, value);
+        }
+        [NonPersistent]
+        [ImageEditor(ListViewImageEditorCustomHeight = 75, DetailViewImageEditorFixedWidth = 500)]
+        public byte[] Thumbnail
+        {
+            get
+            {
+               return  GetImage();
+            }
+        }
+        private byte[] GetImage()
+        {
+            byte[] img = null;
+            if(Url != null)
+            {
+                WebClient webClient = new WebClient();
+                try
+                {
+                    img = webClient.DownloadData(Url);
+                }
+                catch (Exception)
+                {
+
+                    img = null;
+                }
+            }
+            return img;
         }
         [XafDisplayName("Giá")]
         public int Gia

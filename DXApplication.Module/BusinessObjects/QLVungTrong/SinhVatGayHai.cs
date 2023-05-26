@@ -1,21 +1,14 @@
-﻿using DevExpress.Data.Filtering;
+﻿
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
-using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
-using DevExpress.XtraPrinting.Native;
-using DXApplication.Module.BusinessObjects;
 using DXApplication.Module.Common;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using static DXApplication.Blazor.Common.Enums;
 
 namespace DXApplication.Module.BusinessObjects.QLVungTrong
@@ -48,7 +41,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
 
         MediaDataObject hinhAnh;
-        NhatKyCanhTac nhatKyCanhTac;
         string ghiChu;
         string bienPhapPhongTru;
         string moTa;
@@ -111,13 +103,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 return GetCollection<TaiLieu>(nameof(TaiLieus));
             }
         }
-        [VisibleInDetailView(false)]
-        [VisibleInListView(false)]
-        [Association("NhatKyCanhTac-SinhVatGayHais")]
-        public NhatKyCanhTac NhatKyCanhTac
-        {
-            get => nhatKyCanhTac;
-            set => SetPropertyValue(nameof(NhatKyCanhTac), ref nhatKyCanhTac, value);
-        }
+
     }
 }

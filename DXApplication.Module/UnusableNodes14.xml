@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="NhatKyCanhTac_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="HoatDong" Index="2" />
+              <LayoutItem Id="ThoiGian" Index="3" />
+              <LayoutItem Id="PhatHienSauBenh" ViewItem="PhatHienSauBenh" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="TrangThai" Index="5" />
+              <LayoutItem Id="PhatHienSauBenh" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="NhatKyCanhTac_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="GiaiDoanCanhTac" SortIndex="-1" GroupIndex="2" Width="162" />
+        <ColumnInfo Id="HoatDong" Width="137" />
+        <ColumnInfo Id="HoatD" Width="96" />
+        <ColumnInfo Id="ThoiGianKT" Index="3" Width="142" />
+        <ColumnInfo Id="MoTa" Index="4" Width="63" />
+        <ColumnInfo Id="PhatHienSauBenh" Width="148" Index="5" />
+        <ColumnInfo Id="ThoiGian" SortOrder="Ascending" GroupIndex="1" Index="7" Width="156" />
+      </Columns>
+    </ListView>
+    <DetailView Id="PhanBon_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="DanhMucPhanBon" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="PhanBon_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DanhMucPhanBon" Index="-1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ThuocBVTV_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="DanhMucThuoc" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ThuocBVTV_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="DanhMucThuoc" Index="-1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="VungTrong_DetailView">
+      <Layout Id="Layout">
+        <TabbedGroup Id="Tabs">
+          <LayoutGroup Id="Main">
+            <LayoutGroup Id="Chi tiết">
+              <LayoutGroup Id="Chi tiết_col2">
+                <LayoutItem Id="QuyMo" ViewItem="QuyMo" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </TabbedGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="VungTrong_NhatKyCanhTacs_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="HoatDong" Index="-1" Width="130" />
+        <ColumnInfo Id="GiaiDoanCanhTac" SortIndex="-1" GroupIndex="1" Width="162" />
+        <ColumnInfo Id="HoatD" SortOrder="None" GroupIndex="-1" Index="1" Width="96" />
+        <ColumnInfo Id="ThoiGianKT" Index="2" Width="142" />
+        <ColumnInfo Id="MoTa" Index="3" Width="63" />
+        <ColumnInfo Id="PhatHienSauBenh" Caption="Sâu bệnh" Width="85" Index="4" />
+        <ColumnInfo Id="ThoiGian" SortOrder="Ascending" GroupIndex="0" Index="7" Width="156" />
+      </Columns>
+    </ListView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Phân Bón/Thuốc" ImageName="medicine" Index="1">
+        <Items Id="Items">
+          <Item Id="DanhMucPhanBon_ListView" Visible="False" />
+          <Item Id="DanhMucThuoc_ListView" Visible="False" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

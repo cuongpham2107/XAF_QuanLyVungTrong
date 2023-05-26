@@ -22,37 +22,35 @@ using static DXApplication.Blazor.Common.Enums;
 namespace DXApplication.Module.BusinessObjects.QLVungTrong
 {
     [DefaultClassOptions]
-    [DefaultProperty(nameof(GiaiDoanCanhTac))]
+    [DefaultProperty(nameof(TenNhatKy))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Nhật ký canh tác")]
-    [ImageName("writing")]
+    [ImageName("notes")]
     [NavigationItem(Menu.VungTrong)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     [CustomRootListView(AllowNew =false)]
     [CustomDetailView(AllowNew =false)]
-    [RuleCriteria("ThoiGian <= ThoiGianKT",
-    CustomMessageTemplate = "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!")]
+    [CustomNestedListView(nameof(ChiTietNhatKys), AllowUnlink = false,AllowLink = false )]
+    [Appearance("NgayKetThuc", AppearanceItemType = "ViewItem", TargetItems = "NgayKetThuc",
+     Context = "ListView", FontColor = "Black",BackColor = "Gold", Priority = 3)]
+    [Appearance("SanLuong", AppearanceItemType = "ViewItem", TargetItems = "SanLuong",
+     Context = "ListView", BackColor = "DeepSkyBlue", Priority = 3)]
 
-    [CustomNestedListView(nameof(PhanBons),AllowDelete =false,AllowLink =true,AllowUnlink =true)]
-    [CustomNestedListView(nameof(ThuocBVTVs), AllowDelete = false, AllowLink = true, AllowUnlink = true)]
-    [CustomNestedListView(nameof(SinhVatGayHais), AllowDelete = false, AllowLink = true, AllowUnlink = true)]
-
-    [Appearance("ASF", AppearanceItemType = "ViewItem", TargetItems = "PhatHienSauBenh",
-    Criteria = "PhatHienSauBenh=true", Context = "Any", FontColor = "Red", Priority = 3)]
     [Appearance("a5", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
-    Criteria = "TrangThai=1", Context = "Any", BackColor = "204,255,204", Priority = 3)]
+    Criteria = "[TrangThai] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThai,DangXyLy#", Context = "Any", BackColor = "204,255,204", Priority = 3)]
     [Appearance("a6", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
-    Criteria = "TrangThai=0", Context = "Any", BackColor = "204,204,255", Priority = 3)]
-    [Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    Criteria = "HoatD!=10", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    [Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
-    Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    [Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
-    Criteria = "HoatD!=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    [Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
-    Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
+    Criteria = "[TrangThai] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThai,DaHoanThanh#", Context = "Any", BackColor = "204,204,255", Priority = 3)]
+
+    //[Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
+    //Criteria = "HoatD!=10", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    //[Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
+    //Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    //[Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
+    //Criteria = "HoatD!=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
+    //[Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
+    //Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
     public class NhatKyCanhTac : BaseObject
     { 
         public NhatKyCanhTac(Session session)
@@ -62,63 +60,119 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-            thoiGian=DateTime.Now;
-        }
 
-        DateTime thoiGianKT;
+        }
+        string datCoSo;
+        DonViSanLuong donViSanLuong;
+        DateTime ngayKetThuc;
+        DateTime ngayThuHoach;
+        DateTime ngayNuoiTrong;
+        DateTime ngayBatDau;
+        string sanLuong;
+        string nam;
+        string tenNhatKy;
         TrangThai trangThai;
         VungTrong vungTrong;
-        HoatDong hoatD;
-        bool phatHienSauBenh;
         string ghiChu;
-        string moTa;
-        DateTime thoiGian;
-        string hoatDong;
-        GiaiDoanCanhTac giaiDoanCanhTac;
-        [XafDisplayName("Giai đoạn canh tác")]
-        public GiaiDoanCanhTac GiaiDoanCanhTac
+
+        [XafDisplayName("Tên nhật ký")]
+        [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.TenNhatKy", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        public string TenNhatKy
         {
-            get => giaiDoanCanhTac;
-            set => SetPropertyValue(nameof(GiaiDoanCanhTac), ref giaiDoanCanhTac, value);
+            get => tenNhatKy;
+            set => SetPropertyValue(nameof(TenNhatKy), ref tenNhatKy, value);
         }
-        [XafDisplayName("Chi tiết hoạt động")]
-        public string HoatDong
+        [XafDisplayName("Vùng Trồng")]
+        [VisibleInDetailView(true)]
+        [Association("VungTrong-NhatKyCanhTacs")]
+        public VungTrong VungTrong
         {
-            get => hoatDong;
-            set => SetPropertyValue(nameof(HoatDong), ref hoatDong, value);
+            get => vungTrong;
+            set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
         }
-        [XafDisplayName("Hoạt động")]
-        public HoatDong HoatD
+        [XafDisplayName("Diện tích chăm sóc")]
+        [ModelDefault("AllowEdit","False")]
+        public string DatCoSo
         {
-            get => hoatD;
-            set => SetPropertyValue(nameof(HoatD), ref hoatD, value);
+            get
+            {
+                if(!IsLoading && !IsSaving)
+                {
+                    if(Dat_CoSos.Count > 0)
+                    {
+                        if(Dat_CoSos.Sum(x => x.DienTich) > 0)
+                        {
+                            return Dat_CoSos.Sum(x => x.DienTich).ToString();
+                        }
+                        
+                    }
+                }
+                return null;
+            }
+            set => SetPropertyValue(nameof(DatCoSo), ref datCoSo, value);
         }
-        [XafDisplayName("Thời gian bắt đầu")]
-        [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.ThoiGian", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public DateTime ThoiGian
+        //sản phẩm
+        [XafDisplayName("Năm nhật ký")]
+        [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.Nam", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
+        public string Nam
         {
-            get => thoiGian;
-            set => SetPropertyValue(nameof(ThoiGian), ref thoiGian, value);
+            get
+            {
+                if (!IsLoading && !IsSaving)
+                {
+                    return $"{DateTime.Now.Year}";
+                }
+                return $"{DateTime.Now.Year}";
+            }
+            set => SetPropertyValue(nameof(Nam), ref nam, value);
         }
-        [XafDisplayName("Thời gian kết thúc")]
-        public DateTime ThoiGianKT
+
+        [XafDisplayName("Trạng thái")]
+        public TrangThai TrangThai
         {
-            get => thoiGianKT;
-            set => SetPropertyValue(nameof(ThoiGianKT), ref thoiGianKT, value);
+            get
+            {
+                return trangThai;
+            }
+
+            set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
         }
-        [XafDisplayName("Mô tả")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string MoTa
+       
+        [XafDisplayName("Sản lượng")]
+        public string SanLuong
         {
-            get => moTa;
-            set => SetPropertyValue(nameof(MoTa), ref moTa, value);
+            get => sanLuong;
+            set => SetPropertyValue(nameof(SanLuong), ref sanLuong, value);
         }
-        [XafDisplayName("Phát hiện sâu bệnh")]
-        [CaptionsForBoolValues("Có", "Không")]
-        public bool PhatHienSauBenh
+        [XafDisplayName("ĐVT")]
+        public DonViSanLuong DonViSanLuong
         {
-            get => phatHienSauBenh;
-            set => SetPropertyValue(nameof(PhatHienSauBenh), ref phatHienSauBenh, value);
+            get => donViSanLuong;
+            set => SetPropertyValue(nameof(DonViSanLuong), ref donViSanLuong, value);
+        }
+        [XafDisplayName("Ngày bắt đầu")]
+        public DateTime NgayBatDau
+        {
+            get => DateTime.Now;
+            set => SetPropertyValue(nameof(NgayBatDau), ref ngayBatDau, value);
+        }
+        [XafDisplayName("Ngày nuôi/trồng")]
+        public DateTime NgayNuoiTrong
+        {
+            get => ngayNuoiTrong;
+            set => SetPropertyValue(nameof(NgayNuoiTrong), ref ngayNuoiTrong, value);
+        }
+        [XafDisplayName("Ngày thu hoạch")]
+        public DateTime NgayThuHoach
+        {
+            get => ngayThuHoach;
+            set => SetPropertyValue(nameof(NgayThuHoach), ref ngayThuHoach, value);
+        }
+        [XafDisplayName("Ngày kết thúc")]
+        public DateTime  NgayKetThuc
+        {
+            get => ngayKetThuc;
+            set => SetPropertyValue(nameof(NgayKetThuc), ref ngayKetThuc, value);
         }
         [XafDisplayName("Ghi chú")]
         [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
@@ -127,68 +181,30 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => ghiChu;
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
-        [XafDisplayName("Trạng thái")]
-        public TrangThai TrangThai
-        {
-            get
-            {
-                if (!IsSaving && !IsLoading &&ThoiGianKT>ThoiGian&& ThoiGianKT < DateTime.Now)
-                {
-                    trangThai = TrangThai.DaHoanThanh;
-                }
-                return trangThai;
-            }
 
-            set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
-        }
-        [XafDisplayName("Tài liệu")]
-        [Association("NhatKyCanhTac-TaiLieus"), DevExpress.Xpo.Aggregated]
-        public XPCollection<TaiLieu> TaiLieus
-        {
-            get
-            {
-                return GetCollection<TaiLieu>(nameof(TaiLieus));
-            }
-        }
-        [XafDisplayName("Sinh vật gây hại")]
-        [Association("NhatKyCanhTac-SinhVatGayHais")]
-        public XPCollection<SinhVatGayHai> SinhVatGayHais
-        {
-            get
-            {
-                return GetCollection<SinhVatGayHai>(nameof(SinhVatGayHais));
-            }
-        }
-        [XafDisplayName("Bón phân")]
-        [Association("NhatKyCanhTac-PhanBons")]
-        public XPCollection<PhanBon> PhanBons
-        {
-            get
-            {
-                return GetCollection<PhanBon>(nameof(PhanBons));
-            }
-        }
-        [XafDisplayName("Thuốc BVTV")]
-        [Association("NhatKyCanhTac-ThuocBVTVs")]
-        public XPCollection<ThuocBVTV> ThuocBVTVs
-        {
-            get
-            {
-                return GetCollection<ThuocBVTV>(nameof(ThuocBVTVs));
-            }
-        }
-        [XafDisplayName("Vùng Trồng")]
-        [VisibleInDetailView(false)]
-        [Association("VungTrong-NhatKyCanhTacs")]
-        public VungTrong VungTrong
-        {
-            get => vungTrong;
-            set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
-        }
         [Action(ToolTip = "Hoàn thành", Caption = "Hoàn thành", ConfirmationMessage = "Xác nhận hoàn thành?")]
         public void StatusChanged()
         {
             TrangThai = TrangThai.DaHoanThanh;
+        }
+        [XafDisplayName("Chi tiết nhật ký")]
+        [Association("NhatKyCanhTac-ChiTietNhatKys")]
+        public XPCollection<ChiTietNhatKy> ChiTietNhatKys
+        {
+            get
+            {
+                return GetCollection<ChiTietNhatKy>(nameof(ChiTietNhatKys));
+            }
+        }
+        [XafDisplayName("Đất - Cơ sở")]
+        [Association("NhatKyCanhTac-Dat_CoSos")]
+        public XPCollection<Dat_CoSo> Dat_CoSos
+        {
+            get
+            {
+              
+                return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
+            }
         }
     }
 }
