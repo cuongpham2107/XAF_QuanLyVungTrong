@@ -8,6 +8,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ namespace DXApplication.Module.BusinessObjects.HDSD
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class HuongDanSuDung : BaseObject
+    public class HuongDanSuDung : BaseObject, IListViewPopup
     { 
         public HuongDanSuDung(Session session)
             : base(session)

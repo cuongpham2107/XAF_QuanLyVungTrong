@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Ticket_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="50">
+              <LayoutItem Id="TieuDe" Index="0" RelativeSize="16.037735849056602" />
+              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" Index="1" RelativeSize="12.264150943396226" />
+              <LayoutItem Id="NoiDung" Index="2" RelativeSize="33.9622641509434" />
+              <LayoutItem Id="File" Index="3" Removed="True" />
+              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="37.735849056603776" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50" Caption="Chi tiết_col2">
+              <LayoutItem Id="File" ViewItem="File" Index="0" RelativeSize="100" />
+              <LayoutItem Id="GhiChu" Index="2" RelativeSize="72.97297297297297" Removed="True" />
+              <LayoutItem Id="DanhMuc" RelativeSize="18.27956989247312" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChiTietNhatKy_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Item1">
+            <LayoutGroup Id="Item2">
+              <LayoutItem Id="NguyenLieu" ViewItem="NguyenLieu" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PhanBon_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ThuocBVTV_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

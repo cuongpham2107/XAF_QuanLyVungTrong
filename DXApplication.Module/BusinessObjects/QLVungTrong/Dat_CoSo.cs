@@ -34,7 +34,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [Appearance("DienTich", AppearanceItemType = "ViewItem", TargetItems = "DienTich",
      Context = "ListView", BackColor = "DeepSkyBlue",FontStyle =System.Drawing.FontStyle.Bold, Priority = 3)]
 
-    public class Dat_CoSo : BaseObject
+    public class Dat_CoSo : BaseObject, IListViewPopup
     { 
         public Dat_CoSo(Session session)
             : base(session)

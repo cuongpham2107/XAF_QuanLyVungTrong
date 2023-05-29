@@ -9,6 +9,7 @@ using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class KiThuatCanhTac : BaseObject
+    public class KiThuatCanhTac : BaseObject, IListViewPopup
     {
         public KiThuatCanhTac(Session session)
             : base(session)
@@ -50,14 +51,14 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
             set => SetPropertyValue(nameof(TenKiThuat), ref tenKiThuat, value);
         }
         [XafDisplayName("Mô tả")]
-        [Size(SizeAttribute.Unlimited)]
+        [Size(200)]
         public string MoTa
         {
             get => moTa;
             set => SetPropertyValue(nameof(MoTa), ref moTa, value);
         }
         [XafDisplayName("Nội dung")]
-        [Size(SizeAttribute.Unlimited)]
+        [Size(200)]
         public string NoiDung
         {
             get => noiDung;

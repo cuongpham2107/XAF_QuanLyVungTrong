@@ -30,8 +30,10 @@
     <None Remove="Images\plant-a-tree.png" />
     <None Remove="Images\plant.png" />
     <None Remove="Images\planting.png" />
+    <None Remove="Images\rating.png" />
     <None Remove="Images\raw-materials.png" />
     <None Remove="Images\service.png" />
+    <None Remove="Images\topic.png" />
     <None Remove="Images\tree.png" />
     <None Remove="Images\wip.png" />
     <None Remove="Images\writing.png" />
@@ -49,8 +51,10 @@
     <EmbeddedResource Include="Images\plant-a-tree.png" />
     <EmbeddedResource Include="Images\plant.png" />
     <EmbeddedResource Include="Images\planting.png" />
+    <EmbeddedResource Include="Images\rating.png" />
     <EmbeddedResource Include="Images\raw-materials.png" />
     <EmbeddedResource Include="Images\service.png" />
+    <EmbeddedResource Include="Images\topic.png" />
     <EmbeddedResource Include="Images\tree.png" />
     <EmbeddedResource Include="Images\wip.png" />
     <EmbeddedResource Include="Images\writing.png" />
@@ -163,7 +167,40 @@
     <None Update="UnusableNodes3.xml">
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
+    <None Update="UnusableNodes31.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes32.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes33.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes34.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes35.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes36.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes37.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes38.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes39.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
     <None Update="UnusableNodes4.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes40.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes41.xml">
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
     <None Update="UnusableNodes5.xml">

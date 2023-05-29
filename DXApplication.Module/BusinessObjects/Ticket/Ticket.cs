@@ -36,7 +36,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
     [Appearance("mo11", AppearanceItemType = "ViewItem", TargetItems = "*",
     Criteria = "TrangThai=false", Context = "Any", Enabled = false, Priority = 2)]
     public class Ticket : BaseObject, IListViewPopup
-    { 
+    {
         public Ticket(Session session)
             : base(session)
         {
@@ -45,16 +45,22 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         {
             base.AfterConstruction();
             trangThai = true;
+            ngayTao = DateTime.Now;
+            nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
 
+        DanhMucChuDe danhMucChuDe;
         bool trangThai;
-        string ghiChu;
         MediaDataObject file;
         string noiDung;
         string tieuDe;
+        string nguoiSua;
+        DateTime ngaySua;
+        string nguoiTao;
+        DateTime ngayTao;
         [XafDisplayName("Tiêu đề")]
         [RuleRequiredField("Bắt buộc phải có Ticket.TieuDe", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        [Size(1024)]
+        [Size(200)]
         public string TieuDe
         {
             get => tieuDe;
@@ -68,25 +74,51 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
         [XafDisplayName("Hình ảnh/Video đính kèm")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
         public MediaDataObject File
         {
             get => file;
             set => SetPropertyValue(nameof(File), ref file, value);
         }
         [CaptionsForBoolValues("Đang mở", "Đã đóng")]
+        [VisibleInDetailView(false)]
         [XafDisplayName("Trạng thái")]
         public bool TrangThai
         {
             get => trangThai;
             set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
         }
-        [XafDisplayName("Ghi chú")]
-        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
-        public string GhiChu
+        [XafDisplayName("Ngày tạo")]
+        [VisibleInDetailView(false)]
+        [ModelDefault("AllowEdit", "false")]
+        public DateTime NgayTao
         {
-            get => ghiChu;
-            set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
+            get => ngayTao;
+            set => SetPropertyValue(nameof(NgayTao), ref ngayTao, value);
+        }
+        [XafDisplayName("Người tạo")]
+        [VisibleInDetailView(false)]
+        [ModelDefault("AllowEdit", "false")]
+        public string NguoiTao
+        {
+            get => nguoiTao;
+            set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
+        }
+        [XafDisplayName("Ngày sửa")]
+        [VisibleInDetailView(false)]
+        [ModelDefault("AllowEdit", "false")]
+        public DateTime NgaySua
+        {
+            get => ngaySua;
+            set => SetPropertyValue(nameof(NgaySua), ref ngaySua, value);
+        }
+        [XafDisplayName("Người sửa")]
+        [VisibleInDetailView(false)]
+        [ModelDefault("AllowEdit", "false")]
+        public string NguoiSua
+        {
+            get => nguoiSua;
+            set => SetPropertyValue(nameof(NguoiSua), ref nguoiSua, value);
         }
         [XafDisplayName("Hội thoại")]
         [Association("Ticket-HoiThoais"), DevExpress.Xpo.Aggregated]
@@ -96,6 +128,13 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             {
                 return GetCollection<HoiThoai>(nameof(HoiThoais));
             }
+        }
+        [XafDisplayName("Chủ đề hỏi đáp")]
+        [Association("DanhMucChuDe-Tickets")]
+        public DanhMucChuDe DanhMucChuDe
+        {
+            get => danhMucChuDe;
+            set => SetPropertyValue(nameof(DanhMucChuDe), ref danhMucChuDe, value);
         }
         [Action(ToolTip = "Điều chỉnh trạng thái Ticket", Caption = "Đóng/Mở Ticket", ConfirmationMessage = "Xác nhận đóng/mở Ticket?")]
         public void StatusChanged()
@@ -108,6 +147,12 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             {
                 TrangThai = false;
             }
+        }
+        protected override void OnSaving()
+        {
+            ngaySua = DateTime.Now;
+            nguoiSua = SecuritySystem.CurrentUserName.ToString();
+            base.OnSaving();
         }
     }
 }

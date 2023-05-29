@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using DXApplication.Module.Extension;
 
 namespace DXApplication.Module.BusinessObjects.QuanLy
 {
@@ -26,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class QuanLyTinTuc : BaseObject
+    public class QuanLyTinTuc : BaseObject, IListViewPopup
     { 
         public QuanLyTinTuc(Session session)
             : base(session)
@@ -58,26 +59,77 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         //Tiêu Dề => tieu-de
         public string Slug
         {
-            get => slug;
+            get
+            {
+                if (!IsSaving && !IsLoading && TieuDe != null)
+                {
+                    string a = TieuDe.ToLower().Trim().Replace(" ", "-").ToString();
+                    string[] VietnameseSigns = new string[]
+                     {
+
+                        "aAeEoOuUiIdDyY",
+
+                        "áàạảãâấầậẩẫăắằặẳẵ",
+
+                        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+
+                        "éèẹẻẽêếềệểễ",
+
+                        "ÉÈẸẺẼÊẾỀỆỂỄ",
+
+                        "óòọỏõôốồộổỗơớờợởỡ",
+
+                        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+
+                        "úùụủũưứừựửữ",
+
+                        "ÚÙỤỦŨƯỨỪỰỬỮ",
+
+                        "íìịỉĩ",
+
+                        "ÍÌỊỈĨ",
+
+                        "đ",
+
+                        "Đ",
+
+                        "ýỳỵỷỹ",
+
+                        "ÝỲỴỶỸ"
+
+                     };
+
+                    for (int i = 1; i < VietnameseSigns.Length; i++)
+
+                    {
+
+                        for (int j = 0; j < VietnameseSigns[i].Length; j++)
+
+                            a = a.Replace(VietnameseSigns[i][j], VietnameseSigns[0][i - 1]);
+
+                    }
+                    slug = a;
+                }
+                return slug;
+            }
             set => SetPropertyValue(nameof(Slug), ref slug, value);
         }
-        [Size(SizeAttribute.Unlimited)]
         [XafDisplayName("Mô Tả")]
+        [Size(200)]
         public string MoTa
         {
             get => moTa;
             set => SetPropertyValue(nameof(MoTa), ref moTa, value);
         }
         [XafDisplayName("Nội dung")]
-        [EditorAlias(EditorAliases.RichTextPropertyEditor)]
-        [Size(SizeAttribute.Unlimited)]
+        [Size(200)]
         public string NoiDung
         {
             get => noiDung;
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
         [XafDisplayName("Hình ảnh")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
         public MediaDataObject HinhAnh
         {
             get => hinhAnh;

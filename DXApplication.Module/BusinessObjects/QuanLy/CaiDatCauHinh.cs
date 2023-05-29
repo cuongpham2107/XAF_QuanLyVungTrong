@@ -8,6 +8,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class CaiDatCauHinh : BaseObject
+    public class CaiDatCauHinh : BaseObject, IListViewPopup
     {
         public CaiDatCauHinh(Session session)
             : base(session)
@@ -38,7 +39,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
 
         string keyGoogleMap;
         string moTa;
-        MediaDataObject logo;
+        byte[] logo;
         string diaChi;
         string email;
         string sDT;
@@ -51,7 +52,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
             set => SetPropertyValue(nameof(TieuDe), ref tieuDe, value);
         }
         [XafDisplayName("Mô tả")]
-        [Size(SizeAttribute.Unlimited)]
+        [Size(200)]
         public string MoTa
         {
             get => moTa;
@@ -76,13 +77,15 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
             set => SetPropertyValue(nameof(Email), ref email, value);
         }
         [XafDisplayName("Địa chỉ")]
+        [Size(200)]
         public string DiaChi
         {
             get => diaChi;
             set => SetPropertyValue(nameof(DiaChi), ref diaChi, value);
         }
         [XafDisplayName("Logo")]
-        public MediaDataObject Logo
+        [ImageEditor(ListViewImageEditorCustomHeight =100,DetailViewImageEditorFixedWidth =350)]
+        public byte[] Logo
         {
             get => logo;
             set => SetPropertyValue(nameof(Logo), ref logo, value);

@@ -6,6 +6,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System.ComponentModel;
 using static DXApplication.Blazor.Common.Enums;
 
@@ -20,7 +21,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class ThuocBVTV : BaseObject
+    public class ThuocBVTV : BaseObject, IListViewPopup
     { 
         public ThuocBVTV(Session session)
             : base(session)
@@ -63,14 +64,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         [XafDisplayName("Nồng độ pha loãng")]
         public string NongDoPhaLoang
         {
-            get
-            {
-                if (!IsLoading && !IsSaving)
-                {
-                    return $"{NongDoPhaLoang}/lít";
-                }
-                return null;
-            }
+            get => nongDoPhaLoang;
             set => SetPropertyValue(nameof(NongDoPhaLoang), ref nongDoPhaLoang, value);
         }
         [XafDisplayName("Liều lượng sử dụng")]

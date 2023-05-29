@@ -15,6 +15,7 @@ using System.Text;
 using DevExpress.ExpressApp.SystemModule;
 using DXApplication.Module.Common;
 using System.Net;
+using DXApplication.Module.Extension;
 
 namespace DXApplication.Module.BusinessObjects.QuanLy
 {
@@ -27,7 +28,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class QuanLySanPham : BaseObject
+    public class QuanLySanPham : BaseObject, IListViewPopup
     { 
         public QuanLySanPham(Session session)
             : base(session)
@@ -39,14 +40,14 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
           
         }
 
-        string url;
+
+        byte[] hinhAnh;
         string tieuChuan;
         string noiSanXuat;
         string donViTinh;
         string seoContent;
         string metaContent;
         int gia;
-        MediaDataObject hinhAnh;
         string noiDung;
         string moTa;
         string slug;
@@ -64,59 +65,80 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         {
             get
             {
+                if (!IsSaving && !IsLoading && TenSanPham != null)
+                {
+                    string a = TenSanPham.ToLower().Trim().Replace(" ", "-").ToString();
+                    string[] VietnameseSigns = new string[]
+                     {
 
+                        "aAeEoOuUiIdDyY",
+
+                        "áàạảãâấầậẩẫăắằặẳẵ",
+
+                        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+
+                        "éèẹẻẽêếềệểễ",
+
+                        "ÉÈẸẺẼÊẾỀỆỂỄ",
+
+                        "óòọỏõôốồộổỗơớờợởỡ",
+
+                        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+
+                        "úùụủũưứừựửữ",
+
+                        "ÚÙỤỦŨƯỨỪỰỬỮ",
+
+                        "íìịỉĩ",
+
+                        "ÍÌỊỈĨ",
+
+                        "đ",
+
+                        "Đ",
+
+                        "ýỳỵỷỹ",
+
+                        "ÝỲỴỶỸ"
+
+                     };
+
+                    for (int i = 1; i < VietnameseSigns.Length; i++)
+
+                    {
+
+                        for (int j = 0; j < VietnameseSigns[i].Length; j++)
+
+                            a = a.Replace(VietnameseSigns[i][j], VietnameseSigns[0][i - 1]);
+
+                    }
+                    slug = a;
+                }
                 return slug;
             }
 
             set => SetPropertyValue(nameof(Slug), ref slug, value);
         }
         [XafDisplayName("Mô tả")]
-        [Size(SizeAttribute.Unlimited)]
-        [EditorAlias(EditorAliases.RichTextPropertyEditor)]
+        [Size(200)]
         public string MoTa
         {
             get => moTa;
             set => SetPropertyValue(nameof(MoTa), ref moTa, value);
         }
         [XafDisplayName("Nội dung")]
-        [Size(SizeAttribute.Unlimited)]
+        [Size(200)]
         public string NoiDung
         {
             get => noiDung;
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
-        [Size(-1)]
-        public string Url
+        [XafDisplayName("Hình ảnh")]
+        [ImageEditor(ListViewImageEditorCustomHeight =80,DetailViewImageEditorFixedWidth = 350)]
+        public byte[] HinhAnh
         {
-            get => url;
-            set => SetPropertyValue(nameof(Url), ref url, value);
-        }
-        [NonPersistent]
-        [ImageEditor(ListViewImageEditorCustomHeight = 75, DetailViewImageEditorFixedWidth = 500)]
-        public byte[] Thumbnail
-        {
-            get
-            {
-               return  GetImage();
-            }
-        }
-        private byte[] GetImage()
-        {
-            byte[] img = null;
-            if(Url != null)
-            {
-                WebClient webClient = new WebClient();
-                try
-                {
-                    img = webClient.DownloadData(Url);
-                }
-                catch (Exception)
-                {
-
-                    img = null;
-                }
-            }
-            return img;
+            get => hinhAnh;
+            set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);
         }
         [XafDisplayName("Giá")]
         public int Gia

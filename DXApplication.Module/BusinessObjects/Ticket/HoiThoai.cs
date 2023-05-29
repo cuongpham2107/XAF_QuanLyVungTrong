@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using DevExpress.ExpressApp.Editors;
+using DXApplication.Module.Extension;
 
 namespace DXApplication.Module.BusinessObjects.Ticket
 {
@@ -58,12 +59,12 @@ namespace DXApplication.Module.BusinessObjects.Ticket
                     {
                         if (x.Hours < 1)
                         {
-                            var a = $"{NgayTao} ({x.Minutes} phút trước)";
+                            var a = $"{x.Minutes} phút trước ";
                             return a;
                         }
                         else
                         {
-                            var a = $"{NgayTao} ({x.Hours} giờ trước)";
+                            var a = $"{x.Hours} giờ trước";
                             return a;
                         }
 
@@ -72,19 +73,19 @@ namespace DXApplication.Module.BusinessObjects.Ticket
                     {
                         if (x.Days > 30 && x.Days < 365)
                         {
-                            var a = $"{NgayTao} ({x.Days / 30} tháng trước)";
+                            var a = $"{x.Days / 30} tháng trước";
                             return a;
                         }
                         else
                         {
                             if (x.Days < 30)
                             {
-                                var a = $"{NgayTao} ({x.Days} ngày trước)";
+                                var a = $"{x.Days} ngày trước";
                                 return a;
                             }
                             else
                             {
-                                var a = $"{NgayTao} ({x.Days / 365} năm trước)";
+                                var a = $"{x.Days / 365} năm trước";
                                 return a;
                             }
                         }
@@ -94,8 +95,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             }
         }
         [XafDisplayName("Nội dung")]
-        [Size(SizeAttribute.Unlimited),VisibleInListView(true)]
-        [EditorAlias(EditorAliases.RichTextPropertyEditor)]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         [RuleRequiredField("Bắt buộc phải có HoiThoai.NoiDung", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string NoiDung
         {
@@ -103,7 +103,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(NoiDung), ref noiDung, value);
         }
         [XafDisplayName("Tải ảnh lên")]
-        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 100)]
+        [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
         public MediaDataObject File
         {
             get => file;

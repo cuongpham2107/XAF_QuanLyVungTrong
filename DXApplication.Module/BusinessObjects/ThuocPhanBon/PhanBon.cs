@@ -7,6 +7,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System.ComponentModel;
 using static DXApplication.Blazor.Common.Enums;
 
@@ -21,7 +22,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class PhanBon : BaseObject
+    public class PhanBon : BaseObject, IListViewPopup
     {
         public PhanBon(Session session)
             : base(session)

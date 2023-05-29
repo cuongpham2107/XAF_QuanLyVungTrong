@@ -92,4 +92,22 @@ public class Enums
         [XafDisplayName("Sở hữu")] soHuu,
         [XafDisplayName("Cho thuê")] choThue,
     }
+    public enum ChuDe
+    {
+        [XafDisplayName("Cây trồng")] cay,
+        [XafDisplayName("Vùng trồng")] vungTrong,
+        [XafDisplayName("Quy hoạch")] quyHoach,
+        [XafDisplayName("Đất đai")] datDai,
+        [XafDisplayName("Giống")] giong,
+        [XafDisplayName("Gieo trồng")] gieoTrong,
+        [XafDisplayName("Chăm sóc")] chamSoc,
+        [XafDisplayName("Phân bón")] phanBon,
+        [XafDisplayName("Nông dược")] nongDuoc,
+        [XafDisplayName("Thu hoạch")] thuHai,
+        [XafDisplayName("Bảo quản")] baoQuan,
+        [XafDisplayName("Công nghệ")] congNghe,
+        [XafDisplayName("Máy móc")] mayMoc,
+        [XafDisplayName("Xuất khẩu")] xuatKhau,
+        [XafDisplayName("Khác")] khac,
+    }
 }

@@ -8,6 +8,7 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.Common;
+using DXApplication.Module.Extension;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
 
-    public class NguyenLieu : BaseObject
+    public class NguyenLieu : BaseObject, IListViewPopup
     { 
         public NguyenLieu(Session session)
             : base(session)

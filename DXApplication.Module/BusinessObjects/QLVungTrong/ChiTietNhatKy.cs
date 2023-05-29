@@ -24,7 +24,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ImageName("writing")]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    [CustomRootListView(AllowEdit = true)]
+    [CustomRootListView(AllowEdit = true,AllowNew =false)]
 
     public class ChiTietNhatKy : BaseObject
     {
@@ -104,7 +104,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(PhanBon), ref phanBon, value);
         }
         [XafDisplayName("Lượng sử dụng")]
-        [ModelDefault("AllowEdit","False")]
         public string LuongSuDung1
         {
             get
@@ -128,7 +127,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(ThuocBVTV), ref thuocBVTV, value);
         }
         [XafDisplayName("Nồng độ pha loãng")]
-        [ModelDefault("AllowEdit", "False")]
         public string NongDoPhaLoang
         {
             get
@@ -145,7 +143,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(NongDoPhaLoang), ref nongDoPhaLoang, value);
         }
         [XafDisplayName("Lượng sử dụng")]
-        [ModelDefault("AllowEdit", "False")]
         public string LuongSuDung
         {
             get

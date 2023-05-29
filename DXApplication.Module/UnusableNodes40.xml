@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="DanhMuc_ChuyenGias_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="SDT" Caption="SDT" />
+        <ColumnInfo Id="CCCD" Caption="CCCD/CMT" />
+      </Columns>
+    </ListView>
+    <DetailView Id="DanhMuc_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" Caption="Tên danh mục" RelativeSize="18.46153846153846">
+            <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Chủ đề">
+              <LayoutItem Id="TenDanhMuc" ViewItem="TenDanhMuc" Index="0" RelativeSize="50" ShowCaption="True" />
+              <LayoutItem Id="MoTa" ViewItem="MoTa" Index="1" RelativeSize="50" />
+            </LayoutGroup>
+            <LayoutItem Id="MoTa" Removed="True" />
+            <LayoutItem Id="TenDanhMuc" Removed="True" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" RelativeSize="81.53846153846153">
+            <LayoutGroup Id="DanhMucChuDe" RelativeSize="100" Index="0">
+              <LayoutItem Id="DanhMucChuDe" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="ChuyenGias" RelativeSize="100" Index="1">
+              <LayoutItem Id="ChuyenGias" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="DanhMucChuDe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Tickets_Group" Caption="Tickets" RelativeSize="77.53846153846153">
+            <LayoutItem Id="Tickets" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChiTietNhatKy_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Item1">
+            <LayoutGroup Id="Item2">
+              <LayoutItem Id="NguyenLieu" ViewItem="NguyenLieu" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChuyenGia_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="DanhMucs_Group" Direction="Vertical" RelativeSize="27.307692307692307" Removed="True">
+            <LayoutItem Id="DanhMucs" RelativeSize="100" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="DanhMucs_Group">
+              <LayoutItem Id="DanhMucs" ViewItem="DanhMucs" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PhanBon_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ThuocBVTV_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Ticket_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Autob093450a-0899-4cae-a4d7-299d56f80036">
+              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Hỏi đáp">
+        <Items Id="Items">
+          <Item Id="DanhMuc_ListView" Visible="False" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>
