@@ -40,7 +40,7 @@ public class DanhMucChuDe : BaseObject
        
     }
 
-    ChuDe danhMuc;
+    DanhMuc danhMuc;
     string moTa;
     string tenDanhMuc;
     [XafDisplayName("Tên chủ đề")]
@@ -58,7 +58,8 @@ public class DanhMucChuDe : BaseObject
         set => SetPropertyValue(nameof(MoTa), ref moTa, value);
     }
     [XafDisplayName("Danh mục")]
-    public ChuDe DanhMuc
+    [Association("DanhMuc-DanhMucChuDes")]
+    public DanhMuc DanhMuc
     {
         get => danhMuc;
         set => SetPropertyValue(nameof(DanhMuc), ref danhMuc, value);

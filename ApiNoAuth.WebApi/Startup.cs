@@ -46,11 +46,7 @@ public class Startup {
         services
             .AddXafWebApi(Configuration, options => {
                 // Make your business objects available in the Web API and generate the GET, POST, PUT, and DELETE HTTP methods for it.
-                options.BusinessObject<CaiDatCauHinh>();
-                options.BusinessObject<KiThuatCanhTac>();
-                options.BusinessObject<QuanLyCayTrong>();
-                options.BusinessObject<QuanLySanPham>();
-                options.BusinessObject<QuanLyTinTuc>();
+               
                 options.BusinessObject<VungTrong>();
             })
             .AddXpoServices();

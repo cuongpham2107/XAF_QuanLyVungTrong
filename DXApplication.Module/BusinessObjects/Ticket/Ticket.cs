@@ -35,6 +35,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
     Criteria = "TrangThai=false", Context = "Any", BackColor = "Red", FontColor = "White", Priority = 1)]
     [Appearance("mo11", AppearanceItemType = "ViewItem", TargetItems = "*",
     Criteria = "TrangThai=false", Context = "Any", Enabled = false, Priority = 2)]
+    [CustomListViewColumnWidth(new[]{ "NoiDung:50%"})]
     public class Ticket : BaseObject, IListViewPopup
     {
         public Ticket(Session session)

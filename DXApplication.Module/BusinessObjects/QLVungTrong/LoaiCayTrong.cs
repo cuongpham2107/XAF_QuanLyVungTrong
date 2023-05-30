@@ -42,7 +42,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string ghiChu;
         string giaTriSuDung;
         string dacDiemSinhThai;
-        string tenKhac;
         string tenCay;
         [XafDisplayName("Tên Cây Trồng")]
         [RuleRequiredField("Bắt buộc phải có LoaiCayTrong.TenCay", DefaultContexts.Save, "Trường dữ liệu không được để trống")]

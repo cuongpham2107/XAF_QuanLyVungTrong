@@ -48,6 +48,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             namCap = DateTime.Now.Year;
         }
 
+        NongHo nongHo;
         string ghiChu;
         string thongTinThoNhuong;
         LoaiCayTrong loaiCayTrong;
@@ -106,14 +107,15 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get
             {
-                if(!IsLoading && !IsSaving)
+                if (!IsLoading && !IsSaving)
                 {
-                    if(Dat_CoSos.Count > 0)
+                    if (Dat_CoSos.Count > 0&& Dat_CoSos.Sum(x => x.DienTich)>dienTichCanhTac)
                     {
-                        return Dat_CoSos.Sum(x => x.DienTich);
+                        dienTichCanhTac = Dat_CoSos.Sum(x => x.DienTich);
+                        return dienTichCanhTac;
                     }
                 }
-                return 0;
+                return dienTichCanhTac;
             }
             set => SetPropertyValue(nameof(DienTichCanhTac), ref dienTichCanhTac, value);
         }
@@ -125,6 +127,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Tình trạng")]
         [CaptionsForBoolValues("Đang hoạt động", "Ngừng hoạt động")]
+        [ModelDefault("AllowEdit","false")]
         public bool HoatDong
         {
             get => hoatDong;
@@ -212,12 +215,20 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
 
         [RuleRequiredField("Bắt buộc phải có VungTrong.LoaiCayTrong", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        [XafDisplayName("Loại cây trồng")] 
+        [XafDisplayName("Loại cây trồng")]
         [Association("LoaiCayTrong-VungTrongs")]
         public LoaiCayTrong LoaiCayTrong
         {
             get => loaiCayTrong;
             set => SetPropertyValue(nameof(LoaiCayTrong), ref loaiCayTrong, value);
         }
+        [XafDisplayName("Nông hộ đại diện")]
+        [Association("NongHo-VungTrongs")]
+        public NongHo NongHo
+        {
+            get => nongHo;
+            set => SetPropertyValue(nameof(NongHo), ref nongHo, value);
+        }
+
     }
 }

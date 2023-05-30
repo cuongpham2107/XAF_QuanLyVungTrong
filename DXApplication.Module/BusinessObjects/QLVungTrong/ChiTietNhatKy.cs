@@ -1,5 +1,6 @@
 ﻿
 using DevExpress.ExpressApp;
+using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.SystemModule;
@@ -7,6 +8,7 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
+using DevExpress.XtraPrinting.Native;
 using DXApplication.Module.BusinessObjects.DoDung;
 using DXApplication.Module.BusinessObjects.ThuocPhanBon;
 using DXApplication.Module.Common;
@@ -25,7 +27,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     [CustomRootListView(AllowEdit = true,AllowNew =false)]
-
+    [Appearance("NgayLamViec", AppearanceItemType = "ViewItem", TargetItems = "NgayLamViec",
+     Context = "ListView", FontColor = "Black", BackColor = "Gold", Priority = 3)]
+    [Appearance("TongGioLamViec", AppearanceItemType = "ViewItem", TargetItems = "TongGioLamViec",
+     Context = "ListView", BackColor = "DeepSkyBlue", Priority = 3)]
+    [CustomRootListView(FieldsToSum = new[] { "TongGioLamViec:Sum" })]
     public class ChiTietNhatKy : BaseObject
     {
         public ChiTietNhatKy(Session session)
@@ -35,7 +41,9 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-           
+            ngayLamViec=DateTime.Now.Date;
+            thoiGianKetThuc = ngayLamViec;
+            thoiGianBatDau = ngayLamViec;
         }
         string luongSuDung1;
         string luongSuDung;
@@ -46,7 +54,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         ThieuBiMayMoc thieuBiMayMoc;
         string sanLuong;
         string tacNhanGayHai;
-        int tongGioLamViec;
+        double tongGioLamViec;
         DateTime? thoiGianKetThuc;
         DateTime? thoiGianBatDau;
         PhanBon phanBon;
@@ -85,7 +93,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [RuleRequiredField("Bắt buộc phải có ChiTietNhatKy.NgayLamViec", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public DateTime NgayLamViec
         {
-            get => DateTime.Now;
+            get => ngayLamViec;
             set => SetPropertyValue(nameof(NgayLamViec), ref ngayLamViec, value);
         }
         [XafDisplayName("Công việc -Tình trạng")]
@@ -104,6 +112,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(PhanBon), ref phanBon, value);
         }
         [XafDisplayName("Lượng sử dụng")]
+        [ModelDefault("AllowEdit", "false")]
         public string LuongSuDung1
         {
             get
@@ -112,10 +121,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 {
                     if (PhanBon != null)
                     {
-                        return PhanBon.LieuLuongSuDung;
+                        luongSuDung1 = PhanBon.LieuLuongSuDung;
+                        return luongSuDung1;
                     }
                 }
-                return null;
+                return luongSuDung1;
             }
             set => SetPropertyValue(nameof(LuongSuDung1), ref luongSuDung1, value);
         }
@@ -127,6 +137,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(ThuocBVTV), ref thuocBVTV, value);
         }
         [XafDisplayName("Nồng độ pha loãng")]
+        [ModelDefault("AllowEdit", "false")]
         public string NongDoPhaLoang
         {
             get
@@ -135,14 +146,16 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 {
                     if (ThuocBVTV != null)
                     {
-                        return ThuocBVTV.NongDoPhaLoang;
+                        nongDoPhaLoang= ThuocBVTV.NongDoPhaLoang;
+                        return nongDoPhaLoang;
                     }
                 }
-                return null;
+                return nongDoPhaLoang;
             }
             set => SetPropertyValue(nameof(NongDoPhaLoang), ref nongDoPhaLoang, value);
         }
         [XafDisplayName("Lượng sử dụng")]
+        [ModelDefault("AllowEdit","false")]
         public string LuongSuDung
         {
             get
@@ -151,10 +164,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 {
                     if (ThuocBVTV != null)
                     {
-                        return ThuocBVTV.LieuLuongSuDung;
+                        luongSuDung= ThuocBVTV.LieuLuongSuDung;
+                        return luongSuDung;
                     }
                 }
-                return null;
+                return luongSuDung;
             }
             set => SetPropertyValue(nameof(LuongSuDung), ref luongSuDung, value);
         }
@@ -174,7 +188,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Tổng giờ làm việc")]
         [ModelDefault("AllowEdit", "False")]
-        public int TongGioLamViec
+        public double TongGioLamViec
         {
             get
             {
@@ -182,11 +196,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
                 {
                     if(ThoiGianBatDau != null && ThoiGianKetThuc != null)
                     {
-                        TimeSpan time = (TimeSpan)(ThoiGianKetThuc - ThoiGianBatDau);
-                        return time.Hours;
+                        TimeSpan time = (TimeSpan)(thoiGianKetThuc - thoiGianBatDau);
+                        tongGioLamViec = time.TotalHours;
+                        return tongGioLamViec;
                     }
                 }
-                return 0;
+                return tongGioLamViec;
             }
             set => SetPropertyValue(nameof(TongGioLamViec), ref tongGioLamViec, value);
         }

@@ -77,6 +77,7 @@
     <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="22.2.5" />
     <PackageReference Include="DevExpress.Persistent.Base" Version="22.2.5" />
     <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="22.2.5" />
+    <PackageReference Include="DotLiquid" Version="2.2.692" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resource.Designer.cs">
@@ -90,9 +91,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="UnusableNodes.xml">
@@ -201,6 +199,12 @@
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
     <None Update="UnusableNodes41.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes42.xml">
+      <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
+    </None>
+    <None Update="UnusableNodes43.xml">
       <DependentUpon>Model.DesignedDiffs.xafml</DependentUpon>
     </None>
     <None Update="UnusableNodes5.xml">

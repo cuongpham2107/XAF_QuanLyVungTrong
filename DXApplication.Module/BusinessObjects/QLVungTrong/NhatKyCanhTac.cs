@@ -32,7 +32,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ListViewAutoFilterRow(true)]
     [CustomRootListView(AllowNew =false)]
     [CustomDetailView(AllowNew =false)]
-    [CustomNestedListView(nameof(ChiTietNhatKys), AllowUnlink = false,AllowLink = false )]
+    [CustomNestedListView(nameof(ChiTietNhatKys), AllowUnlink = false,AllowLink = false , FieldsToSum = new[] { "TongGioLamViec:Sum" })]
+
     [Appearance("NgayKetThuc", AppearanceItemType = "ViewItem", TargetItems = "NgayKetThuc",
      Context = "ListView", FontColor = "Black",BackColor = "Gold", Priority = 3)]
     [Appearance("SanLuong", AppearanceItemType = "ViewItem", TargetItems = "SanLuong",
@@ -43,14 +44,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [Appearance("a6", AppearanceItemType = "ViewItem", TargetItems = "TrangThai",
     Criteria = "[TrangThai] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThai,DaHoanThanh#", Context = "Any", BackColor = "204,204,255", Priority = 3)]
 
-    //[Appearance("a", AppearanceItemType = "ViewItem", TargetItems = "HoatDong",
-    //Criteria = "HoatD!=10", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    //[Appearance("a3", AppearanceItemType = "ViewItem", TargetItems = "PhanBons",
-    //Criteria = "HoatD!=0", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    //[Appearance("a4", AppearanceItemType = "ViewItem", TargetItems = "ThuocBVTVs",
-    //Criteria = "HoatD!=1", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 1)]
-    //[Appearance("a1", AppearanceItemType = "ViewItem", TargetItems = "SinhVatGayHais",
-    //Criteria = "PhatHienSauBenh=false", Context = "Any", Visibility = DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Enabled = false, Priority = 2)]
+
     public class NhatKyCanhTac : BaseObject
     { 
         public NhatKyCanhTac(Session session)
@@ -60,7 +54,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         public override void AfterConstruction()
         {
             base.AfterConstruction();
-
+            nam = $"{ DateTime.Now.Year}";
+            ngayBatDau=DateTime.Now;
         }
         string datCoSo;
         DonViSanLuong donViSanLuong;
@@ -116,25 +111,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [RuleRequiredField("Bắt buộc phải có NhatKyCanhTac.Nam", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string Nam
         {
-            get
-            {
-                if (!IsLoading && !IsSaving)
-                {
-                    return $"{DateTime.Now.Year}";
-                }
-                return $"{DateTime.Now.Year}";
-            }
+            get => nam;
             set => SetPropertyValue(nameof(Nam), ref nam, value);
         }
 
         [XafDisplayName("Trạng thái")]
         public TrangThai TrangThai
         {
-            get
-            {
-                return trangThai;
-            }
-
+            get => trangThai;
             set => SetPropertyValue(nameof(TrangThai), ref trangThai, value);
         }
        
@@ -153,7 +137,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [XafDisplayName("Ngày bắt đầu")]
         public DateTime NgayBatDau
         {
-            get => DateTime.Now;
+            get => ngayBatDau;
             set => SetPropertyValue(nameof(NgayBatDau), ref ngayBatDau, value);
         }
         [XafDisplayName("Ngày nuôi/trồng")]
@@ -182,7 +166,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(GhiChu), ref ghiChu, value);
         }
 
-        [Action(ToolTip = "Hoàn thành", Caption = "Hoàn thành", ConfirmationMessage = "Xác nhận hoàn thành?")]
+        [Action(ToolTip = "Hoàn thành", TargetObjectsCriteria = "TrangThai!=1", Caption = "Hoàn thành", ConfirmationMessage = "Xác nhận hoàn thành?")]
         public void StatusChanged()
         {
             TrangThai = TrangThai.DaHoanThanh;
@@ -202,7 +186,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get
             {
-              
                 return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
             }
         }

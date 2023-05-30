@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiWeb.WebApi", "ApiWeb.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiNoAuth.WebApi", "ApiNoAuth.WebApi\ApiNoAuth.WebApi.csproj", "{EAF619B5-F89C-4369-A611-C9C86B67EDA7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApps.WebApi", "MobileApps.WebApi\MobileApps.WebApi.csproj", "{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,12 @@ Global
 		{EAF619B5-F89C-4369-A611-C9C86B67EDA7}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
 		{EAF619B5-F89C-4369-A611-C9C86B67EDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAF619B5-F89C-4369-A611-C9C86B67EDA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A418F74C-1EEC-4AA4-A169-B8EB429A8FE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
