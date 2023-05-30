@@ -54,6 +54,48 @@
     <SchemaModule Name="SystemModule" Version="22.2.5.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
+    <DetailView Id="ApplicationUser_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" RelativeSize="30.441640378548897">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.93141289437586">
+              <LayoutItem Id="Ten" RelativeSize="20" />
+              <LayoutItem Id="SoThanhVien" RelativeSize="15" />
+              <LayoutItem Id="DiaChi" RelativeSize="15" />
+              <LayoutItem Id="SDT" RelativeSize="15" />
+              <LayoutItem Id="DiaChiEmail" RelativeSize="15" />
+              <LayoutItem Id="CCCD" ViewItem="CCCD" Index="5" RelativeSize="20" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.06858710562414">
+              <LayoutItem Id="Avatar" ViewItem="Avatar" Index="0" RelativeSize="20" IsNewNode="True" />
+              <LayoutItem Id="UserName" Index="1" RelativeSize="15" />
+              <LayoutItem Id="ChangePasswordOnFirstLogon" Index="2" RelativeSize="15" />
+              <LayoutItem Id="IsActive" RelativeSize="50" Index="3" />
+              <LayoutItem Id="CCCD" RelativeSize="23.529411764705884" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="12.145110410094638">
+            <LayoutGroup Id="ApplicationUser" RelativeSize="100" Direction="Vertical" Caption="ApplicationUser">
+              <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Căn cước công dân" Direction="Horizontal" IsNewNode="True">
+                <LayoutItem Id="MatTruoc" ViewItem="MatTruoc" Index="0" RelativeSize="49.93141289437586" IsNewNode="True" />
+                <LayoutItem Id="MatSau" ViewItem="MatSau" Index="1" RelativeSize="50.06858710562414" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="MatTruoc" RelativeSize="49.93342210386152" Index="0" Removed="True" />
+              <LayoutItem Id="MatSau" RelativeSize="50.06657789613848" Index="1" Removed="True" />
+              <LayoutItem Id="Avatar" RelativeSize="35.714285714285715" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs" RelativeSize="57.413249211356465">
+            <LayoutGroup Id="VungTrongs" RelativeSize="100">
+              <LayoutItem Id="VungTrongs" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="Roles" RelativeSize="100">
+              <LayoutItem Id="Roles" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="ApplicationUser_ListView" Caption="Users" />
     <DetailView Id="ChiTietNhatKy_DetailView">
       <Layout>
@@ -475,58 +517,6 @@
         <ColumnInfo Id="NgayThuHoach" Index="8" />
         <ColumnInfo Id="NgayKetThuc" Index="9" />
         <ColumnInfo Id="TrangThai" Width="90" Index="10" />
-      </Columns>
-    </ListView>
-    <DetailView Id="NongHo_DetailView">
-      <Layout>
-        <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="30.74433656957929">
-            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.729729729729726">
-              <LayoutItem Id="Ten" RelativeSize="24" />
-              <LayoutItem Id="SoThanhVien" RelativeSize="17.333333333333332" />
-              <LayoutItem Id="DiaChi" RelativeSize="17.333333333333332" />
-              <LayoutItem Id="SDT" ViewItem="SDT" Index="3" RelativeSize="17.333333333333332" IsNewNode="True" />
-              <LayoutItem Id="CCCD" ViewItem="CCCD" Index="4" RelativeSize="24" IsNewNode="True" />
-            </LayoutGroup>
-            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.270270270270274" Caption="Chi tiết_col2">
-              <LayoutItem Id="CCCD" RelativeSize="28.333333333333332" Index="0" Removed="True" />
-              <LayoutItem Id="MatTruoc" ViewItem="MatTruoc" Index="0" RelativeSize="24" IsNewNode="True" />
-              <LayoutItem Id="MatSau" ViewItem="MatSau" Index="1" RelativeSize="76" IsNewNode="True" />
-              <LayoutItem Id="SDT" RelativeSize="36.734693877551024" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="SimpleEditors" RelativeSize="0.16181229773462782" Index="1">
-            <LayoutGroup Id="NongHo" Direction="Horizontal" RelativeSize="100" Caption="NongHo">
-              <LayoutItem Id="MatSau" RelativeSize="100" Index="0" Removed="True" />
-              <LayoutItem Id="MatTruoc" RelativeSize="49.91596638655462" Removed="True" />
-            </LayoutGroup>
-          </LayoutGroup>
-          <LayoutGroup Id="VungTrongs_Group" Direction="Vertical" RelativeSize="69.09385113268608" Index="2">
-            <LayoutItem Id="VungTrongs" RelativeSize="100" />
-          </LayoutGroup>
-        </LayoutGroup>
-      </Layout>
-    </DetailView>
-    <ListView Id="NongHo_ListView">
-      <Columns>
-        <ColumnInfo Id="Ten" Caption="Đại diện" />
-        <ColumnInfo Id="SoThanhVien" Caption="Số TV (người)" />
-        <ColumnInfo Id="SDT" Caption="SDT" />
-      </Columns>
-    </ListView>
-    <ListView Id="NongHo_VungTrongs_ListView">
-      <Columns>
-        <ColumnInfo Id="GhiChu" Index="-1" />
-        <ColumnInfo Id="HinhThucCanhTac" Index="-1" />
-        <ColumnInfo Id="LatLong" Index="-1" />
-        <ColumnInfo Id="SanLuongDuKien" Index="-1" />
-        <ColumnInfo Id="ThongTinThoNhuong" Index="-1" />
-        <ColumnInfo Id="TieuChuan" Index="-1" />
-        <ColumnInfo Id="ToaDo" Index="-1" />
-        <ColumnInfo Id="LoaiCayTrong" Index="2" />
-        <ColumnInfo Id="NamCap" Index="3" />
-        <ColumnInfo Id="DienTichCanhTac" Index="4" />
-        <ColumnInfo Id="HoatDong" Index="5" />
       </Columns>
     </ListView>
     <DetailView Id="PhanBon_DetailView">

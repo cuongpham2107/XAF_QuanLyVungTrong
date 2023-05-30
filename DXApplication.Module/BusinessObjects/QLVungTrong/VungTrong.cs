@@ -48,7 +48,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             namCap = DateTime.Now.Year;
         }
 
-        NongHo nongHo;
+        ApplicationUser nongHo;
         string ghiChu;
         string thongTinThoNhuong;
         LoaiCayTrong loaiCayTrong;
@@ -223,8 +223,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(LoaiCayTrong), ref loaiCayTrong, value);
         }
         [XafDisplayName("Nông hộ đại diện")]
-        [Association("NongHo-VungTrongs")]
-        public NongHo NongHo
+        [Association("ApplicationUser-VungTrongs")]
+        public ApplicationUser NongHo
         {
             get => nongHo;
             set => SetPropertyValue(nameof(NongHo), ref nongHo, value);

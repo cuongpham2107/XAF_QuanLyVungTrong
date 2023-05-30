@@ -3,9 +3,11 @@ using System.Text;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 using DevExpress.Xpo;
+using DXApplication.Module.BusinessObjects.QLVungTrong;
 
 namespace DXApplication.Module.BusinessObjects;
 
@@ -29,24 +31,82 @@ public class ApplicationUser : PermissionPolicyUser, ISecurityUserWithLoginInfo 
         result.User = this;
         return result;
     }
-    
 
-    private NongHo nongHo;
-    [XafDisplayName("Nông hộ")]
-    public NongHo NongHo
+
+
+    string diaChiEmail;
+    int soThanhVien;
+    byte[] avatar;
+    byte[] matSau;
+    byte[] matTruoc;
+    string cCCD;
+    string sDT;
+    string diaChi;
+    string ten;
+    [XafDisplayName("Tên người đại diện")]
+    public string Ten
     {
-        get { return nongHo; }
-        set
+        get => ten;
+        set => SetPropertyValue(nameof(Ten), ref ten, value);
+    }
+    [XafDisplayName("Số thành viên (người)")]
+    public int SoThanhVien
+    {
+        get => soThanhVien;
+        set => SetPropertyValue(nameof(SoThanhVien), ref soThanhVien, value);
+    }
+    [XafDisplayName("Địa chỉ")]
+    public string DiaChi
+    {
+        get => diaChi;
+        set => SetPropertyValue(nameof(DiaChi), ref diaChi, value);
+    }
+    [XafDisplayName("Số điện thoại")]
+    public string SDT
+    {
+        get => sDT;
+        set => SetPropertyValue(nameof(SDT), ref sDT, value);
+    }
+    [XafDisplayName("Địa chỉ email")]
+    public string DiaChiEmail
+    {
+        get => diaChiEmail;
+        set => SetPropertyValue(nameof(DiaChiEmail), ref diaChiEmail, value);
+    }
+    [XafDisplayName("Số CCCD")]
+    public string CCCD
+    {
+        get => cCCD;
+        set => SetPropertyValue(nameof(CCCD), ref cCCD, value);
+    }
+    [ImageEditor(ListViewImageEditorCustomHeight = 120, DetailViewImageEditorFixedWidth = 300)]
+    [XafDisplayName("Avatar")]
+    public byte[] Avatar
+    {
+        get => avatar;
+        set => SetPropertyValue(nameof(Avatar), ref avatar, value);
+    }
+    [ImageEditor(ListViewImageEditorCustomHeight = 120, DetailViewImageEditorFixedWidth = 500)]
+    [XafDisplayName("Mặt trước CCCD")]
+    public byte[] MatTruoc
+    {
+        get => matTruoc;
+        set => SetPropertyValue(nameof(MatTruoc), ref matTruoc, value);
+    }
+    [XafDisplayName("Mặt sau CCCD")]
+    [ImageEditor(ListViewImageEditorCustomHeight = 120, DetailViewImageEditorFixedWidth = 500)]
+    public byte[] MatSau
+    {
+        get => matSau;
+        set => SetPropertyValue(nameof(MatSau), ref matSau, value);
+    }
+    [XafDisplayName("Vùng trồng")]
+    [Association("ApplicationUser-VungTrongs")]
+    public XPCollection<VungTrong> VungTrongs
+    {
+        get
         {
-            if (nongHo == value) return;
-            NongHo prevNongHo = nongHo;
-            nongHo = value;
-            if (IsLoading) return;
-            if (prevNongHo != null && prevNongHo.ApplicationUser == this)
-                prevNongHo.ApplicationUser = null;
-            if (nongHo != null)
-                nongHo.ApplicationUser = this;
-            OnChanged(nameof(Address));
+            return GetCollection<VungTrong>(nameof(VungTrongs));
         }
     }
 }
