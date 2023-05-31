@@ -96,7 +96,36 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
-    <ListView Id="ApplicationUser_ListView" Caption="Users" />
+    <ListView Id="ApplicationUser_ListView" Caption="Users">
+      <Columns>
+        <ColumnInfo Id="Avatar" Index="-1" />
+        <ColumnInfo Id="CCCD" Index="-1" />
+        <ColumnInfo Id="DiaChiEmail" Index="-1" />
+        <ColumnInfo Id="MatSau" Index="-1" />
+        <ColumnInfo Id="MatTruoc" Index="-1" />
+        <ColumnInfo Id="SoThanhVien" SortIndex="0" SortOrder="Ascending" Index="-1" />
+        <ColumnInfo Id="UserName" SortIndex="-1" SortOrder="None" Index="0" />
+        <ColumnInfo Id="Ten" SortIndex="1" Index="1" />
+        <ColumnInfo Id="DiaChi" Index="2" />
+        <ColumnInfo Id="SDT" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="ApplicationUser_VungTrongs_ListView">
+      <Columns>
+        <ColumnInfo Id="GhiChu" Index="-1" />
+        <ColumnInfo Id="HinhThucCanhTac" Index="-1" />
+        <ColumnInfo Id="LatLong" Index="-1" />
+        <ColumnInfo Id="SanLuongDuKien" Index="-1" />
+        <ColumnInfo Id="ThongTinThoNhuong" Index="-1" />
+        <ColumnInfo Id="TieuChuan" Index="-1" />
+        <ColumnInfo Id="ToaDo" Index="-1" />
+        <ColumnInfo Id="NamCap" Index="1" />
+        <ColumnInfo Id="DiaChi" Index="2" />
+        <ColumnInfo Id="LoaiCayTrong" Index="3" />
+        <ColumnInfo Id="DienTichCanhTac" Index="4" />
+        <ColumnInfo Id="HoatDong" Index="5" />
+      </Columns>
+    </ListView>
     <DetailView Id="ChiTietNhatKy_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -341,13 +370,27 @@
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" Direction="Horizontal" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" Direction="Horizontal" RelativeSize="61.18012422360248" Caption="Nội dung">
             <LayoutItem Id="NoiDung" RelativeSize="50" Index="0" />
-            <LayoutItem Id="File" RelativeSize="50" Index="1" />
+            <LayoutItem Id="File" ViewItem="File" Index="1" RelativeSize="50" IsNewNode="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="38.81987577639752">
+            <LayoutGroup Id="HoiThoai" Caption="Tải ảnh lên" RelativeSize="100">
+              <LayoutItem Id="File" Removed="True" />
+            </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <ListView Id="HoiThoai_ListView">
+      <Columns>
+        <ColumnInfo Id="Avatar" Index="0" />
+        <ColumnInfo Id="NoiDung" Index="2" />
+        <ColumnInfo Id="NguoiTao" Index="3" />
+        <ColumnInfo Id="File" Index="4" />
+        <ColumnInfo Id="NgayTao" Index="5" SortOrder="Ascending" GroupIndex="0" />
+      </Columns>
+    </ListView>
     <DetailView Id="LoaiCayTrong_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
@@ -405,16 +448,24 @@
     <DetailView Id="NguyenLieu_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="100">
-            <LayoutGroup Id="Chi tiết_col1" RelativeSize="50">
-              <LayoutItem Id="TenNguyenLieu" RelativeSize="5.536332179930795" />
-              <LayoutItem Id="Gia" RelativeSize="4.1522491349480966" />
-              <LayoutItem Id="DonGia" Index="2" RelativeSize="4.1522491349480966" />
-              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="86.159169550173" IsNewNode="True" />
+          <LayoutGroup Id="Chi tiết" RelativeSize="34.627831715210355">
+            <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Chi tiết" Direction="Horizontal" IsNewNode="True">
+              <LayoutGroup Id="Auto9b3fb1a5-66d8-49e8-b769-dde772169357" ShowCaption="False" Caption="" Index="0" RelativeSize="49.86486486486486" IsNewNode="True">
+                <LayoutItem Id="TenNguyenLieu" ViewItem="TenNguyenLieu" Index="0" RelativeSize="21.176470588235293" IsNewNode="True" />
+                <LayoutItem Id="Gia" ViewItem="Gia" Index="1" RelativeSize="15.294117647058824" IsNewNode="True" />
+                <LayoutItem Id="DonGia" ViewItem="DonGia" Index="2" RelativeSize="15.294117647058824" IsNewNode="True" />
+                <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="48.23529411764706" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="1" RelativeSize="50.13513513513514" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="Chi tiết_col2" Caption="Chi tiết_col2" RelativeSize="50">
-              <LayoutItem Id="HinhAnh" RelativeSize="100" />
-              <LayoutItem Id="GhiChu" Removed="True" />
+            <LayoutItem Id="DonGia" RelativeSize="5.726872246696035" Index="1" Removed="True" />
+            <LayoutItem Id="GhiChu" RelativeSize="70.9251101321586" Index="1" Removed="True" />
+            <LayoutItem Id="Gia" RelativeSize="5.726872246696035" Removed="True" />
+            <LayoutItem Id="TenNguyenLieu" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="65.37216828478964">
+            <LayoutGroup Id="NguyenLieu" RelativeSize="100" Caption="Ảnh minh họa">
+              <LayoutItem Id="HinhAnh" RelativeSize="100" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
@@ -522,22 +573,27 @@
     <DetailView Id="PhanBon_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="100">
-            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.93103448275862">
-              <LayoutItem Id="TenPhanBon" RelativeSize="5.545927209705373" />
-              <LayoutItem Id="LieuLuongSuDung" ViewItem="LieuLuongSuDung" Index="1" RelativeSize="4.15944540727903" IsNewNode="True" />
-              <LayoutItem Id="ThanhPhan" Index="2" RelativeSize="4.15944540727903" />
-              <LayoutItem Id="NhaCungCap" ViewItem="NhaCungCap" Index="3" RelativeSize="4.15944540727903" IsNewNode="True" />
-              <LayoutItem Id="Gia" Index="4" RelativeSize="4.15944540727903" />
-              <LayoutItem Id="DonGia" Index="5" RelativeSize="4.15944540727903" />
-              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="6" RelativeSize="36.741767764298096" IsNewNode="True" />
-              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" ShowCaption="" Index="7" RelativeSize="36.915077989601386" IsNewNode="True" />
+          <LayoutGroup Id="Chi tiết" RelativeSize="44.72049689440994">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.869451697127936">
+              <LayoutItem Id="TenPhanBon" RelativeSize="14.516129032258064" />
+              <LayoutItem Id="LieuLuongSuDung" ViewItem="LieuLuongSuDung" Index="1" RelativeSize="10.483870967741936" IsNewNode="True" />
+              <LayoutItem Id="ThanhPhan" Index="2" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="NhaCungCap" ViewItem="NhaCungCap" Index="3" RelativeSize="10.483870967741936" IsNewNode="True" />
+              <LayoutItem Id="Gia" Index="4" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="DonGia" Index="5" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="6" RelativeSize="29.032258064516128" IsNewNode="True" />
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" ShowCaption="" Index="7" RelativeSize="4.032258064516129" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.06896551724138" Caption="Chi tiết_col2">
-              <LayoutItem Id="HinhAnh" Index="0" RelativeSize="100" />
+            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.130548302872064" Caption="Chi tiết_col2">
+              <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="0" RelativeSize="100" IsNewNode="True" />
               <LayoutItem Id="NhaCungCap" Index="0" RelativeSize="5.545927209705373" Removed="True" />
               <LayoutItem Id="GhiChu" Index="1" RelativeSize="94.45407279029463" Removed="True" />
               <LayoutItem Id="LieuLuongSuDung" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="55.27950310559006">
+            <LayoutGroup Id="PhanBon" Caption="Ảnh minh họa" RelativeSize="100">
+              <LayoutItem Id="HinhAnh" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
@@ -557,12 +613,10 @@
               <LayoutItem Id="TieuDe" RelativeSize="7.589285714285714" />
               <LayoutItem Id="Slug" RelativeSize="5.803571428571429" />
               <LayoutItem Id="MoTa" RelativeSize="5.803571428571429" />
-              <LayoutItem Id="NoiDung" Index="3" RelativeSize="5.803571428571429" />
               <LayoutItem Id="MetaContent" ViewItem="MetaContent" Index="4" RelativeSize="5.803571428571429" IsNewNode="True" />
               <LayoutItem Id="SeoContent" ViewItem="SeoContent" Index="5" RelativeSize="69.19642857142857" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Chi tiết_col2" RelativeSize="50.100603621730386" Caption="Chi tiết_col2">
-              <LayoutItem Id="HinhAnh" RelativeSize="100" />
               <LayoutItem Id="SeoContent" Index="1" RelativeSize="92.41071428571429" Removed="True" />
               <LayoutItem Id="MetaContent" Removed="True" />
             </LayoutGroup>
@@ -609,16 +663,24 @@
     <DetailView Id="ThieuBiMayMoc_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="100">
-            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.92">
-              <LayoutItem Id="TenThietBi" RelativeSize="7.547169811320755" />
-              <LayoutItem Id="ThoiHanSuDung" RelativeSize="5.660377358490566" />
-              <LayoutItem Id="HuongDanSuDung" RelativeSize="5.660377358490566" />
-              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="81.13207547169812" IsNewNode="True" />
+          <LayoutGroup Id="Chi tiết" RelativeSize="41.902834008097166">
+            <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Chi tiết" Direction="Horizontal" IsNewNode="True">
+              <LayoutGroup Id="Auto93b46fb9-cbfe-4078-bcd2-0a4606841513" ShowCaption="False" Caption="Auto93b46fb9-cbfe-4078-bcd2-0a4606841513(4)" Index="0" RelativeSize="49.91539763113367" IsNewNode="True">
+                <LayoutItem Id="TenThietBi" ViewItem="TenThietBi" Index="0" RelativeSize="20.481927710843372" IsNewNode="True" />
+                <LayoutItem Id="ThoiHanSuDung" ViewItem="ThoiHanSuDung" Index="1" RelativeSize="15.662650602409638" IsNewNode="True" />
+                <LayoutItem Id="HuongDanSuDung" ViewItem="HuongDanSuDung" Index="2" RelativeSize="15.662650602409638" IsNewNode="True" />
+                <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="48.19277108433735" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="1" RelativeSize="50.08460236886633" IsNewNode="True" />
             </LayoutGroup>
-            <LayoutGroup Id="Chi tiết_col2" Caption="Chi tiết_col2" RelativeSize="50.08">
-              <LayoutItem Id="HinhAnh" RelativeSize="100" />
-              <LayoutItem Id="GhiChu" Removed="True" />
+            <LayoutItem Id="GhiChu" RelativeSize="70.9251101321586" Index="1" Removed="True" />
+            <LayoutItem Id="HuongDanSuDung" RelativeSize="5.726872246696035" Index="1" Removed="True" />
+            <LayoutItem Id="TenThietBi" Removed="True" />
+            <LayoutItem Id="ThoiHanSuDung" RelativeSize="5.726872246696035" Removed="True" />
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="58.097165991902834">
+            <LayoutGroup Id="ThieuBiMayMoc" RelativeSize="100" Caption="Ảnh minh họa">
+              <LayoutItem Id="HinhAnh" RelativeSize="100" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
@@ -633,22 +695,27 @@
     <DetailView Id="ThuocBVTV_DetailView">
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" RelativeSize="44.72049689440994">
             <LayoutGroup Id="Chi tiết_col1" RelativeSize="50">
-              <LayoutItem Id="TenThuoc" RelativeSize="5.39629005059022" />
-              <LayoutItem Id="LieuLuongSuDung" ViewItem="LieuLuongSuDung" Index="1" RelativeSize="4.0472175379426645" IsNewNode="True" />
-              <LayoutItem Id="NongDoPhaLoang" Index="2" RelativeSize="4.0472175379426645" />
-              <LayoutItem Id="NhaCungCap" ViewItem="NhaCungCap" Index="3" RelativeSize="4.0472175379426645" IsNewNode="True" />
-              <LayoutItem Id="Gia" Index="4" RelativeSize="4.0472175379426645" />
-              <LayoutItem Id="DonGia" Index="5" RelativeSize="4.0472175379426645" />
-              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="6" RelativeSize="37.09949409780776" IsNewNode="True" />
-              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" ShowCaption="" Index="7" RelativeSize="37.268128161888704" IsNewNode="True" />
+              <LayoutItem Id="TenThuoc" RelativeSize="14.516129032258064" />
+              <LayoutItem Id="LieuLuongSuDung" ViewItem="LieuLuongSuDung" Index="1" RelativeSize="10.483870967741936" IsNewNode="True" />
+              <LayoutItem Id="NongDoPhaLoang" Index="2" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="NhaCungCap" ViewItem="NhaCungCap" Index="3" RelativeSize="10.483870967741936" IsNewNode="True" />
+              <LayoutItem Id="Gia" Index="4" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="DonGia" Index="5" RelativeSize="10.483870967741936" />
+              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="6" RelativeSize="29.032258064516128" IsNewNode="True" />
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" ShowCaption="" Index="7" RelativeSize="4.032258064516129" IsNewNode="True" />
             </LayoutGroup>
             <LayoutGroup Id="Chi tiết_col2" RelativeSize="50" Caption="Chi tiết_col2">
-              <LayoutItem Id="HinhAnh" Index="0" RelativeSize="100" />
+              <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="0" RelativeSize="100" IsNewNode="True" />
               <LayoutItem Id="NhaCungCap" Index="0" RelativeSize="5.39629005059022" Removed="True" />
               <LayoutItem Id="GhiChu" Index="1" RelativeSize="94.60370994940978" Removed="True" />
               <LayoutItem Id="LieuLuongSuDung" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="55.27950310559006">
+            <LayoutGroup Id="ThuocBVTV" Caption="Ảnh minh họa" RelativeSize="100">
+              <LayoutItem Id="HinhAnh" Removed="True" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
@@ -666,31 +733,39 @@
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" RelativeSize="56.64739884393064" Caption="Chi tiết" Direction="Horizontal">
-            <LayoutGroup Id="Autob093450a-0899-4cae-a4d7-299d56f80036" ShowCaption="False" Caption="Autob093450a-0899-4cae-a4d7-299d56f80036(3)" Index="0" RelativeSize="48.37662337662338" IsNewNode="True">
-              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" Index="0" RelativeSize="3.401360544217687" IsNewNode="True" />
-              <LayoutItem Id="TieuDe" ViewItem="TieuDe" Index="1" RelativeSize="8.843537414965986" IsNewNode="True" />
-              <LayoutItem Id="DanhMucChuDe" ViewItem="DanhMucChuDe" Index="2" RelativeSize="8.843537414965986" IsNewNode="True" />
-              <LayoutItem Id="NoiDung" ViewItem="NoiDung" Index="3" RelativeSize="78.91156462585035" IsNewNode="True" />
+          <LayoutGroup Id="Chi tiết" RelativeSize="45.962732919254655" Caption="Chi tiết" Direction="Horizontal">
+            <LayoutGroup Id="Autob093450a-0899-4cae-a4d7-299d56f80036" ShowCaption="False" Caption="Autob093450a-0899-4cae-a4d7-299d56f80036(3)" Index="0" RelativeSize="48.23232323232323" IsNewNode="True">
+              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" Index="0" RelativeSize="3.3783783783783785" IsNewNode="True" />
+              <LayoutItem Id="TieuDe" ViewItem="TieuDe" Index="1" RelativeSize="8.783783783783784" IsNewNode="True" />
+              <LayoutItem Id="DanhMucChuDe" ViewItem="DanhMucChuDe" Index="2" RelativeSize="8.783783783783784" IsNewNode="True" />
+              <LayoutItem Id="NoiDung" ViewItem="NoiDung" Index="3" RelativeSize="79.05405405405405" IsNewNode="True" />
             </LayoutGroup>
             <LayoutItem Id="TieuDe" ViewItem="TieuDe" Index="0" RelativeSize="24.63768115942029" Removed="True" />
-            <LayoutItem Id="File" ViewItem="File" Index="1" RelativeSize="51.62337662337662" IsNewNode="True" Removed="True" />
+            <LayoutItem Id="File" ViewItem="File" Index="1" RelativeSize="51.76767676767677" IsNewNode="True" Removed="True" />
             <LayoutItem Id="NoiDung" Index="2" RelativeSize="75.90361445783132" Removed="True" />
             <LayoutItem Id="DanhMucChuDe" Removed="True" />
           </LayoutGroup>
-          <LayoutGroup Id="HoiThoais_Group" Direction="Vertical" RelativeSize="43.35260115606936">
-            <LayoutItem Id="HoiThoais" RelativeSize="100" />
+          <LayoutGroup Id="SimpleEditors" RelativeSize="54.037267080745345">
+            <LayoutGroup Id="Ticket" Caption="Hình ảnh/Video đính kèm" RelativeSize="100">
+              <LayoutGroup Id="HoiThoais_Group" ShowCaption="True" Caption="Hội thoại" Index="0" RelativeSize="100" IsNewNode="True">
+                <LayoutItem Id="HoiThoais" ViewItem="HoiThoais" Index="0" RelativeSize="100" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutItem Id="File" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="HoiThoais_Group" Direction="Vertical" RelativeSize="25.825242718446603" Caption="Hội thoại" Removed="True">
+            <LayoutItem Id="HoiThoais" ViewItem="HoiThoais" Index="0" RelativeSize="100" IsNewNode="True" Removed="True" />
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
     <ListView Id="Ticket_HoiThoais_ListView">
       <Columns>
-        <ColumnInfo Id="Avatar" Index="0" Width="108" />
-        <ColumnInfo Id="NguoiTao" Index="1" Width="92" />
-        <ColumnInfo Id="ThoiGian" Index="2" SortIndex="-1" SortOrder="None" Width="101" />
-        <ColumnInfo Id="NoiDung" Index="3" Width="86" SortIndex="-1" SortOrder="None" />
-        <ColumnInfo Id="File" Index="4" Caption="Ảnh tải lên" />
+        <ColumnInfo Id="Avatar" Index="0" />
+        <ColumnInfo Id="NoiDung" Index="1" />
+        <ColumnInfo Id="NguoiTao" Index="2" />
+        <ColumnInfo Id="ThoiGian" Index="3" />
+        <ColumnInfo Id="File" Index="4" />
         <ColumnInfo Id="NgayTao" Index="5" SortOrder="Ascending" GroupIndex="0" />
       </Columns>
     </ListView>
@@ -765,17 +840,18 @@
     <ListView Id="VungTrong_ListView">
       <Columns>
         <ColumnInfo Id="GhiChu" Index="-1" />
+        <ColumnInfo Id="HinhThucCanhTac" Index="-1" />
         <ColumnInfo Id="LatLong" Index="-1" />
+        <ColumnInfo Id="SanLuongDuKien" Index="-1" />
+        <ColumnInfo Id="ThongTinThoNhuong" Index="-1" />
+        <ColumnInfo Id="TieuChuan" Index="-1" />
         <ColumnInfo Id="ToaDo" Index="-1" />
-        <ColumnInfo Id="NamCap" Width="84" />
-        <ColumnInfo Id="NongHo" Index="3" Caption="Đại diện" />
-        <ColumnInfo Id="TieuChuan" Width="95" Index="4" />
-        <ColumnInfo Id="DienTichCanhTac" Width="83" Index="5" />
-        <ColumnInfo Id="ThongTinThoNhuong" Width="168" Index="6" />
-        <ColumnInfo Id="HinhThucCanhTac" Width="147" Index="7" />
-        <ColumnInfo Id="SanLuongDuKien" Width="144" Index="8" />
-        <ColumnInfo Id="HoatDong" Width="91" Index="9" />
-        <ColumnInfo Id="LoaiCayTrong" SortOrder="Ascending" GroupIndex="0" Index="10" />
+        <ColumnInfo Id="LoaiCayTrong" Index="1" SortOrder="Ascending" GroupIndex="0" />
+        <ColumnInfo Id="NongHo" Index="2" />
+        <ColumnInfo Id="DiaChi" Index="3" />
+        <ColumnInfo Id="NamCap" Index="4" />
+        <ColumnInfo Id="DienTichCanhTac" Index="5" />
+        <ColumnInfo Id="HoatDong" Index="6" />
       </Columns>
     </ListView>
     <ListView Id="VungTrong_NhatKyCanhTacs_ListView" IsGroupPanelVisible="True">

@@ -52,7 +52,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
 
         DanhMucChuDe danhMucChuDe;
         bool trangThai;
-        MediaDataObject file;
+        byte[] file;
         string noiDung;
         string tieuDe;
         string nguoiSua;
@@ -76,7 +76,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         }
         [XafDisplayName("Hình ảnh/Video đính kèm")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
-        public MediaDataObject File
+        public byte[] File
         {
             get => file;
             set => SetPropertyValue(nameof(File), ref file, value);

@@ -44,7 +44,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         string metaContent;
         string moTa;
         DateTime ngayTao;
-        MediaDataObject hinhAnh;
+        byte[] hinhAnh;
         string noiDung;
         string tieuDe;
         [XafDisplayName("Tiêu đề")]
@@ -130,7 +130,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         }
         [XafDisplayName("Hình ảnh")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
-        public MediaDataObject HinhAnh
+        public byte[] HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);

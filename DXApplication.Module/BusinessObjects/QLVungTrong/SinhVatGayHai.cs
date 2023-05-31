@@ -40,7 +40,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             base.AfterConstruction();
         }
 
-        MediaDataObject hinhAnh;
+        byte[] hinhAnh;
         string ghiChu;
         string bienPhapPhongTru;
         string moTa;
@@ -89,7 +89,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Ảnh minh họa")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 80)]
-        public MediaDataObject HinhAnh
+        public byte[] HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);

@@ -6,13 +6,14 @@ using DevExpress.ExpressApp.Security;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
+using DevExpress.Persistent.Validation;
 using DevExpress.Xpo;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
 
 namespace DXApplication.Module.BusinessObjects;
 
 [MapInheritance(MapInheritanceType.ParentTable)]
-[DefaultProperty(nameof(UserName))]
+[DefaultProperty(nameof(Ten))]
 public class ApplicationUser : PermissionPolicyUser, ISecurityUserWithLoginInfo {
     public ApplicationUser(Session session) : base(session) { }
 

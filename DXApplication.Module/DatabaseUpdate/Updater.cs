@@ -28,7 +28,7 @@ public class Updater : ModuleUpdater {
         //    theObject = ObjectSpace.CreateObject<DomainObject1>();
         //    theObject.Name = name;
         //}
-#if !RELEASE
+
         ApplicationUser sampleUser = ObjectSpace.FirstOrDefault<ApplicationUser>(u => u.UserName == "User");
         if (sampleUser == null) {
             sampleUser = ObjectSpace.CreateObject<ApplicationUser>();
@@ -65,7 +65,7 @@ public class Updater : ModuleUpdater {
         adminRole.IsAdministrative = true;
         userAdmin.Roles.Add(adminRole);
         ObjectSpace.CommitChanges(); //This line persists created object(s).
-#endif
+
     }
     public override void UpdateDatabaseBeforeUpdateSchema() {
         base.UpdateDatabaseBeforeUpdateSchema();

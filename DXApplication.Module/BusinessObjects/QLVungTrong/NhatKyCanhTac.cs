@@ -34,6 +34,15 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [CustomDetailView(AllowNew =false)]
     [CustomNestedListView(nameof(ChiTietNhatKys), AllowUnlink = false,AllowLink = false , FieldsToSum = new[] { "TongGioLamViec:Sum" })]
 
+    [RuleCriteria("NgayBatDau < NgayKetThuc",
+    CustomMessageTemplate = "Ngày kết thúc phải lớn hơn ngày bắt đầu")]
+    [RuleCriteria("NgayNuoiTrong < NgayThuHoach",
+    CustomMessageTemplate = "Ngày thu hoạch phải lớn hơn ngày nuôi trồng")]
+    [RuleCriteria("NgayNuoiTrong>=NgayBatDau",
+    CustomMessageTemplate = "Ngày nuôi trồng phải lớn hơn hoặc bằng ngày bắt đầu")]
+    [RuleCriteria("NgayThuHoach<=NgayKetThuc",
+    CustomMessageTemplate = "Ngày thu hoạch phải lớn hơn hoặc bằng ngày kết thúc")]
+
     [Appearance("NgayKetThuc", AppearanceItemType = "ViewItem", TargetItems = "NgayKetThuc",
      Context = "ListView", FontColor = "Black",BackColor = "Gold", Priority = 3)]
     [Appearance("SanLuong", AppearanceItemType = "ViewItem", TargetItems = "SanLuong",

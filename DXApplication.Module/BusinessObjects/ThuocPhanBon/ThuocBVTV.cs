@@ -36,7 +36,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
         string nhaCungCap;
         string lieuLuongSuDung;
         string nongDoPhaLoang;
-        MediaDataObject hinhAnh;
+        byte[] hinhAnh;
         int gia;
         DonGia donGia;
         string ghiChu;
@@ -89,7 +89,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
        
         [XafDisplayName("Ảnh minh họa")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 300)]
-        public MediaDataObject HinhAnh
+        public byte[] HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);

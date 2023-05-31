@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="ThieuBiMayMoc_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="49.92">
+              <LayoutItem Id="TenThietBi" RelativeSize="7.547169811320755" />
+              <LayoutItem Id="ThoiHanSuDung" RelativeSize="5.660377358490566" />
+              <LayoutItem Id="HuongDanSuDung" RelativeSize="5.660377358490566" />
+              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="81.13207547169812" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2" Caption="Chi tiết_col2" RelativeSize="50.08">
+              <LayoutItem Id="HinhAnh" RelativeSize="100" />
+              <LayoutItem Id="GhiChu" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="NguyenLieu_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="50">
+              <LayoutItem Id="TenNguyenLieu" RelativeSize="5.536332179930795" />
+              <LayoutItem Id="Gia" RelativeSize="4.1522491349480966" />
+              <LayoutItem Id="DonGia" Index="2" RelativeSize="4.1522491349480966" />
+              <LayoutItem Id="GhiChu" ViewItem="GhiChu" Index="3" RelativeSize="86.159169550173" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2" Caption="Chi tiết_col2" RelativeSize="50">
+              <LayoutItem Id="HinhAnh" RelativeSize="100" />
+              <LayoutItem Id="GhiChu" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChiTietNhatKy_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Item1">
+            <LayoutGroup Id="Item2">
+              <LayoutItem Id="NguyenLieu" ViewItem="NguyenLieu" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ChuyenGia_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="DanhMucs_Group">
+              <LayoutItem Id="DanhMucs" ViewItem="DanhMucs" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="HoiThoai_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutItem Id="File" RelativeSize="50" Index="1" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PhanBon_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="HinhAnh" Index="0" RelativeSize="100" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="QuanLyTinTuc_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="NoiDung" Index="3" RelativeSize="5.803571428571429" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="HinhAnh" RelativeSize="100" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ThuocBVTV_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutItem Id="HinhAnh" Index="0" RelativeSize="100" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Ticket_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Autob093450a-0899-4cae-a4d7-299d56f80036">
+              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

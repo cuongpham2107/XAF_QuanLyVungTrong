@@ -39,12 +39,13 @@ namespace DXApplication.Module.BusinessObjects.DoDung
             base.AfterConstruction();
 
         }
-        MediaDataObject hinhAnh;
+        byte[] hinhAnh;
         string ghiChu;
         DonGia donGia;
         int gia;
         string tenNguyenLieu;
         [XafDisplayName("Tên nguyên vật liệu")]
+        [RuleRequiredField("Bắt buộc phải có NguyenLieu.TenNguyenLieu", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenNguyenLieu
         {
             get => tenNguyenLieu;
@@ -72,7 +73,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
         }
         [XafDisplayName("Ảnh minh họa")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 200)]
-        public MediaDataObject HinhAnh
+        public byte[] HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);

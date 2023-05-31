@@ -40,6 +40,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string ghiChu;
         LoaiCayTrong loaiCayTrong;
         [XafDisplayName("Ghi chú")]
+        [Size(SizeAttribute.Unlimited), VisibleInListView(true)]
         public string GhiChu
         {
             get => ghiChu;

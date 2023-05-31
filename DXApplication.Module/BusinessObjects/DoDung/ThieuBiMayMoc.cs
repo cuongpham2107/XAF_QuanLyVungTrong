@@ -43,8 +43,9 @@ namespace DXApplication.Module.BusinessObjects.DoDung
         DateTime thoiHanSuDung;
         string huongDanSuDung;
         string tenThietBi;
-        MediaDataObject hinhAnh;
+        byte[] hinhAnh;
         [XafDisplayName("Tên thiết bị")]
+        [RuleRequiredField("Bắt buộc phải có ThieuBiMayMoc.TenThietBi", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
         public string TenThietBi
         {
             get => tenThietBi;
@@ -73,7 +74,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
         }
         [XafDisplayName("Ảnh minh họa")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 200)]
-        public MediaDataObject HinhAnh
+        public byte[] HinhAnh
         {
             get => hinhAnh;
             set => SetPropertyValue(nameof(HinhAnh), ref hinhAnh, value);

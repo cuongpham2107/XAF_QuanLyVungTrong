@@ -40,9 +40,9 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             ngayTao = DateTime.Now;
             nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
-        MediaDataObject file;
+        byte[] file;
         Ticket ticket;
-        MediaDataObject avatar;
+        byte[] avatar;
         DateTime ngayTao;
         string nguoiTao;
         string noiDung;
@@ -104,7 +104,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         }
         [XafDisplayName("Tải ảnh lên")]
         [ImageEditor(ListViewImageEditorCustomHeight = 100, DetailViewImageEditorFixedHeight = 350)]
-        public MediaDataObject File
+        public byte[] File
         {
             get => file;
             set => SetPropertyValue(nameof(File), ref file, value);
@@ -120,7 +120,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         [XafDisplayName("Ảnh đại diện")]
         [VisibleInDetailView(false)]
         [ImageEditor(ListViewImageEditorCustomHeight = 60, DetailViewImageEditorFixedHeight = 60)]
-        public MediaDataObject Avatar
+        public byte[] Avatar
         {
             get => avatar;
             set => SetPropertyValue(nameof(Avatar), ref avatar, value);
