@@ -34,6 +34,9 @@ public class AuthenticationController : ControllerBase {
             {
                 ISecurityStrategyBase security = securityProvider.GetSecurity();
                 ApplicationUser user = (ApplicationUser)security.User;
+                string mattruoc = user.MatTruoc != null ? Convert.ToBase64String(user.MatTruoc) : null;
+                string matsau = user.MatSau != null ? Convert.ToBase64String(user.MatSau) : null;
+                string avatar = user.Avatar != null ? Convert.ToBase64String(user.Avatar) : null;
                 return Ok(new { 
                     token = _token, 
                     user =  new
@@ -45,9 +48,9 @@ public class AuthenticationController : ControllerBase {
                         SDT = user.SDT,
                         Email = user.DiaChiEmail,
                         CCCD = user.CCCD,
-                        MatTruoc = Convert.ToBase64String(user.MatTruoc),
-                        MatSau = Convert.ToBase64String(user.MatSau),
-                        Avatar = Convert.ToBase64String(user.Avatar),
+                        MatTruoc = mattruoc,
+                        MatSau = matsau,
+                        Avatar = avatar,
                     }
                 });
             }

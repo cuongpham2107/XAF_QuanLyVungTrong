@@ -33,8 +33,6 @@ public class ApplicationUser : PermissionPolicyUser, ISecurityUserWithLoginInfo 
         return result;
     }
 
-
-
     string diaChiEmail;
     int soThanhVien;
     byte[] avatar;
