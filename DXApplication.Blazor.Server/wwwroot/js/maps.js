@@ -115,7 +115,8 @@ function init(dotNetHelper) {
     );
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
-        center: { lat: 22.359262067226613, lng: 103.92808189564398 },
+        center: { lat: 22.510488, lng: 104.301703 },
+
         mapTypeControlOptions: {
             mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "styled_map"],
         },
