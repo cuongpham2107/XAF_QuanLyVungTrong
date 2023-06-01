@@ -106,7 +106,6 @@ public class Startup {
                 options.BusinessObject<ThieuBiMayMoc>();
                 options.BusinessObject<PhanBon>();
                 options.BusinessObject<ThuocBVTV>();
-                options.BusinessObject<ChuyenGia>();
                 options.BusinessObject<DanhMuc>();
                 options.BusinessObject<DanhMucChuDe>();
                 options.BusinessObject<HoiThoai>();

@@ -65,8 +65,13 @@ public class Enums
     {
         [XafDisplayName("Công việc")] CongViec,
         [XafDisplayName("Tình trạng")] TinhTrang,
-       
 
+    }
+    public enum PhanLoaiNguoi
+    {
+        [XafDisplayName("Nông hộ")] NongHo,
+        [XafDisplayName("Chuyên gia")] ChuyenGia,
+        [XafDisplayName("Quản lý")] QuanLy,
     }
     public enum DonViSanLuong
     {

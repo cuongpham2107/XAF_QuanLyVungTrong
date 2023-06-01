@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="ChuyenGia_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" RelativeSize="47.870182555780936" Direction="Vertical">
+            <LayoutGroup Id="Chi tiết_col1" RelativeSize="100" Direction="Horizontal" Caption="Chi tiết_col1">
+              <LayoutGroup Id="Autode382f63-092e-40ec-bc2a-afd8a6db5093" ShowCaption="False" Caption="" Index="0" RelativeSize="65.19114688128772">
+                <LayoutItem Id="TenChuyenGia" ViewItem="TenChuyenGia" Index="0" RelativeSize="17.171717171717173" />
+                <LayoutItem Id="SDT" ViewItem="SDT" Index="1" RelativeSize="13.131313131313131" />
+                <LayoutItem Id="Email" ViewItem="Email" Index="2" RelativeSize="13.131313131313131" />
+                <LayoutItem Id="DiaChi" ViewItem="DiaChi" Index="3" RelativeSize="13.131313131313131" />
+                <LayoutItem Id="CCCD" ViewItem="CCCD" Index="4" RelativeSize="13.131313131313131" />
+                <LayoutItem Id="CongViec" ViewItem="CongViec" Index="5" RelativeSize="13.131313131313131" />
+                <LayoutItem Id="ChucVu" ViewItem="ChucVu" Index="6" RelativeSize="17.171717171717173" />
+              </LayoutGroup>
+              <LayoutItem Id="HinhAnh" ViewItem="HinhAnh" Index="1" RelativeSize="34.80885311871227" />
+              <LayoutItem Id="DiaChi" RelativeSize="13.131313131313131" Removed="True" />
+              <LayoutItem Id="Email" RelativeSize="13.131313131313131" Removed="True" />
+              <LayoutItem Id="SDT" RelativeSize="13.131313131313131" Removed="True" />
+              <LayoutItem Id="TenChuyenGia" RelativeSize="17.171717171717173" Removed="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Chi tiết_col2" RelativeSize="50" Caption="Chi tiết_col2" Removed="True">
+              <LayoutItem Id="ChucVu" RelativeSize="100" Index="0" Removed="True" />
+              <LayoutItem Id="CCCD" Removed="True" />
+              <LayoutItem Id="CongViec" RelativeSize="23.28767123287671" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="SimpleEditors" RelativeSize="52.129817444219064">
+            <LayoutGroup Id="DanhMucs_Group" ShowCaption="True" Caption="Lĩnh vực chủ đề" Index="0" RelativeSize="100">
+              <LayoutItem Id="DanhMucs" ViewItem="DanhMucs" Index="0" RelativeSize="100" />
+            </LayoutGroup>
+            <LayoutGroup Id="ChuyenGia" Caption="Ảnh" RelativeSize="100" Removed="True">
+              <LayoutItem Id="HinhAnh" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ChuyenGia_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="SDT" Caption="SDT" />
+        <ColumnInfo Id="CCCD" Caption="CCCD/CMT" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ApplicationUser_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="SoThanhVien" RelativeSize="15" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="DanhMucChuDe_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="ChuyenGias" RelativeSize="100">
+              <LayoutItem Id="ChuyenGias" RelativeSize="100" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="ApplicationUser_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="SoThanhVien" SortIndex="0" SortOrder="Ascending" Index="-1" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ChiTietNhatKy_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Item1">
+            <LayoutGroup Id="Item2">
+              <LayoutItem Id="NguyenLieu" ViewItem="NguyenLieu" />
+            </LayoutGroup>
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Dat_CoSo_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col2">
+              <LayoutGroup Id="Autoab376caf-0168-4996-95d0-300b0585ff7a">
+                <LayoutItem Id="DonViDat" ViewItem="DonViDat" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="PhanBon_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucPhanBon" ViewItem="DanhMucPhanBon" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="ThuocBVTV_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Chi tiết_col1">
+              <LayoutItem Id="DanhMucThuoc" ViewItem="DanhMucThuoc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Ticket_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Chi tiết">
+            <LayoutGroup Id="Autob093450a-0899-4cae-a4d7-299d56f80036">
+              <LayoutItem Id="DanhMuc" ViewItem="DanhMuc" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+  <NavigationItems Id="NavigationItems">
+    <Items Id="Items">
+      <Item Id="Hỏi đáp">
+        <Items Id="Items">
+          <Item Id="ChuyenGia_ListView" Index="" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+</Application>

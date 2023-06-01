@@ -47,7 +47,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             base.AfterConstruction();
             trangThai = true;
             ngayTao = DateTime.Now;
-            nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
 
         DanhMucChuDe danhMucChuDe;
@@ -55,9 +54,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         byte[] file;
         string noiDung;
         string tieuDe;
-        string nguoiSua;
-        DateTime ngaySua;
-        string nguoiTao;
+        ApplicationUser nguoiTao;
         DateTime ngayTao;
         [XafDisplayName("Tiêu đề")]
         [RuleRequiredField("Bắt buộc phải có Ticket.TieuDe", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
@@ -100,26 +97,10 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         [XafDisplayName("Người tạo")]
         [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
-        public string NguoiTao
+        public ApplicationUser NguoiTao
         {
             get => nguoiTao;
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);
-        }
-        [XafDisplayName("Ngày sửa")]
-        [VisibleInDetailView(false)]
-        [ModelDefault("AllowEdit", "false")]
-        public DateTime NgaySua
-        {
-            get => ngaySua;
-            set => SetPropertyValue(nameof(NgaySua), ref ngaySua, value);
-        }
-        [XafDisplayName("Người sửa")]
-        [VisibleInDetailView(false)]
-        [ModelDefault("AllowEdit", "false")]
-        public string NguoiSua
-        {
-            get => nguoiSua;
-            set => SetPropertyValue(nameof(NguoiSua), ref nguoiSua, value);
         }
         [XafDisplayName("Hội thoại")]
         [Association("Ticket-HoiThoais"), DevExpress.Xpo.Aggregated]
@@ -148,12 +129,6 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             {
                 TrangThai = false;
             }
-        }
-        protected override void OnSaving()
-        {
-            ngaySua = DateTime.Now;
-            nguoiSua = SecuritySystem.CurrentUserName.ToString();
-            base.OnSaving();
         }
     }
 }

@@ -43,7 +43,6 @@ public class AuthenticationController : ControllerBase {
                     {
                         Oid = security.UserId,
                         Ten = user.Ten,
-                        SoThanhVien = user.SoThanhVien,
                         DiaChi = user.DiaChi,
                         SDT = user.SDT,
                         Email = user.DiaChiEmail,

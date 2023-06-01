@@ -65,12 +65,12 @@ public class DanhMucChuDe : BaseObject, IDetailViewCount
         set => SetPropertyValue(nameof(DanhMuc), ref danhMuc, value);
     }
     [XafDisplayName("Chuyên gia")]
-    [Association("DanhMucChuDes-ChuyenGias")]
-    public XPCollection<ChuyenGia> ChuyenGias
+    [Association("ApplicationUser-DanhMucChuDes")]
+    public XPCollection<ApplicationUser> ApplicationUsers
     {
         get
         {
-            return GetCollection<ChuyenGia>(nameof(ChuyenGias));
+            return GetCollection<ApplicationUser>(nameof(ApplicationUsers));
         }
     }
     [XafDisplayName("Câu hỏi")]
