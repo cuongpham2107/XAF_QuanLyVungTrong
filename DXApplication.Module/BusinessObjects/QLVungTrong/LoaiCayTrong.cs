@@ -27,7 +27,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
     [CustomNestedListView(nameof(VungTrongs),AllowLink =false,AllowUnlink =false,AllowDelete =false)]
-    public class LoaiCayTrong : BaseObject, IListViewPopup
+    public class LoaiCayTrong : BaseObject, IListViewPopup,IRefreshNavigation
     { 
         public LoaiCayTrong(Session session)
             : base(session)

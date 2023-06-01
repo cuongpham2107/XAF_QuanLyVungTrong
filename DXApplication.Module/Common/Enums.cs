@@ -68,18 +68,6 @@ public class Enums
        
 
     }
-    public enum DonViDat
-    {
-        [XafDisplayName("m2")] m2,
-        [XafDisplayName("Hecta")] Hecta,
-        [XafDisplayName("Sào Bắc")] saoBac,
-        [XafDisplayName("Sào Trung")] saoTrung,
-        [XafDisplayName("Sào Nam")] saoNam,
-        [XafDisplayName("Mẫu Bắc")] mauBac,
-        [XafDisplayName("Mẫu Trung")] mauTrung,
-        [XafDisplayName("Mẫu Nam")] mauNam,
-
-    }
     public enum DonViSanLuong
     {
         [XafDisplayName("Kg")] kg,

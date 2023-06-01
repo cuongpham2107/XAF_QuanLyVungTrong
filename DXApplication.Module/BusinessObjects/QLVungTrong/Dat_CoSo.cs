@@ -50,7 +50,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         string ghiChu;
         string diaDiem;
         PhanLoaiDat phanLoaiDat;
-        DonViDat donViDat;
         int dienTich;
         string soDatCoSo;
         string tenDatCoSo;
@@ -75,18 +74,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => vungTrong;
             set => SetPropertyValue(nameof(VungTrong), ref vungTrong, value);
         }
-        [XafDisplayName("Diện tích")]
+        [XafDisplayName("Diện tích (m2)")]
 
         public int DienTich
         {
             get => dienTich;
             set => SetPropertyValue(nameof(DienTich), ref dienTich, value);
-        }
-        [XafDisplayName("ĐV")]
-        public DonViDat DonViDat
-        {
-            get => donViDat;
-            set => SetPropertyValue(nameof(DonViDat), ref donViDat, value);
         }
         [XafDisplayName("Phân loại đất")]
         public PhanLoaiDat PhanLoaiDat

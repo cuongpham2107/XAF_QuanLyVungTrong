@@ -22,7 +22,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class PhanBon : BaseObject, IListViewPopup
+    public class PhanBon : BaseObject, IListViewPopup, IRefreshNavigation
     {
         public PhanBon(Session session)
             : base(session)

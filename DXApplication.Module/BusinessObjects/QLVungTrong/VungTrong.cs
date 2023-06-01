@@ -30,13 +30,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    [CustomDetailView(Tabbed =true)]
+    [CustomDetailView(Tabbed = true)]
     [CustomNestedListView(nameof(Dat_CoSos), AllowLink = false, AllowUnlink = false)]
     [CustomNestedListView(nameof(NhatKyCanhTacs), AllowUnlink = false, AllowLink = false)]
     [Appearance("DienTichCanhTac", AppearanceItemType = "ViewItem", TargetItems = "DienTichCanhTac",
      Context = "ListView", BackColor = "204,255,204", FontStyle = System.Drawing.FontStyle.Bold, Priority = 1)]
-   
-    public class VungTrong : BaseObject
+
+    public class VungTrong : BaseObject, IDetailViewCount
     {
         public VungTrong(Session session)
             : base(session)
@@ -102,14 +102,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => tieuChuan;
             set => SetPropertyValue(nameof(TieuChuan), ref tieuChuan, value);
         }
-        [XafDisplayName("Diện tích")]
+        [XafDisplayName("Diện tích (m2)")]
         public int DienTichCanhTac
         {
             get
             {
                 if (!IsLoading && !IsSaving)
                 {
-                    if (Dat_CoSos.Count > 0&& Dat_CoSos.Sum(x => x.DienTich)>dienTichCanhTac)
+                    if (Dat_CoSos.Count > 0 && Dat_CoSos.Sum(x => x.DienTich) > dienTichCanhTac)
                     {
                         dienTichCanhTac = Dat_CoSos.Sum(x => x.DienTich);
                         return dienTichCanhTac;
@@ -127,7 +127,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Tình trạng")]
         [CaptionsForBoolValues("Đang hoạt động", "Ngừng hoạt động")]
-        [ModelDefault("AllowEdit","false")]
+        [ModelDefault("AllowEdit", "false")]
         public bool HoatDong
         {
             get => hoatDong;

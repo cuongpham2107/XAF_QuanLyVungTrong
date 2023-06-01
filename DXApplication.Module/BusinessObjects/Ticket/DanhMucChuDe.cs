@@ -28,7 +28,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket;
 [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
 [ListViewAutoFilterRow(true)]
 [CustomNestedListView(nameof(Tickets), AllowNew = false, AllowLink = true, AllowUnlink = true, AllowDelete = false)]
-public class DanhMucChuDe : BaseObject
+public class DanhMucChuDe : BaseObject, IDetailViewCount
 { 
     public DanhMucChuDe(Session session)
         : base(session)

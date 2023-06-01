@@ -54,7 +54,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     Criteria = "[TrangThai] = ##Enum#DXApplication.Blazor.Common.Enums+TrangThai,DaHoanThanh#", Context = "Any", BackColor = "204,204,255", Priority = 3)]
 
 
-    public class NhatKyCanhTac : BaseObject
+    public class NhatKyCanhTac : BaseObject, IDetailViewCount
     { 
         public NhatKyCanhTac(Session session)
             : base(session)
@@ -193,10 +193,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [Association("NhatKyCanhTac-Dat_CoSos")]
         public XPCollection<Dat_CoSo> Dat_CoSos
         {
-            get
-            {
-                return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
-            }
+            get => GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
         }
     }
 }

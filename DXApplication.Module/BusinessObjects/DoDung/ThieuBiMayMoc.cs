@@ -20,14 +20,14 @@ namespace DXApplication.Module.BusinessObjects.DoDung
     [DefaultClassOptions]
     [DefaultProperty(nameof(TenThietBi))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
-    [XafDisplayName("Thiết máy móc")]
+    [XafDisplayName("Thiết bị máy móc")]
     [ImageName("service")]
     [NavigationItem(Menu.Danhmuc)]
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
 
-    public class ThieuBiMayMoc : BaseObject, IListViewPopup
+    public class ThieuBiMayMoc : BaseObject, IListViewPopup, IRefreshNavigation
     { 
         public ThieuBiMayMoc(Session session)
             : base(session)

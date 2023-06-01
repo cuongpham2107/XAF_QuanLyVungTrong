@@ -32,7 +32,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
     [Appearance("TongGioLamViec", AppearanceItemType = "ViewItem", TargetItems = "TongGioLamViec",
      Context = "ListView", BackColor = "DeepSkyBlue", Priority = 3)]
     [CustomRootListView(FieldsToSum = new[] { "TongGioLamViec:Sum" })]
-    public class ChiTietNhatKy : BaseObject
+    public class ChiTietNhatKy : BaseObject, IListViewPopup
     {
         public ChiTietNhatKy(Session session)
             : base(session)
@@ -175,12 +175,14 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
    
         //3
         [XafDisplayName("Thời gian bắt đầu")]
+        [ModelDefault("DisplayFormat", "t")]
         public DateTime? ThoiGianBatDau
         {
             get => thoiGianBatDau;
             set => SetPropertyValue(nameof(ThoiGianBatDau), ref thoiGianBatDau, value);
         }
         [XafDisplayName("Thời gian kết thúc")]
+        [ModelDefault("DisplayFormat", "t")]
         public DateTime? ThoiGianKetThuc
         {
             get => thoiGianKetThuc;

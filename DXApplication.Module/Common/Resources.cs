@@ -8,5 +8,6 @@ namespace DXApplication.Blazor.Common;
 
 class Menu {
     public const string MenuCatalog = "Danh mục";
+    public const string HoiDap = "Hỏi đáp";
 }
 

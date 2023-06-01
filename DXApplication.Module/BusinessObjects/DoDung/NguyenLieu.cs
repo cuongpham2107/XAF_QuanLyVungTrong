@@ -28,7 +28,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
 
-    public class NguyenLieu : BaseObject, IListViewPopup
+    public class NguyenLieu : BaseObject, IListViewPopup, IRefreshNavigation
     { 
         public NguyenLieu(Session session)
             : base(session)

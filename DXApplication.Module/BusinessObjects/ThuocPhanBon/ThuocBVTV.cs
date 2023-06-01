@@ -21,7 +21,7 @@ namespace DXApplication.Module.BusinessObjects.ThuocPhanBon
     [ListViewFindPanel(true)]
     [LookupEditorMode(LookupEditorMode.AllItemsWithSearch)]
     [ListViewAutoFilterRow(true)]
-    public class ThuocBVTV : BaseObject, IListViewPopup
+    public class ThuocBVTV : BaseObject, IListViewPopup, IRefreshNavigation
     { 
         public ThuocBVTV(Session session)
             : base(session)
