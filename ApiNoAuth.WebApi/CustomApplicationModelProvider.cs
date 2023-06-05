@@ -1,6 +1,7 @@
 ﻿using DevExpress.ExpressApp.WebApi.Mvc;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using System.Linq;
 // ...
 public class CustomApplicationModelProvider : IApplicationModelProvider
 {
@@ -19,8 +20,12 @@ public class CustomApplicationModelProvider : IApplicationModelProvider
                 var genericType = controller.ControllerType.GenericTypeArguments[0];
                 if (genericType == typeof(VungTrong))
                 {
-                    var action = controller.Actions.Where(action => action.ActionName == "Post").First();
-                    action.ApiExplorer.IsVisible = false;
+                    var action = controller.Actions.Where(action => action.ActionName != "Get");
+                    foreach( var a in action)
+                    {
+                        a.ApiExplorer.IsVisible = false;
+                    }
+                                
                 }
             }
         }
