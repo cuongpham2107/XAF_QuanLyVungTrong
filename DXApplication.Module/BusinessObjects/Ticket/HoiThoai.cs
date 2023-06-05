@@ -38,13 +38,12 @@ namespace DXApplication.Module.BusinessObjects.Ticket
         {
             base.AfterConstruction();
             ngayTao = DateTime.Now;
-            nguoiTao = SecuritySystem.CurrentUserName.ToString();
         }
         byte[] file;
         Ticket ticket;
         byte[] avatar;
         DateTime ngayTao;
-        string nguoiTao;
+        ApplicationUser nguoiTao;
         string noiDung;
         [XafDisplayName("Thời gian")]
         [VisibleInDetailView(false)]
@@ -110,9 +109,7 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             set => SetPropertyValue(nameof(File), ref file, value);
         }
         [XafDisplayName("Người tạo")]
-        [VisibleInDetailView(false)]
-        [ModelDefault("AllowEdit", "false")]
-        public string NguoiTao
+        public ApplicationUser NguoiTao
         {
             get => nguoiTao;
             set => SetPropertyValue(nameof(NguoiTao), ref nguoiTao, value);

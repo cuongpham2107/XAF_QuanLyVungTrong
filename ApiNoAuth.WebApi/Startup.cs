@@ -8,6 +8,8 @@ using ApiNoAuth.WebApi.Core;
 using DevExpress.ExpressApp.AspNetCore.WebApi;
 using DXApplication.Module.BusinessObjects.QLVungTrong;
 using DXApplication.Module.BusinessObjects.QuanLy;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace ApiNoAuth.WebApi;
 
@@ -38,7 +40,7 @@ public class Startup {
             .AddSingleton<IWebApiApplicationSetup, WebApiApplicationSetup>();
 
 
-
+        services.TryAddEnumerable(ServiceDescriptor.Transient<IApplicationModelProvider, CustomApplicationModelProvider>());
         services.AddAuditTrailXpoServices();
         services.AddXafReportingCore(options => {
             options.ReportDataType = typeof(DevExpress.Persistent.BaseImpl.ReportDataV2);
@@ -52,6 +54,7 @@ public class Startup {
             .AddXpoServices();
         services
             .AddControllers()
+
             .AddOData((options, serviceProvider) => {
                 options
                     .AddRouteComponents("api/odata", new EdmModelBuilder(serviceProvider).GetEdmModel())

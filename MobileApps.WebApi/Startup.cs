@@ -115,6 +115,10 @@ public class Startup {
             .AddXpoServices();
         services
             .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            })
             .AddOData((options, serviceProvider) => {
                 options
                     .AddRouteComponents("api/odata", new EdmModelBuilder(serviceProvider).GetEdmModel())

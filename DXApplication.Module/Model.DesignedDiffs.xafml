@@ -327,15 +327,20 @@
     </ListView>
     <DetailView Id="HoiThoai_DetailView">
       <Items>
+        <PropertyEditor Id="NguoiTao" DataSourceCriteria="[PhanLoaiNguoi] = ##Enum#DXApplication.Blazor.Common.Enums+PhanLoaiNguoi,NongHo# Or [PhanLoaiNguoi] = ##Enum#DXApplication.Blazor.Common.Enums+PhanLoaiNguoi,ChuyenGia#" />
         <PropertyEditor Id="NoiDung" RowCount="17" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
-          <LayoutGroup Id="Chi tiết" Direction="Horizontal" RelativeSize="61.18012422360248" Caption="Nội dung">
-            <LayoutItem Id="NoiDung" RelativeSize="50" Index="0" />
-            <LayoutItem Id="File" ViewItem="File" Index="1" RelativeSize="50" IsNewNode="True" />
+          <LayoutGroup Id="Chi tiết" Direction="Vertical" RelativeSize="80.5019305019305" Caption="Nội dung">
+            <LayoutItem Id="NguoiTao" Index="0" RelativeSize="8.15347721822542" ViewItem="NguoiTao" IsNewNode="True" />
+            <LayoutItem Id="NoiDung" RelativeSize="50" Index="0" Removed="True" />
+            <LayoutGroup Id="Auto34b0faba-3585-44a6-95e6-bbbc730267a3" ShowCaption="False" Caption="" Direction="Horizontal" Index="1" RelativeSize="91.84652278177458" IsNewNode="True">
+              <LayoutItem Id="NoiDung" ViewItem="NoiDung" Index="0" RelativeSize="49.90215264187867" IsNewNode="True" />
+              <LayoutItem Id="File" ViewItem="File" Index="1" RelativeSize="50.09784735812133" IsNewNode="True" />
+            </LayoutGroup>
           </LayoutGroup>
-          <LayoutGroup Id="SimpleEditors" RelativeSize="38.81987577639752">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="19.498069498069498">
             <LayoutGroup Id="HoiThoai" Caption="Tải ảnh lên" RelativeSize="100">
               <LayoutItem Id="File" Removed="True" />
             </LayoutGroup>
