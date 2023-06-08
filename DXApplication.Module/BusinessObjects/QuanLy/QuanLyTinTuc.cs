@@ -43,7 +43,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         string seoContent;
         string metaContent;
         string moTa;
-        DateTime ngayTao;
+        DateTime? ngayTao;
         byte[] hinhAnh;
         string noiDung;
         string tieuDe;
@@ -139,7 +139,7 @@ namespace DXApplication.Module.BusinessObjects.QuanLy
         [XafDisplayName("Ngày tạo")]
         [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
-        public DateTime NgayTao
+        public DateTime? NgayTao
         {
             get => ngayTao;
             set => SetPropertyValue(nameof(NgayTao), ref ngayTao, value);

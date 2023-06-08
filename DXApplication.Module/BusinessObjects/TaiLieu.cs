@@ -41,9 +41,9 @@ namespace DXApplication.Module.BusinessObjects
         SinhVatGayHai sinhVatGayHai;
         QuyTrinhSanXuat quyTrinhSanXuat;
         string nguoiSua;
-        DateTime ngaySua;
+        DateTime? ngaySua;
         string nguoiTao;
-        DateTime ngayTao;
+        DateTime? ngayTao;
         string ghiChu;
         string moTa;
         string tenTaiLieu;
@@ -85,7 +85,7 @@ namespace DXApplication.Module.BusinessObjects
         [XafDisplayName("Ngày tạo")]
         [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
-        public DateTime NgayTao
+        public DateTime? NgayTao
         {
             get => ngayTao;
             set => SetPropertyValue(nameof(NgayTao), ref ngayTao, value);
@@ -101,7 +101,7 @@ namespace DXApplication.Module.BusinessObjects
         [XafDisplayName("Ngày sửa")]
         [VisibleInDetailView(false)]
         [ModelDefault("AllowEdit", "false")]
-        public DateTime NgaySua
+        public DateTime? NgaySua
         {
             get => ngaySua;
             set => SetPropertyValue(nameof(NgaySua), ref ngaySua, value);

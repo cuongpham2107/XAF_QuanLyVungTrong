@@ -40,8 +40,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
            
         }
 
-        DateTime apDungDen;
-        DateTime apDungTu;
+        DateTime? apDungDen;
+        DateTime? apDungTu;
         CongViec_TT congViec_TT;
         string tenCongViec;
         [XafDisplayName("Tên công việc")]
@@ -58,13 +58,13 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(CongViec_TT), ref congViec_TT, value);
         }
         [XafDisplayName("Áp dụng từ")]
-        public DateTime ApDungTu
+        public DateTime? ApDungTu
         {
             get => apDungTu;
             set => SetPropertyValue(nameof(ApDungTu), ref apDungTu, value);
         }
         [XafDisplayName("Áp dụng đến")]
-        public DateTime ApDungDen
+        public DateTime? ApDungDen
         {
             get => apDungDen;
             set => SetPropertyValue(nameof(ApDungDen), ref apDungDen, value);

@@ -40,7 +40,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
         }
 
         string ghiChu;
-        DateTime thoiHanSuDung;
+        DateTime? thoiHanSuDung;
         string huongDanSuDung;
         string tenThietBi;
         byte[] hinhAnh;
@@ -53,7 +53,7 @@ namespace DXApplication.Module.BusinessObjects.DoDung
         }
 
         [XafDisplayName("Hạn sử dụng đến")]
-        public DateTime ThoiHanSuDung
+        public DateTime? ThoiHanSuDung
         {
             get => thoiHanSuDung;
             set => SetPropertyValue(nameof(ThoiHanSuDung), ref thoiHanSuDung, value);

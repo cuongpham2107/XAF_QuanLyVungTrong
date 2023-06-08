@@ -68,10 +68,10 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         string datCoSo;
         DonViSanLuong donViSanLuong;
-        DateTime ngayKetThuc;
-        DateTime ngayThuHoach;
-        DateTime ngayNuoiTrong;
-        DateTime ngayBatDau;
+        DateTime? ngayKetThuc;
+        DateTime? ngayThuHoach;
+        DateTime? ngayNuoiTrong;
+        DateTime? ngayBatDau;
         string sanLuong;
         string nam;
         string tenNhatKy;
@@ -144,25 +144,25 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             set => SetPropertyValue(nameof(DonViSanLuong), ref donViSanLuong, value);
         }
         [XafDisplayName("Ngày bắt đầu")]
-        public DateTime NgayBatDau
+        public DateTime? NgayBatDau
         {
             get => ngayBatDau;
             set => SetPropertyValue(nameof(NgayBatDau), ref ngayBatDau, value);
         }
         [XafDisplayName("Ngày nuôi/trồng")]
-        public DateTime NgayNuoiTrong
+        public DateTime? NgayNuoiTrong
         {
             get => ngayNuoiTrong;
             set => SetPropertyValue(nameof(NgayNuoiTrong), ref ngayNuoiTrong, value);
         }
         [XafDisplayName("Ngày thu hoạch")]
-        public DateTime NgayThuHoach
+        public DateTime? NgayThuHoach
         {
             get => ngayThuHoach;
             set => SetPropertyValue(nameof(NgayThuHoach), ref ngayThuHoach, value);
         }
         [XafDisplayName("Ngày kết thúc")]
-        public DateTime  NgayKetThuc
+        public DateTime?  NgayKetThuc
         {
             get => ngayKetThuc;
             set => SetPropertyValue(nameof(NgayKetThuc), ref ngayKetThuc, value);
@@ -193,7 +193,11 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         [Association("NhatKyCanhTac-Dat_CoSos")]
         public XPCollection<Dat_CoSo> Dat_CoSos
         {
-            get => GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
+            get
+            {
+
+                return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
+            }
         }
     }
 }

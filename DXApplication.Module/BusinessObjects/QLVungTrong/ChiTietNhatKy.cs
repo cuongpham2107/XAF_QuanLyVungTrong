@@ -59,7 +59,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         DateTime? thoiGianBatDau;
         PhanBon phanBon;
         CongViec_TinhTrang congViec_TinhTrang;
-        DateTime ngayLamViec;
+        DateTime? ngayLamViec;
         NhatKyCanhTac nhatKyCanhTac;
         [XafDisplayName("Nhật ký canh tác")]
         [Association("NhatKyCanhTac-ChiTietNhatKys")]
@@ -91,7 +91,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         }
         [XafDisplayName("Ngày làm việc")]
         [RuleRequiredField("Bắt buộc phải có ChiTietNhatKy.NgayLamViec", DefaultContexts.Save, "Trường dữ liệu không được để trống")]
-        public DateTime NgayLamViec
+        public DateTime? NgayLamViec
         {
             get => ngayLamViec;
             set => SetPropertyValue(nameof(NgayLamViec), ref ngayLamViec, value);

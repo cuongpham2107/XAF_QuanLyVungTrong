@@ -37,7 +37,7 @@
         </Items>
       </Item>
       <Item Id="Hướng dẫn sử dụng" ImageName="manual" />
-      <Item Id="Quản lý Website" ImageName="FunctionsWeb">
+      <Item Id="Quản lý Website" ImageName="FunctionsWeb" Visible="False">
         <Items>
           <Item Id="QuanLyCayTrong_ListView" Index="0" />
           <Item Id="KiThuatCanhTac_ListView" Index="1" />
@@ -474,6 +474,9 @@
       </Columns>
     </ListView>
     <DetailView Id="NhatKyCanhTac_DetailView">
+      <Items>
+        <PropertyEditor Id="Dat_CoSos" DataSourceCriteria="" />
+      </Items>
       <Layout>
         <LayoutGroup Id="Main" RelativeSize="100">
           <TabbedGroup Id="Item1" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
