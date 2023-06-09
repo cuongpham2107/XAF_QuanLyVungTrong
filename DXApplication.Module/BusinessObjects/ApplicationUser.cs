@@ -26,7 +26,7 @@ namespace DXApplication.Module.BusinessObjects;
      Context = "Any",Criteria ="PhanLoaiNguoi!=1",Visibility =DevExpress.ExpressApp.Editors.ViewItemVisibility.Hide, Priority = 1)]
 
 [CustomNestedListView(nameof(VungTrongs), AllowNew = false, AllowLink = false, AllowUnlink = false, AllowDelete = false)]
-[CustomNestedListView(nameof(DanhMucChuDes), AllowNew = false, AllowLink = false, AllowUnlink = false, AllowDelete = false)]
+[CustomNestedListView(nameof(DanhMucChuDes), AllowNew = true, AllowLink = true, AllowUnlink = true, AllowDelete = true)]
 public class ApplicationUser : PermissionPolicyUser, ISecurityUserWithLoginInfo {
     public ApplicationUser(Session session) : base(session) { }
 

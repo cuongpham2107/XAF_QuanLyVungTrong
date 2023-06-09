@@ -195,7 +195,6 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get
             {
-
                 return GetCollection<Dat_CoSo>(nameof(Dat_CoSos));
             }
         }

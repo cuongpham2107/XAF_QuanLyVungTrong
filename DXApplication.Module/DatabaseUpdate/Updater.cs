@@ -35,7 +35,7 @@ public class Updater : ModuleUpdater {
             sampleUser.UserName = "User";
             // Set a password if the standard authentication type is used
             sampleUser.SetPassword("");
-
+            
             // The UserLoginInfo object requires a user object Id (Oid).
             // Commit the user object to the database before you create a UserLoginInfo object. This will correctly initialize the user key property.
             ObjectSpace.CommitChanges(); //This line persists created object(s).
@@ -50,7 +50,7 @@ public class Updater : ModuleUpdater {
             userAdmin.UserName = "Admin";
             // Set a password if the standard authentication type is used
             userAdmin.SetPassword("");
-
+            userAdmin.PhanLoaiNguoi = Common.Enums.PhanLoaiNguoi.QuanLy;
             // The UserLoginInfo object requires a user object Id (Oid).
             // Commit the user object to the database before you create a UserLoginInfo object. This will correctly initialize the user key property.
             ObjectSpace.CommitChanges(); //This line persists created object(s).
