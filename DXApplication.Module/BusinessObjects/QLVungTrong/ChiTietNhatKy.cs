@@ -18,7 +18,7 @@ using System.ComponentModel;
 namespace DXApplication.Module.BusinessObjects.QLVungTrong
 {
     [DefaultClassOptions]
-    [DefaultProperty(nameof(NhatKyCanhTac))]
+    [DefaultProperty(nameof(Ten))]
     [DefaultListViewOptions(MasterDetailMode.ListViewOnly, false, NewItemRowPosition.Top)]
     [XafDisplayName("Chi tiết nhật ký")]
     [NavigationItem(Menu.VungTrong)]
@@ -45,6 +45,7 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             thoiGianKetThuc = ngayLamViec;
             thoiGianBatDau = ngayLamViec;
         }
+
         string luongSuDung1;
         string luongSuDung;
         ThuocBVTV thuocBVTV;
@@ -61,6 +62,16 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         CongViec_TinhTrang congViec_TinhTrang;
         DateTime? ngayLamViec;
         NhatKyCanhTac nhatKyCanhTac;
+        [VisibleInDetailView(false)]
+        [VisibleInListView(false)]
+        public string Ten
+        {
+            get
+            {
+                string a = $"{NhatKyCanhTac.VungTrong.LoaiCayTrong} - {NhatKyCanhTac}";
+                return a;
+            }
+        }
         [XafDisplayName("Nhật ký canh tác")]
         [Association("NhatKyCanhTac-ChiTietNhatKys")]
         [ModelDefault("AllowEdit","False")]

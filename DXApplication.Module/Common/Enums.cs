@@ -76,9 +76,9 @@ public class Enums
     public enum DonViSanLuong
     {
         [XafDisplayName("Kg")] kg,
-        [XafDisplayName("Yến")] yen,
-        [XafDisplayName("Tạ")] ta,
-        [XafDisplayName("Tấn")] tan,
+        [XafDisplayName("Yến")] Yến,
+        [XafDisplayName("Tạ")] Tạ,
+        [XafDisplayName("Tấn")] Tấn,
     }
     public enum PhanLoaiDat
     {

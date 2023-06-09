@@ -48,6 +48,8 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             namCap = DateTime.Now.Year;
         }
 
+        DonViSanLuong dVT;
+        DateTime? ngayCap;
         ApplicationUser nongHo;
         string ghiChu;
         string thongTinThoNhuong;
@@ -89,11 +91,26 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
             get => diaChi;
             set => SetPropertyValue(nameof(DiaChi), ref diaChi, value);
         }
+        [XafDisplayName("Ngày cấp")]
+        [ModelDefault("DisplayFormat", "D")]
+        public DateTime? NgayCap
+        {
+            get => ngayCap;
+            set => SetPropertyValue(nameof(NgayCap), ref ngayCap, value);
+        }
         [XafDisplayName("Năm cấp")]
         [ModelDefault("DisplayFormat", "D")]
         public int NamCap
         {
-            get => namCap;
+            get
+            {
+                if (!IsSaving && !IsLoading && NgayCap != null)
+                {
+                    namCap = ngayCap.Value.Year;
+                }
+                return namCap;
+            }
+
             set => SetPropertyValue(nameof(NamCap), ref namCap, value);
         }
         [XafDisplayName("Tiêu chuẩn")]
@@ -145,6 +162,12 @@ namespace DXApplication.Module.BusinessObjects.QLVungTrong
         {
             get => sanLuongDuKien;
             set => SetPropertyValue(nameof(SanLuongDuKien), ref sanLuongDuKien, value);
+        }
+        [XafDisplayName("Đơn vị")]
+        public DonViSanLuong DVT
+        {
+            get => dVT;
+            set => SetPropertyValue(nameof(DVT), ref dVT, value);
         }
         [XafDisplayName("Hình thức canh tác")]
         public string HinhThucCanhTac
