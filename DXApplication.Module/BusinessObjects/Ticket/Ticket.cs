@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Helper = DXApplication.Module.Common.Helper;
 
 namespace DXApplication.Module.BusinessObjects.Ticket
 {
@@ -47,6 +48,67 @@ namespace DXApplication.Module.BusinessObjects.Ticket
             base.AfterConstruction();
             trangThai = true;
             ngayTao = DateTime.Now;
+        }
+        protected override void OnSaving()
+        {
+
+            base.OnSaving();
+            string _Host = "";
+            int _Port = 0;
+            string _Account = "";
+            string _Password = "";
+            string _From = "";
+
+            var Host = Session.Query<MailConfiguration>().FirstOrDefault(c => c.Key == "EmailHost");
+            var Port = Session.Query<MailConfiguration>().FirstOrDefault(c => c.Key == "EmailPort");
+            var Account = Session.Query<MailConfiguration>().FirstOrDefault(c => c.Key == "EmailAccount");
+            var Password = Session.Query<MailConfiguration>().FirstOrDefault(c => c.Key == "EmailPassword");
+            var From = Session.Query<MailConfiguration>().FirstOrDefault(c => c.Key == "EmailFrom");
+            if (Host != null && Port != null && Account != null && Password != null && From != null)
+            {
+                _Host = Host.Value;
+                _Port = int.Parse(Port.Value);
+                _Account = Account.Value;
+                _Password = Password.Value;
+                _From = From.Value;
+            }
+            if (NguoiTao == null) throw new UserFriendlyException("Không tồn tại người tạo Tiket");
+            if (string.IsNullOrEmpty(NguoiTao.DiaChiEmail)) throw new UserFriendlyException("Không có địa chỉ email.");
+
+            var body = "<h3>Kính gửi chuyên gia {{ten}}.</h3>" +
+                "<p>Thông báo về Câu hỏi mới nông hộ cần chuyên gia giả đáp:</p>" +
+                "<p>Tiêu đề: {{tieude}}</p>" +
+                "<span>Ngày tạo: {{ngaytao}}</span>" +
+                "<p>Nội dung: {{noidung}}</p>";
+
+            string header = "Người nông dân cần chuyên gia hỗ trợ";
+
+
+            List<ApplicationUser> chuyengias = Session.Query<ApplicationUser>().Where(x => x.PhanLoaiNguoi == Blazor.Common.Enums.PhanLoaiNguoi.ChuyenGia).ToList();
+
+            foreach (var item in chuyengias)
+            {
+                if (item.DanhMucChuDes != null)
+                {
+                    foreach (var value in item.DanhMucChuDes)
+                    {
+                        if (value.Oid == DanhMucChuDe.Oid)
+                        {
+                            Dictionary<string, string> pairs = new() {
+                                { "{{ten}}", item.Ten },
+                                { "{{tieude}}", TieuDe },
+                                { "{{ngaytao}}", NgayTao.ToString() },
+                                { "{{noidung}}", NoiDung },
+                            };
+                            var message = Helper.CreateBody(pairs, body);
+                            Helper.SendEmail(_From, item.DiaChiEmail, header, message, _Host, _Port, _Account, _Password);
+                        }
+
+                    }
+                }
+
+            }
+
         }
 
         DanhMucChuDe danhMucChuDe;
