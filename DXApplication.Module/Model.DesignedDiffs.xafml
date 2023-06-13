@@ -33,6 +33,7 @@
       </Item>
       <Item Id="Default" ImageName="Detailed">
         <Items>
+          <Item Id="MailConfiguration_ListView" ImageName="MailMerge" />
           <Item Id="TaiLieu_ListView" Visible="False" />
         </Items>
       </Item>
@@ -404,6 +405,29 @@
         <ColumnInfo Id="NamCap" Index="3" />
         <ColumnInfo Id="DienTichCanhTac" Index="5" />
         <ColumnInfo Id="HoatDong" Index="7" />
+      </Columns>
+    </ListView>
+    <DetailView Id="MailConfiguration_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="Chi tiết" RelativeSize="100">
+            <LayoutGroup Id="Item1" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Caption="Chi tiết" IsNewNode="True">
+              <LayoutItem Id="Key" ViewItem="Key" Index="0" RelativeSize="6.338028169014085" IsNewNode="True" />
+              <LayoutItem Id="Value" ViewItem="Value" Index="1" RelativeSize="4.577464788732394" IsNewNode="True" />
+              <LayoutItem Id="Description" ViewItem="Description" Index="2" RelativeSize="89.08450704225352" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutItem Id="Description" RelativeSize="78.5425101214575" Index="1" Removed="True" />
+            <LayoutItem Id="Key" Removed="True" />
+            <LayoutItem Id="Value" RelativeSize="5.2631578947368425" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="MailConfiguration_ListView">
+      <Columns>
+        <ColumnInfo Id="Key" Index="0" />
+        <ColumnInfo Id="Value" Index="1" />
+        <ColumnInfo Id="Description" Index="2" />
       </Columns>
     </ListView>
     <DashboardView Id="Maps" Caption="Bản đồ" ImageName="Business_World" IsNewNode="True">

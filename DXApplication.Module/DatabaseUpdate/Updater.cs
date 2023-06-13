@@ -22,13 +22,42 @@ public class Updater : ModuleUpdater {
     public override void UpdateDatabaseAfterUpdateSchema() {
         base.UpdateDatabaseAfterUpdateSchema();
         DashboardsModule.AddDashboardData<DashboardData>(ObjectSpace, "My Dashboard", DXApplication.Module.Resource.MyDashboard);
-        //string name = "MyName";
-        //DomainObject1 theObject = ObjectSpace.FirstOrDefault<DomainObject1>(u => u.Name == name);
-        //if(theObject == null) {
-        //    theObject = ObjectSpace.CreateObject<DomainObject1>();
-        //    theObject.Name = name;
-        //}
 
+        MailConfiguration theObject = ObjectSpace.FirstOrDefault<MailConfiguration>(u => u.Key == "EmailHost");
+        if (theObject == null)
+        {
+            theObject = ObjectSpace.CreateObject<MailConfiguration>();
+            theObject.Key = "EmailHost";
+            ObjectSpace.CommitChanges();
+        }
+        MailConfiguration theObject1 = ObjectSpace.FirstOrDefault<MailConfiguration>(u => u.Key == "EmailPort");
+        if (theObject1 == null)
+        {
+            theObject1 = ObjectSpace.CreateObject<MailConfiguration>();
+            theObject1.Key = "EmailPort";
+            ObjectSpace.CommitChanges();
+        }
+        MailConfiguration theObject2 = ObjectSpace.FirstOrDefault<MailConfiguration>(u => u.Key == "EmailAccount");
+        if (theObject2 == null)
+        {
+            theObject2 = ObjectSpace.CreateObject<MailConfiguration>();
+            theObject2.Key = "EmailAccount";
+            ObjectSpace.CommitChanges();
+        }
+        MailConfiguration theObject3 = ObjectSpace.FirstOrDefault<MailConfiguration>(u => u.Key == "EmailPassword");
+        if (theObject3 == null)
+        {
+            theObject3 = ObjectSpace.CreateObject<MailConfiguration>();
+            theObject3.Key = "EmailPassword";
+            ObjectSpace.CommitChanges();
+        }
+        MailConfiguration theObject4 = ObjectSpace.FirstOrDefault<MailConfiguration>(u => u.Key == "EmailFrom");
+        if (theObject4 == null)
+        {
+            theObject4 = ObjectSpace.CreateObject<MailConfiguration>();
+            theObject4.Key = "EmailFrom";
+            ObjectSpace.CommitChanges();
+        }
         ApplicationUser sampleUser = ObjectSpace.FirstOrDefault<ApplicationUser>(u => u.UserName == "User");
         if (sampleUser == null) {
             sampleUser = ObjectSpace.CreateObject<ApplicationUser>();
